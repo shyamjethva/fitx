@@ -1,0 +1,846 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bebas Neue", sans-serif;
+  --font-headline: "Montserrat", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+
+  /* Brand Cyan Palette (10% Electric Cyan) */
+  --color-primary: #00E5FF;
+  --color-primary-light: #33EBFF;
+  --color-primary-soft: #66F0FF;
+
+  /* Silver/Navy Neutrals */
+  --color-silver: #0A0F24;
+  --color-silver-light: #151E32;
+
+  /* Forced Global Fail-safes to guarantee no off-brand orange/yellow colors */
+  --color-blue-500: #00E5FF;
+  --color-blue-400: #33EBFF;
+  --color-red-500: #00E5FF;
+  --color-red-400: #33EBFF;
+  --color-green-500: #66F0FF;
+  --color-green-400: #00E5FF;
+  --color-emerald-500: #33EBFF;
+  --color-emerald-400: #66F0FF;
+  --color-purple-500: #00E5FF;
+  --color-purple-400: #33EBFF;
+  --color-cyan-500: #00E5FF;
+  --color-cyan-400: #33EBFF;
+  --color-yellow-500: #00E5FF;
+  --color-yellow-400: #33EBFF;
+  --color-orange-500: #00E5FF;
+  --color-orange-400: #33EBFF;
+
+  /* Surfaces (55% Matte White #F8FAFC) */
+  --color-primary-container: #00E5FF;
+  --color-secondary: #0A0F24;
+  --color-secondary-container: #151E32;
+  --color-background: #F8FAFC;
+  --color-surface: #F8FAFC;
+  --color-surface-container: #F1F5F9;
+  --color-surface-container-low: #E2E8F0;
+  --color-surface-container-lowest: #F8FAFC;
+
+  --drop-shadow-neon: 0 0 15px rgba(0, 229, 255, 0.35);
+  --drop-shadow-neon-strong: 0 0 30px rgba(0, 229, 255, 0.6);
+}
+
+html {
+  scroll-behavior: initial;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+@layer base {
+  body {
+    background-color: #F8FAFC !important;
+    color: #0A0F24 !important;
+    @apply font-sans antialiased selection:bg-[#00E5FF] selection:text-black;
+  }
+}
+
+@layer components {
+  /* Redefine glass-panel to be premium light-morphic */
+  .glass-panel {
+    background-color: rgba(248, 250, 252, 0.65) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(10, 15, 36, 0.08) !important;
+    box-shadow: 0 15px 40px rgba(10, 15, 36, 0.03) !important;
+  }
+
+  /* Keep legacy class names for components but map glows and shadows to Electric Cyan */
+  .neon-glow-orange {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.35) !important;
+  }
+
+  .neon-glow-orange-strong {
+    box-shadow: 0 0 35px rgba(0, 229, 255, 0.6) !important;
+  }
+
+  .text-glow-orange {
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.5) !important;
+  }
+
+  /* 55% Matte White Premium Background Mesh with subtle Cyan & Deep Navy glows */
+  .premium-bg {
+    background:
+      radial-gradient(ellipse at 10% 15%, rgba(0, 229, 255, 0.08), transparent 40%),
+      radial-gradient(ellipse at 90% 80%, rgba(21, 30, 50, 0.04), transparent 40%),
+      radial-gradient(ellipse at 55% 50%, rgba(0, 229, 255, 0.03), transparent 55%),
+      #F8FAFC !important;
+    background-attachment: fixed !important;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .admin-input {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: #16191d;
+    padding: 1rem;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    outline: none;
+  }
+
+  .admin-input:focus {
+    border-color: #FF7200;
+  }
+
+  .panel-card {
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.52);
+    padding: 1.25rem;
+    box-shadow: 0 16px 38px rgba(31, 83, 91, 0.08);
+    backdrop-filter: blur(18px);
+  }
+
+  .admin-light-input {
+    width: 100%;
+    border-radius: 0.9rem;
+    border: 1px solid rgba(139, 181, 185, 0.42);
+    background: rgba(255, 255, 255, 0.68);
+    padding: 0.8rem 0.95rem;
+    color: #12353b;
+    font-size: 0.9rem;
+    font-weight: 700;
+    outline: none;
+  }
+
+  .admin-light-input:focus {
+    border-color: #0f8f9a;
+    box-shadow: 0 0 0 3px rgba(15, 143, 154, 0.12);
+  }
+
+  .icon-button {
+    display: inline-flex;
+    height: 2.6rem;
+    width: 2.6rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.58);
+    color: #0f5961;
+    transition: all 0.2s ease;
+  }
+
+  .icon-button:hover {
+    background: #fff;
+  }
+
+  .primary-button,
+  .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.9rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.2s ease;
+  }
+
+  .primary-button {
+    background: #0f8f9a;
+    color: #fff;
+  }
+
+  .primary-button:hover {
+    background: #0b7882;
+  }
+
+  .secondary-button {
+    background: rgba(255, 255, 255, 0.6);
+    color: #0f5961;
+  }
+
+  .secondary-button:hover {
+    background: #fff;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL MIGRATION STYLES: MATTE WHITE (55%), DEEP NAVY (35%), ELECTRIC CYAN (10%)
+   ========================================================================== */
+
+/* --- Primary Backgrounds (55% Matte White #F8FAFC) --- */
+/* --- Primary Backgrounds (55% Matte White #F8FAFC) --- */
+.bg-black,
+.bg-\[\#050505\],
+.bg-\[\#0b0b0b\],
+.bg-\[\#0b0b0b\]\/90,
+.bg-\[\#0b0b0b\]\/80,
+.bg-\[\#0d0d0d\],
+.bg-\[\#090909\],
+.bg-zinc-950,
+.bg-slate-950,
+.bg-neutral-950 {
+  background-color: #F8FAFC !important;
+}
+
+/* --- Large Cards & Surfaces (55% Matte White #F8FAFC with elegant navy boundaries) --- */
+.bg-\[\#121414\],
+.bg-\[\#111214\],
+.bg-\[\#1a1c1e\],
+.bg-\[\#161819\],
+.bg-\[\#121212\],
+.bg-\[\#181a1b\],
+.bg-\[\#1c1c1c\],
+.bg-\[\#0c1616\],
+.bg-zinc-900,
+.bg-slate-900,
+.bg-neutral-900 {
+  background-color: #F8FAFC !important;
+  border: 1px solid rgba(10, 15, 36, 0.08) !important;
+  box-shadow: 0 15px 35px rgba(10, 15, 36, 0.04) !important;
+}
+
+/* Glass panel transparent card surfaces should also be beautiful light panels */
+.bg-white\/5 {
+  background-color: rgba(248, 250, 252, 0.5) !important;
+  border-color: rgba(10, 15, 36, 0.06) !important;
+}
+.bg-white\/10 {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+  border-color: rgba(10, 15, 36, 0.1) !important;
+}
+
+/* --- Sidebars, Navigation Headers, and Secondary Cards (35% Matte Deep Navy Blue #0A0F24 & #151E32) --- */
+header,
+header.bg-black,
+.header,
+.aside,
+[class*="sidebar"],
+[class*="header"],
+[class*="navigation"] {
+  background-color: #0A0F24 !important;
+  border-color: rgba(0, 229, 255, 0.15) !important;
+}
+
+header.bg-transparent {
+  background-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+nav,
+aside {
+  background-color: transparent !important;
+}
+
+/* Custom dark backgrounds mapped explicitly to Deep Navy #151E32 */
+.bg-\[\#121417\],
+.bg-\[\#1F2328\],
+.bg-\[\#16191d\],
+.bg-\[\#1a1d21\],
+.bg-gradient-to-b.from-\[\#1a1c20\],
+.bg-\[\#0d0e11\] {
+  background-color: #151E32 !important;
+  background-image: none !important;
+  border-color: rgba(0, 229, 255, 0.15) !important;
+}
+
+/* Secondary cards / dark secondary sections / footer / subnavs */
+footer,
+footer.bg-black,
+.footer,
+.bg-black\/80,
+.bg-black\/90,
+.bg-secondary,
+.bg-navy,
+.bg-\[\#0A0F24\],
+.bg-\[\#151E32\],
+.bg-gradient-to-br.from-\[\#2d333d\],
+.bg-gradient-to-br.from-\[\#1a1e24\],
+.bg-gradient-to-b.from-\[\#124a44\],
+.bg-gradient-to-b.from-\[\#282c31\],
+[class*="secondary-card"] {
+  background-color: #151E32 !important;
+  background-image: none !important; /* purge standard gradient meshes */
+  border-color: rgba(0, 229, 255, 0.1) !important;
+}
+
+/* --- Modals & Dialog overlays --- */
+.fixed.inset-0.z-50 .bg-black\/80,
+.fixed.inset-0.z-50 .bg-black\/70 {
+  background-color: rgba(10, 15, 36, 0.75) !important;
+}
+
+/* Modal Content Box */
+.fixed.inset-0.z-50 .bg-\[\#121414\],
+.fixed.inset-0.z-50 .bg-\[\#111214\],
+.fixed.inset-0.z-50 .bg-zinc-900,
+.fixed.inset-0.z-50 [class*="modal"] {
+  background-color: #151E32 !important;
+  border: 1px solid rgba(0, 229, 255, 0.2) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* --- Typography System (Matte Deep Navy Blue #0A0F24 on white surfaces, White #F8FAFC on navy surfaces) --- */
+.text-white,
+.text-\[\#D8DCDF\],
+.text-slate-100,
+.text-zinc-100,
+.text-neutral-100 {
+  color: #0A0F24 !important;
+}
+
+/* Typography Opacities on white surfaces */
+.text-white\/90 { color: rgba(10, 15, 36, 0.9) !important; }
+.text-white\/85 { color: rgba(10, 15, 36, 0.85) !important; }
+.text-white\/80 { color: rgba(10, 15, 36, 0.8) !important; }
+.text-white\/75 { color: rgba(10, 15, 36, 0.75) !important; }
+.text-white\/70 { color: rgba(10, 15, 36, 0.7) !important; }
+.text-white\/60 { color: rgba(10, 15, 36, 0.6) !important; }
+.text-white\/50 { color: rgba(10, 15, 36, 0.5) !important; }
+.text-white\/40 { color: rgba(10, 15, 36, 0.4) !important; }
+.text-white\/30 { color: rgba(10, 15, 36, 0.3) !important; }
+.text-white\/20 { color: rgba(10, 15, 36, 0.2) !important; }
+.text-white\/10 { color: rgba(10, 15, 36, 0.1) !important; }
+
+/* Invert nested typography in Deep Navy and Custom Dark surfaces */
+header .text-white, header [class*="text-white"],
+header.bg-black .text-white, header.bg-black [class*="text-white"],
+header.bg-transparent .text-white, header.bg-transparent [class*="text-white"],
+header.bg-\[\#0d0e11\] .text-white, header.bg-\[\#0d0e11\] [class*="text-white"],
+#hero .text-white, #hero [class*="text-white"],
+nav .text-white, nav [class*="text-white"],
+aside .text-white, aside [class*="text-white"],
+[class*="sidebar"] .text-white, [class*="sidebar"] [class*="text-white"],
+[class*="header"] .text-white, [class*="header"] [class*="text-white"],
+footer .text-white, footer [class*="text-white"],
+.bg-black\/80 .text-white, .bg-black\/80 [class*="text-white"],
+.bg-black\/90 .text-white, .bg-black\/90 [class*="text-white"],
+.bg-secondary .text-white, .bg-secondary [class*="text-white"],
+.bg-navy .text-white, .bg-navy [class*="text-white"],
+.bg-\[\#0A0F24\] .text-white, .bg-\[\#0A0F24\] [class*="text-white"],
+.bg-\[\#151E32\] .text-white, .bg-\[\#151E32\] [class*="text-white"],
+.bg-gradient-to-br.from-\[\#2d333d\] .text-white, .bg-gradient-to-br.from-\[\#2d333d\] [class*="text-white"],
+.bg-gradient-to-b.from-\[\#124a44\] .text-white, .bg-gradient-to-b.from-\[\#124a44\] [class*="text-white"],
+.bg-gradient-to-b.from-\[\#282c31\] .text-white, .bg-gradient-to-b.from-\[\#282c31\] [class*="text-white"],
+.bg-\[\#0a0a0a\] .text-white, .bg-\[\#0a0a0a\] [class*="text-white"],
+.bg-\[\#0c0c0c\] .text-white, .bg-\[\#0c0c0c\] [class*="text-white"],
+.bg-\[\#121417\] .text-white, .bg-\[\#121417\] [class*="text-white"],
+.bg-\[\#1a1d21\] .text-white, .bg-\[\#1a1d21\] [class*="text-white"],
+.bg-\[\#1F2328\] .text-white, .bg-\[\#1F2328\] [class*="text-white"],
+.bg-\[\#16191d\] .text-white, .bg-\[\#16191d\] [class*="text-white"],
+.bg-\[\#242933\] .text-white, .bg-\[\#242933\] [class*="text-white"],
+.bg-\[\#1f232b\] .text-white, .bg-\[\#1f232b\] [class*="text-white"],
+.bg-\[\#161616\] .text-white, .bg-\[\#161616\] [class*="text-white"],
+.bg-\[\#2a3038\] .text-white, .bg-\[\#2a3038\] [class*="text-white"],
+.bg-gradient-to-b.from-\[\#1a1c20\] .text-white, .bg-gradient-to-b.from-\[\#1a1c20\] [class*="text-white"],
+.bg-black\/30 .text-white, .bg-black\/30 [class*="text-white"],
+.bg-black\/40 .text-white, .bg-black\/40 [class*="text-white"],
+.bg-black\/50 .text-white, .bg-black\/50 [class*="text-white"],
+.bg-black\/60 .text-white, .bg-black\/60 [class*="text-white"],
+.bg-gradient-to-br.from-\[\#1c1c1c\].to-\[\#0d0d0d\] .text-white, .bg-gradient-to-br.from-\[\#1c1c1c\].to-\[\#0d0d0d\] [class*="text-white"],
+.fixed.inset-0.z-50 .text-white,
+.fixed.inset-0.z-50 [class*="text-white"] {
+  color: #F8FAFC !important;
+}
+
+/* Nested typography opacities inside Deep Navy and Custom Dark surfaces */
+header .text-white\/90, header.bg-black .text-white\/90, header.bg-transparent .text-white\/90, header.bg-\[\#0d0e11\] .text-white\/90, #hero .text-white\/90, nav .text-white\/90, aside .text-white\/90, [class*="sidebar"] .text-white\/90, footer .text-white\/90, .bg-black\/80 .text-white\/90, .bg-black\/90 .text-white\/90, .bg-secondary .text-white\/90, .bg-navy .text-white\/90, .bg-\[\#0A0F24\] .text-white\/90, .bg-\[\#151E32\] .text-white\/90, .bg-gradient-to-br.from-\[\#2d333d\] .text-white\/90, .bg-gradient-to-b.from-\[\#124a44\] .text-white\/90, .bg-gradient-to-b.from-\[\#282c31\] .text-white\/90, .bg-\[\#0a0a0a\] .text-white\/90, .bg-\[\#0c0c0c\] .text-white\/90, .bg-\[\#121417\] .text-white\/90, .bg-\[\#1a1d21\] .text-white\/90, .bg-\[\#1F2328\] .text-white\/90, .bg-\[\#16191d\] .text-white\/90, .bg-\[\#242933\] .text-white\/90, .bg-\[\#1f232b\] .text-white\/90, .bg-\[\#161616\] .text-white\/90, .bg-\[\#2a3038\] .text-white\/90, .bg-gradient-to-b.from-\[\#1a1c20\] .text-white\/90, .bg-black\/30 .text-white\/90, .bg-black\/40 .text-white\/90, .bg-black\/50 .text-white\/90, .bg-black\/60 .text-white\/90, .fixed.inset-0.z-50 .text-white\/90 { color: rgba(248, 250, 252, 0.9) !important; }
+header .text-white\/80, header.bg-black .text-white\/80, header.bg-transparent .text-white\/80, header.bg-\[\#0d0e11\] .text-white\/80, #hero .text-white\/80, nav .text-white\/80, aside .text-white\/80, [class*="sidebar"] .text-white\/80, footer .text-white\/80, .bg-black\/80 .text-white\/80, .bg-black\/90 .text-white\/80, .bg-secondary .text-white\/80, .bg-navy .text-white\/80, .bg-\[\#0A0F24\] .text-white\/80, .bg-\[\#151E32\] .text-white\/80, .bg-gradient-to-br.from-\[\#2d333d\] .text-white\/80, .bg-gradient-to-b.from-\[\#124a44\] .text-white\/80, .bg-gradient-to-b.from-\[\#282c31\] .text-white\/80, .bg-\[\#0a0a0a\] .text-white\/80, .bg-\[\#0c0c0c\] .text-white\/80, .bg-\[\#121417\] .text-white\/80, .bg-\[\#1a1d21\] .text-white\/80, .bg-\[\#1F2328\] .text-white\/80, .bg-\[\#16191d\] .text-white\/80, .bg-\[\#242933\] .text-white\/80, .bg-\[\#1f232b\] .text-white\/80, .bg-\[\#161616\] .text-white\/80, .bg-\[\#2a3038\] .text-white\/80, .bg-gradient-to-b.from-\[\#1a1c20\] .text-white\/80, .bg-black\/30 .text-white\/80, .bg-black\/40 .text-white\/80, .bg-black\/50 .text-white\/80, .bg-black\/60 .text-white\/80, .fixed.inset-0.z-50 .text-white\/80 { color: rgba(248, 250, 252, 0.8) !important; }
+header .text-white\/70, header.bg-black .text-white\/70, header.bg-transparent .text-white\/70, header.bg-\[\#0d0e11\] .text-white\/70, #hero .text-white\/70, nav .text-white\/70, aside .text-white\/70, [class*="sidebar"] .text-white\/70, footer .text-white\/70, .bg-black\/80 .text-white\/70, .bg-black\/90 .text-white\/70, .bg-secondary .text-white\/70, .bg-navy .text-white\/70, .bg-\[\#0A0F24\] .text-white\/70, .bg-\[\#151E32\] .text-white\/70, .bg-gradient-to-br.from-\[\#2d333d\] .text-white\/70, .bg-gradient-to-b.from-\[\#124a44\] .text-white\/70, .bg-gradient-to-b.from-\[\#282c31\] .text-white\/70, .bg-\[\#0a0a0a\] .text-white\/70, .bg-\[\#0c0c0c\] .text-white\/70, .bg-\[\#121417\] .text-white\/70, .bg-\[\#1a1d21\] .text-white\/70, .bg-\[\#1F2328\] .text-white\/70, .bg-\[\#16191d\] .text-white\/70, .bg-\[\#242933\] .text-white\/70, .bg-\[\#1f232b\] .text-white\/70, .bg-\[\#161616\] .text-white\/70, .bg-\[\#2a3038\] .text-white\/70, .bg-gradient-to-b.from-\[\#1a1c20\] .text-white\/70, .bg-black\/30 .text-white\/70, .bg-black\/40 .text-white\/70, .bg-black\/50 .text-white\/70, .bg-black\/60 .text-white\/70, .fixed.inset-0.z-50 .text-white\/70 { color: rgba(248, 250, 252, 0.7) !important; }
+header .text-white\/60, header.bg-black .text-white\/60, header.bg-transparent .text-white\/60, header.bg-\[\#0d0e11\] .text-white\/60, #hero .text-white\/60, nav .text-white\/60, aside .text-white\/60, [class*="sidebar"] .text-white\/60, footer .text-white\/60, .bg-black\/80 .text-white\/60, .bg-black\/90 .text-white\/60, .bg-secondary .text-white\/60, .bg-navy .text-white\/60, .bg-\[\#0A0F24\] .text-white\/60, .bg-\[\#151E32\] .text-white\/60, .bg-gradient-to-br.from-\[\#2d333d\] .text-white\/60, .bg-gradient-to-b.from-\[\#124a44\] .text-white\/60, .bg-gradient-to-b.from-\[\#282c31\] .text-white\/60, .bg-\[\#0a0a0a\] .text-white\/60, .bg-\[\#0c0c0c\] .text-white\/60, .bg-\[\#121417\] .text-white\/60, .bg-\[\#1a1d21\] .text-white\/60, .bg-\[\#1F2328\] .text-white\/60, .bg-\[\#16191d\] .text-white\/60, .bg-\[\#242933\] .text-white\/60, .bg-\[\#1f232b\] .text-white\/60, .bg-\[\#161616\] .text-white\/60, .bg-\[\#2a3038\] .text-white\/60, .bg-gradient-to-b.from-\[\#1a1c20\] .text-white\/60, .bg-black\/30 .text-white\/60, .bg-black\/40 .text-white\/60, .bg-black\/50 .text-white\/60, .bg-black\/60 .text-white\/60, .fixed.inset-0.z-50 .text-white\/60 { color: rgba(248, 250, 252, 0.6) !important; }
+header .text-white\/40, header.bg-black .text-white\/40, header.bg-transparent .text-white\/40, header.bg-\[\#0d0e11\] .text-white\/40, #hero .text-white\/40, nav .text-white\/40, aside .text-white\/40, [class*="sidebar"] .text-white\/40, footer .text-white\/40, .bg-black\/80 .text-white\/40, .bg-black\/90 .text-white\/40, .bg-secondary .text-white\/40, .bg-navy .text-white\/40, .bg-\[\#0A0F24\] .text-white\/40, .bg-\[\#151E32\] .text-white\/40, .bg-gradient-to-br.from-\[\#2d333d\] .text-white\/40, .bg-gradient-to-b.from-\[\#124a44\] .text-white\/40, .bg-gradient-to-b.from-\[\#282c31\] .text-white\/40, .bg-\[\#0a0a0a\] .text-white\/40, .bg-\[\#0c0c0c\] .text-white\/40, .bg-\[\#121417\] .text-white\/40, .bg-\[\#1a1d21\] .text-white\/40, .bg-\[\#1F2328\] .text-white\/40, .bg-\[\#16191d\] .text-white\/40, .bg-\[\#242933\] .text-white\/40, .bg-\[\#1f232b\] .text-white\/40, .bg-\[\#161616\] .text-white\/40, .bg-\[\#2a3038\] .text-white\/40, .bg-gradient-to-b.from-\[\#1a1c20\] .text-white\/40, .bg-black\/30 .text-white\/40, .bg-black\/40 .text-white\/40, .bg-black\/50 .text-white\/40, .bg-black\/60 .text-white\/40, .fixed.inset-0.z-50 .text-white\/40 { color: rgba(248, 250, 252, 0.4) !important; }
+header .text-white\/30, header.bg-black .text-white\/30, header.bg-transparent .text-white\/30, header.bg-\[\#0d0e11\] .text-white\/30, #hero .text-white\/30, nav .text-white\/30, aside .text-white\/30, [class*="sidebar"] .text-white\/30, footer .text-white\/30, .bg-black\/80 .text-white\/30, .bg-black\/90 .text-white\/30, .bg-secondary .text-white\/30, .bg-navy .text-white\/30, .bg-\[\#0A0F24\] .text-white\/30, .bg-\[\#151E32\] .text-white\/30, .bg-gradient-to-br.from-\[\#2d333d\] .text-white\/30, .bg-gradient-to-b.from-\[\#124a44\] .text-white\/30, .bg-gradient-to-b.from-\[\#282c31\] .text-white\/30, .bg-\[\#0a0a0a\] .text-white\/30, .bg-\[\#0c0c0c\] .text-white\/30, .bg-\[\#121417\] .text-white\/30, .bg-\[\#1a1d21\] .text-white\/30, .bg-\[\#1F2328\] .text-white\/30, .bg-\[\#16191d\] .text-white\/30, .bg-\[\#242933\] .text-white\/30, .bg-\[\#1f232b\] .text-white\/30, .bg-\[\#161616\] .text-white\/30, .bg-\[\#2a3038\] .text-white\/30, .bg-gradient-to-b.from-\[\#1a1c20\] .text-white\/30, .bg-black\/30 .text-white\/30, .bg-black\/40 .text-white\/30, .bg-black\/50 .text-white\/30, .bg-black\/60 .text-white\/30, .fixed.inset-0.z-50 .text-white\/30 { color: rgba(248, 250, 252, 0.3) !important; }
+header .text-white\/20, header.bg-black .text-white\/20, header.bg-transparent .text-white\/20, header.bg-\[\#0d0e11\] .text-white\/20, #hero .text-white\/20, nav .text-white\/20, aside .text-white\/20, [class*="sidebar"] .text-white\/20, footer .text-white\/20, .bg-black\/80 .text-white\/20, .bg-black\/90 .text-white\/20, .bg-secondary .text-white\/20, .bg-navy .text-white\/20, .bg-\[\#0A0F24\] .text-white\/20, .bg-\[\#151E32\] .text-white\/20, .bg-gradient-to-br.from-\[\#2d333d\] .text-white\/20, .bg-gradient-to-b.from-\[\#124a44\] .text-white\/20, .bg-gradient-to-b.from-\[\#282c31\] .text-white\/20, .bg-\[\#0a0a0a\] .text-white\/20, .bg-\[\#0c0c0c\] .text-white\/20, .bg-\[\#121417\] .text-white\/20, .bg-\[\#1a1d21\] .text-white\/20, .bg-\[\#1F2328\] .text-white\/20, .bg-\[\#16191d\] .text-white\/20, .bg-\[\#242933\] .text-white\/20, .bg-\[\#1f232b\] .text-white\/20, .bg-\[\#161616\] .text-white\/20, .bg-\[\#2a3038\] .text-white\/20, .bg-gradient-to-b.from-\[\#1a1c20\] .text-white\/20, .bg-black\/30 .text-white\/20, .bg-black\/40 .text-white\/20, .bg-black\/50 .text-white\/20, .bg-black\/60 .text-white\/20, .fixed.inset-0.z-50 .text-white\/20 { color: rgba(248, 250, 252, 0.2) !important; }
+
+/* Scoped typography overrides inside dark containers to ensure perfect legibility */
+header.bg-transparent .text-zinc-950, header.bg-transparent .text-zinc-900, header.bg-transparent .text-black, header.bg-transparent .text-slate-900, header.bg-transparent .text-slate-950,
+header.bg-\[\#0d0e11\] .text-zinc-950, header.bg-\[\#0d0e11\] .text-zinc-900, header.bg-\[\#0d0e11\] .text-black, header.bg-\[\#0d0e11\] .text-slate-900, header.bg-\[\#0d0e11\] .text-slate-950,
+nav .text-zinc-950, nav .text-zinc-900, nav .text-black, nav .text-slate-900, nav .text-slate-950,
+aside .text-zinc-950, aside .text-zinc-900, aside .text-black, aside .text-slate-900, aside .text-slate-950,
+[class*="sidebar"] .text-zinc-950, [class*="sidebar"] .text-zinc-900, [class*="sidebar"] .text-black, [class*="sidebar"] .text-slate-900, [class*="sidebar"] .text-slate-950,
+footer .text-zinc-950, footer .text-zinc-900, footer .text-black, footer .text-slate-900, footer .text-slate-950,
+.bg-black\/80 .text-zinc-950, .bg-black\/80 .text-black,
+.bg-black\/90 .text-zinc-950, .bg-black\/90 .text-black,
+.bg-\[\#0A0F24\] .text-zinc-950, .bg-\[\#0A0F24\] .text-black,
+.bg-\[\#151E32\] .text-zinc-950, .bg-\[\#151E32\] .text-black,
+.bg-\[\#0a0a0a\] .text-zinc-950, .bg-\[\#0a0a0a\] .text-black, .bg-\[\#0a0a0a\] .text-zinc-900,
+.bg-\[\#0c0c0c\] .text-zinc-950, .bg-\[\#0c0c0c\] .text-black, .bg-\[\#0c0c0c\] .text-zinc-900,
+.bg-\[\#1c1c1c\] .text-zinc-950, .bg-\[\#1c1c1c\] .text-black, .bg-\[\#1c1c1c\] .text-zinc-900,
+.bg-\[\#121417\] .text-zinc-950, .bg-\[\#121417\] .text-black, .bg-\[\#121417\] .text-zinc-900,
+.bg-\[\#1F2328\] .text-zinc-950, .bg-\[\#1F2328\] .text-black, .bg-\[\#1F2328\] .text-zinc-900,
+.bg-\[\#16191d\] .text-zinc-950, .bg-\[\#16191d\] .text-black, .bg-\[\#16191d\] .text-zinc-900,
+.bg-\[\#242933\] .text-zinc-950, .bg-\[\#242933\] .text-black, .bg-\[\#242933\] .text-zinc-900,
+.bg-gradient-to-b.from-\[\#1a1c20\] .text-zinc-950, .bg-gradient-to-b.from-\[\#1a1c20\] .text-black, .bg-gradient-to-b.from-\[\#1a1c20\] .text-zinc-900,
+section.relative .text-zinc-950, section.relative .text-black, section.relative .text-zinc-900,
+.bg-black\/30 .text-zinc-950, .bg-black\/30 .text-black,
+.bg-black\/40 .text-zinc-950, .bg-black\/40 .text-black,
+.bg-black\/50 .text-zinc-950, .bg-black\/50 .text-black {
+  color: #F8FAFC !important;
+}
+
+/* --- Admin Command Center & Dark Theme Contrast Fixes (bg-[#0d0e11] and bg-[#060708]) --- */
+.bg-\[\#0d0e11\] .text-white, .bg-\[\#0d0e11\] [class*="text-white"],
+.bg-\[\#060708\] .text-white, .bg-\[\#060708\] [class*="text-white"] {
+  color: #F8FAFC !important;
+}
+
+.bg-\[\#0d0e11\] .text-white\/90, .bg-\[\#060708\] .text-white\/90 { color: rgba(248, 250, 252, 0.9) !important; }
+.bg-\[\#0d0e11\] .text-white\/80, .bg-\[\#060708\] .text-white\/80 { color: rgba(248, 250, 252, 0.8) !important; }
+.bg-\[\#0d0e11\] .text-white\/70, .bg-\[\#060708\] .text-white\/70 { color: rgba(248, 250, 252, 0.7) !important; }
+.bg-\[\#0d0e11\] .text-white\/60, .bg-\[\#060708\] .text-white\/60 { color: rgba(248, 250, 252, 0.6) !important; }
+.bg-\[\#0d0e11\] .text-white\/40, .bg-\[\#060708\] .text-white\/40 { color: rgba(248, 250, 252, 0.4) !important; }
+.bg-\[\#0d0e11\] .text-white\/30, .bg-\[\#060708\] .text-white\/30 { color: rgba(248, 250, 252, 0.3) !important; }
+.bg-\[\#0d0e11\] .text-white\/20, .bg-\[\#060708\] .text-white\/20 { color: rgba(248, 250, 252, 0.2) !important; }
+
+.bg-\[\#0d0e11\] .text-zinc-950, .bg-\[\#0d0e11\] .text-zinc-900, .bg-\[\#0d0e11\] .text-black, .bg-\[\#0d0e11\] .text-slate-900, .bg-\[\#0d0e11\] .text-slate-950,
+.bg-\[\#060708\] .text-zinc-950, .bg-\[\#060708\] .text-zinc-900, .bg-\[\#060708\] .text-black, .bg-\[\#060708\] .text-slate-900, .bg-\[\#060708\] .text-slate-950 {
+  color: #F8FAFC !important;
+}
+
+/* --- Call-To-Action (CTA) Buttons, Active Tabs, Highlights & Accent Boundaries (10% Electric Cyan #00E5FF) --- */
+
+/* CTA Buttons & Primary Hover States (Specifically targeted to prevent accordion & standard buttons override) */
+:not(.admin-portal-wrapper) .button,
+:not(.admin-portal-wrapper) [role="button"],
+:not(.admin-portal-wrapper) .bg-primary,
+:not(.admin-portal-wrapper) .bg-\[\#FF7200\],
+:not(.admin-portal-wrapper) .bg-\[\#FF8B10\],
+:not(.admin-portal-wrapper) .bg-\[\#ff5a3d\],
+:not(.admin-portal-wrapper) .bg-\[\#ff4d4d\],
+:not(.admin-portal-wrapper) .bg-gradient-to-br.from-\[\#FF7200\],
+:not(.admin-portal-wrapper) button.bg-white,
+:not(.admin-portal-wrapper) button.bg-primary,
+:not(.admin-portal-wrapper) button.bg-\[\#FF7200\],
+:not(.admin-portal-wrapper) button.bg-\[\#ff5a3d\],
+:not(.admin-portal-wrapper) button.bg-\[\#ff4d4d\],
+:not(.admin-portal-wrapper) a.bg-primary,
+:not(.admin-portal-wrapper) a.bg-\[\#FF7200\],
+:not(.admin-portal-wrapper) a.bg-\[\#ff5a3d\] {
+  background-color: #00E5FF !important;
+  background-image: none !important;
+  color: #0A0F24 !important;
+  font-weight: 900 !important;
+  border-radius: 8px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+:not(.admin-portal-wrapper) .button:hover,
+:not(.admin-portal-wrapper) [role="button"]:hover,
+:not(.admin-portal-wrapper) button.bg-white:hover,
+:not(.admin-portal-wrapper) button.bg-primary:hover,
+:not(.admin-portal-wrapper) button.bg-\[\#FF7200\]:hover,
+:not(.admin-portal-wrapper) button.bg-\[\#ff5a3d\]:hover,
+:not(.admin-portal-wrapper) a.bg-primary:hover,
+:not(.admin-portal-wrapper) a.bg-\[\#FF7200\]:hover,
+:not(.admin-portal-wrapper) a.bg-\[\#ff5a3d\]:hover {
+  background-color: #33EBFF !important;
+  transform: scale(1.03) !important;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.45) !important;
+  color: #0A0F24 !important;
+}
+
+/* Secondary Buttons & Outlined CTAs (such as TRY FOR FREE, or transparent borders) */
+:not(.admin-portal-wrapper) button.bg-white\/5,
+:not(.admin-portal-wrapper) button.border,
+:not(.admin-portal-wrapper) button.bg-transparent,
+:not(.admin-portal-wrapper) .button-outline,
+:not(.admin-portal-wrapper) .btn-secondary {
+  background-color: transparent !important;
+  border: 1px solid #00E5FF !important;
+  color: #00E5FF !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+:not(.admin-portal-wrapper) button.bg-white\/5:hover,
+:not(.admin-portal-wrapper) button.border:hover,
+:not(.admin-portal-wrapper) button.bg-transparent:hover,
+:not(.admin-portal-wrapper) .button-outline:hover,
+:not(.admin-portal-wrapper) .btn-secondary:hover {
+  background-color: #00E5FF !important;
+  color: #0A0F24 !important;
+  transform: scale(1.03) !important;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.45) !important;
+}
+
+/* --- Admin Panel Button & Hover Effects (Sleek, fluid transitions, no scaling jumps) --- */
+.admin-portal-wrapper button,
+.admin-portal-wrapper [role="button"] {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.admin-portal-wrapper button:hover,
+.admin-portal-wrapper [role="button"]:hover {
+  filter: brightness(1.2) !important;
+}
+
+.admin-portal-wrapper button.bg-\[\#00E5FF\]:hover,
+.admin-portal-wrapper button[class*="bg-[#00E5FF]"]:hover,
+.admin-portal-wrapper button.bg-cyan-500:hover {
+  background-color: #33EBFF !important;
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.25) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Active Tabs & Borders in Cyan */
+.bg-\[\#FF7200\],
+.bg-\[\#FF8B10\],
+.bg-\[\#FF9942\],
+.bg-\[\#ff5a3d\],
+.bg-\[\#ff4d4d\],
+.bg-primary,
+.bg-blue-500,
+.bg-red-500,
+.bg-green-500,
+.bg-emerald-500 {
+  background-color: #00E5FF !important;
+}
+
+/* Text Highlights in Cyan (Any legacy orange/yellow/red elements) */
+.text-\[\#FF7200\],
+.text-\[\#FF8B10\],
+.text-\[\#FF9942\],
+.text-\[\#ff5a3d\],
+.text-\[\#ff4d4d\],
+.text-primary,
+.text-orange-500,
+.text-yellow-500,
+.text-red-500,
+.text-blue-400,
+.text-green-400,
+.text-emerald-400 {
+  color: #00E5FF !important;
+  text-shadow: none !important;
+}
+
+/* Accent bullet items & small decorative dots */
+.bg-white\/30,
+.bg-white\/20,
+.bg-emerald-500,
+.bg-green-500,
+.bg-green-400\/10 {
+  background-color: #00E5FF !important;
+}
+
+/* Border highlighting */
+.border-primary,
+.border-\[\#FF7200\],
+.border-\[\#FF8B10\],
+.border-\[\#FF9942\],
+.border-\[\#ff5a3d\],
+.border-\[\#ff4d4d\],
+.border-green-500,
+.focus\:border-\[\#FF7200\]:focus,
+.focus\:border-\[\#ff5a3d\]:focus {
+  border-color: #00E5FF !important;
+}
+
+/* Rechart charts support (cyan bars and tooltips) */
+.recharts-default-tooltip {
+  background-color: #151E32 !important;
+  border-color: #00E5FF !important;
+  color: #F8FAFC !important;
+}
+
+/* ==========================================================================
+   SEMANTIC PREMIUM STYLING RULES (FITX CORE CONTRAST & HYBRID PALETTE SYSTEM)
+   ========================================================================== */
+
+/* Membership premium card overrides */
+.membership-card {
+  background-color: #151E32 !important;
+  border-color: rgba(248, 250, 252, 0.1) !important;
+  color: #F8FAFC !important;
+}
+
+.membership-card:hover {
+  border-color: rgba(0, 229, 255, 0.4) !important;
+}
+
+.membership-card.active {
+  background-color: #0A0F24 !important;
+  border-color: #00E5FF !important;
+  box-shadow: 0 20px 80px rgba(0, 229, 255, 0.15) !important;
+}
+
+.membership-card .text-white,
+.membership-card h3,
+.membership-card span {
+  color: #F8FAFC !important;
+}
+
+/* Premium Booking and social containers */
+.booking-card {
+  background-color: #151E32 !important;
+  border-color: rgba(248, 250, 252, 0.1) !important;
+  color: #F8FAFC !important;
+}
+
+.booking-card h2,
+.booking-card p,
+.booking-card span,
+.booking-card h3 {
+  color: #F8FAFC !important;
+}
+
+/* High contrast inputs and selectors inside forms */
+.dark-input {
+  background-color: #0A0F24 !important;
+  border: 1px solid rgba(248, 250, 252, 0.15) !important;
+  color: #F8FAFC !important;
+}
+
+.dark-input::placeholder {
+  color: rgba(248, 250, 252, 0.4) !important;
+}
+
+.dark-input:focus {
+  border-color: #00E5FF !important;
+  box-shadow: 0 0 0 1px #00E5FF !important;
+}
+
+select.dark-input option {
+  background-color: #0A0F24 !important;
+  color: #F8FAFC !important;
+}
+
+/* Premium Info Side Cards */
+.info-card {
+  background-color: #151E32 !important;
+  border-color: rgba(248, 250, 252, 0.1) !important;
+}
+
+.info-card:hover {
+  background-color: #0A0F24 !important;
+  border-color: rgba(0, 229, 255, 0.3) !important;
+}
+
+.info-card h3 {
+  color: #F8FAFC !important;
+}
+
+/* Premium Gallery Category Bar */
+.category-bar {
+  background-color: #151E32 !important;
+  border-color: rgba(248, 250, 252, 0.15) !important;
+}
+
+.category-bar button {
+  color: rgba(248, 250, 252, 0.6) !important;
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+
+.category-bar button:hover {
+  color: #F8FAFC !important;
+  background-color: rgba(248, 250, 252, 0.05) !important;
+}
+
+.category-bar button.active {
+  color: #0A0F24 !important;
+  background-color: #00E5FF !important;
+  border-color: #00E5FF !important;
+  box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3) !important;
+}
+
+/* Premium Auth Modal overrides */
+.auth-modal {
+  background-color: #F8FAFC !important;
+  border-color: rgba(10, 15, 36, 0.08) !important;
+}
+
+.auth-modal h2 {
+  color: #0A0F24 !important;
+}
+
+.auth-modal p,
+.auth-modal label {
+  color: rgba(10, 15, 36, 0.6) !important;
+}
+
+.auth-modal input {
+  background-color: rgba(10, 15, 36, 0.03) !important;
+  border: 1px solid rgba(10, 15, 36, 0.1) !important;
+  color: #0A0F24 !important;
+}
+
+.auth-modal input::placeholder {
+  color: rgba(10, 15, 36, 0.35) !important;
+}
+
+.auth-modal input:focus {
+  border-color: #00E5FF !important;
+  background-color: #F8FAFC !important;
+}
+
+.auth-modal .text-white {
+  color: #0A0F24 !important;
+}
+
+.auth-modal button.text-white\/40 {
+  color: rgba(10, 15, 36, 0.4) !important;
+}
+
+.auth-modal button.text-white\/40:hover {
+  color: #0A0F24 !important;
+}
+
+/* Custom submenu background to bypass black-to-white global mappings */
+.sub-navigation {
+  background-color: #0A0F24 !important;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
+}
+
+.sub-navigation a, .sub-navigation button {
+  color: rgba(248, 250, 252, 0.6) !important;
+}
+
+.sub-navigation a:hover, .sub-navigation button:hover {
+  color: #F8FAFC !important;
+}
+
+.sub-navigation a.active, .sub-navigation button.active {
+  color: #00E5FF !important;
+}
+
+/* Footer social icon styling */
+.footer-social-icon {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 9999px !important;
+  background-color: rgba(0, 229, 255, 0.05) !important;
+  border: 1px solid rgba(0, 229, 255, 0.15) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #00E5FF !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.footer-social-icon:hover {
+  background-color: #00E5FF !important;
+  border-color: #00E5FF !important;
+  color: #0A0F24 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4) !important;
+}
+
+.footer-social-icon svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Custom typography bypass helpers to force high-contrast brand colors on image card overlays */
+.force-text-white {
+  color: #F8FAFC !important;
+}
+
+.force-text-white-muted {
+  color: rgba(248, 250, 252, 0.7) !important;
+}
+
+.force-text-cyan {
+  color: #00E5FF !important;
+}
+
+.force-text-dark {
+  color: #0A0F24 !important;
+}
+
+.force-text-dark-muted {
+  color: rgba(10, 15, 36, 0.7) !important;
+}
+
+/* Blog image/readability overrides */
+.blog-featured-card .blog-image-title {
+  color: #F8FAFC !important;
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.55) !important;
+}
+
+.blog-featured-card .blog-image-description {
+  color: rgba(248, 250, 252, 0.88) !important;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5) !important;
+}
+
+.blog-card-description {
+  color: rgba(10, 15, 36, 0.68) !important;
+}
+
+.blog-reader-overlay {
+  background-color: rgba(5, 8, 18, 0.96) !important;
+  max-height: 100vh;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blog-reader-panel,
+.blog-reader-content {
+  background-color: #0A0F24 !important;
+}
+
+.blog-reader-panel {
+  margin-bottom: 2.5rem;
+}
+
+.blog-reader-meta {
+  color: rgba(248, 250, 252, 0.62) !important;
+}
+
+.blog-reader-body {
+  color: rgba(248, 250, 252, 0.76) !important;
+}

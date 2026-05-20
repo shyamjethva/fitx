@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Weight Loss",
+    "slug": "weight-loss",
+    "tag": "WEIGHT LOSS",
+    "desc": "Targeted high-intensity workouts designed to maximize calorie burn and metabolic rate.",
+    "iconName": "Gauge",
+    "img": "https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&q=80&w=800",
+    "color": "from-[#FF7200]/40 to-transparent"
+  },
+  {
+    "id": 2,
+    "title": "Muscle Gain",
+    "slug": "muscle-gain",
+    "tag": "MUSCLE GAIN",
+    "desc": "Hypertrophy-focused training programs for building maximum lean muscle mass.",
+    "iconName": "Dumbbell",
+    "img": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800",
+    "color": "from-[#FF8B10]/40 to-transparent"
+  },
+  {
+    "id": 3,
+    "title": "Cardio",
+    "slug": "cardio",
+    "tag": "CARDIO",
+    "desc": "Improve your cardiovascular health and stamina with our elite cardio circuits.",
+    "iconName": "HeartPulse",
+    "img": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&q=80&w=800",
+    "color": "from-[#FF7200]/40 to-transparent"
+  },
+  {
+    "id": 4,
+    "title": "Yoga",
+    "slug": "yoga",
+    "tag": "YOGA",
+    "desc": "Balance your mind and body with flows designed for flexibility and mindfulness.",
+    "iconName": "Flower",
+    "img": "/Yoga.jpg",
+    "color": "from-[#FF9942]/40 to-transparent"
+  },
+  {
+    "id": 5,
+    "title": "Diet Plan",
+    "slug": "diet-plan",
+    "tag": "MUSCLE GAIN",
+    "desc": "Personalized nutrition strategies to complement your training and goals.",
+    "iconName": "Apple",
+    "img": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800",
+    "color": "from-[#FF8B10]/40 to-transparent"
+  },
+  {
+    "id": 6,
+    "title": "Sports",
+    "slug": "sports",
+    "tag": "ATHLETIC",
+    "desc": "Drills and conditioning to enhance your performance in specific competitive sports.",
+    "iconName": "Target",
+    "img": "/athletic.png",
+    "color": "from-[#FF7200]/40 to-transparent"
+  }
+]
