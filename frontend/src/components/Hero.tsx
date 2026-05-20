@@ -87,17 +87,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Animated Down Arrow */}
-      <motion.div
-        animate={{ y: [0, 15, 0] }}
-        transition={{ repeat: Infinity, duration: 2.5 }}
-        className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 cursor-pointer"
-        onClick={() => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })}
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </motion.div>
     </section>
   );
 }

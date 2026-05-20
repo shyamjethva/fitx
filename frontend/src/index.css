@@ -47,8 +47,13 @@
   --drop-shadow-neon-strong: 0 0 30px rgba(0, 229, 255, 0.6);
 }
 
-html {
+html, body {
   scroll-behavior: initial;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;
 }
 
 html.lenis,

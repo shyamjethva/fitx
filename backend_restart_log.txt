@@ -1,0 +1,45 @@
+[TAILING] Tailing last 20 lines for [fitx-backend] process (change the value with --lines option)
+/root/.pm2/logs/fitx-backend-error.log last 20 lines:
+29|fitx-ba |   },
+29|fitx-ba |   code: undefined,
+29|fitx-ba |   cause: TopologyDescription {
+29|fitx-ba |     type: 'ReplicaSetNoPrimary',
+29|fitx-ba |     servers: Map(3) {
+29|fitx-ba |       'ac-zlb7ib8-shard-00-02.bfioa2b.mongodb.net:27017' => [ServerDescription],
+29|fitx-ba |       'ac-zlb7ib8-shard-00-01.bfioa2b.mongodb.net:27017' => [ServerDescription],
+29|fitx-ba |       'ac-zlb7ib8-shard-00-00.bfioa2b.mongodb.net:27017' => [ServerDescription]
+29|fitx-ba |     },
+29|fitx-ba |     stale: false,
+29|fitx-ba |     compatible: true,
+29|fitx-ba |     heartbeatFrequencyMS: 10000,
+29|fitx-ba |     localThresholdMS: 15,
+29|fitx-ba |     setName: 'atlas-ki1ce2-shard-0',
+29|fitx-ba |     maxElectionId: null,
+29|fitx-ba |     maxSetVersion: null,
+29|fitx-ba |     commonWireVersion: 0,
+29|fitx-ba |     logicalSessionTimeoutMinutes: null
+29|fitx-ba |   }
+29|fitx-ba | }
+
+/root/.pm2/logs/fitx-backend-out.log last 20 lines:
+29|fitx-ba | 🔌 Attempting database uplink to: cluster0.bfioa2b.mongodb.net/fitx-web
+29|fitx-ba | 🚀 MongoDB Connected Successfully: ac-zlb7ib8-shard-00-01.bfioa2b.mongodb.net
+29|fitx-ba | ⚡ Running Data Integrity Validation Seeder...
+29|fitx-ba | ✅ Database Seeding State Confirmed!
+29|fitx-ba | 
+29|fitx-ba | 	🚀 FitX Express Backend Server ready:
+29|fitx-ba | 	➜  Local:   http://localhost:6001/
+29|fitx-ba | 	➜  Network: http://69.62.82.12:6001/
+29|fitx-ba | 
+29|fitx-ba | ◇ injected env (5) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+29|fitx-ba | ◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+29|fitx-ba | 🔌 Attempting database uplink to: cluster0.bfioa2b.mongodb.net/fitx-web
+29|fitx-ba | 🚀 MongoDB Connected Successfully: ac-zlb7ib8-shard-00-01.bfioa2b.mongodb.net
+29|fitx-ba | ⚡ Running Data Integrity Validation Seeder...
+29|fitx-ba | ✅ Database Seeding State Confirmed!
+29|fitx-ba | 
+29|fitx-ba | 	🚀 FitX Express Backend Server ready:
+29|fitx-ba | 	➜  Local:   http://localhost:6001/
+29|fitx-ba | 	➜  Network: http://69.62.82.12:6001/
+29|fitx-ba | 
+

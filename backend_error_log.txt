@@ -1,0 +1,105 @@
+[TAILING] Tailing last 50 lines for [fitx-backend] process (change the value with --lines option)
+/root/.pm2/logs/fitx-backend-error.log last 50 lines:
+29|fitx-ba |     localThresholdMS: 15,
+29|fitx-ba |     setName: 'atlas-ki1ce2-shard-0',
+29|fitx-ba |     maxElectionId: null,
+29|fitx-ba |     maxSetVersion: null,
+29|fitx-ba |     commonWireVersion: 0,
+29|fitx-ba |     logicalSessionTimeoutMinutes: null
+29|fitx-ba |   }
+29|fitx-ba | }
+29|fitx-ba | ❌ Critical Database Uplink Failure: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+29|fitx-ba |     at _handleConnectionErrors (/var/www/fitx/backend/node_modules/mongoose/lib/connection.js:1169:11)
+29|fitx-ba |     at NativeConnection.openUri (/var/www/fitx/backend/node_modules/mongoose/lib/connection.js:1100:11)
+29|fitx-ba |     at async connectDB (/var/www/fitx/backend/config/db.ts:8:18)
+29|fitx-ba |     at async initServer (/var/www/fitx/backend/server.ts:55:5) {
+29|fitx-ba |   errorLabelSet: Set(0) {},
+29|fitx-ba |   reason: TopologyDescription {
+29|fitx-ba |     type: 'ReplicaSetNoPrimary',
+29|fitx-ba |     servers: Map(3) {
+29|fitx-ba |       'ac-zlb7ib8-shard-00-00.bfioa2b.mongodb.net:27017' => [ServerDescription],
+29|fitx-ba |       'ac-zlb7ib8-shard-00-02.bfioa2b.mongodb.net:27017' => [ServerDescription],
+29|fitx-ba |       'ac-zlb7ib8-shard-00-01.bfioa2b.mongodb.net:27017' => [ServerDescription]
+29|fitx-ba |     },
+29|fitx-ba |     stale: false,
+29|fitx-ba |     compatible: true,
+29|fitx-ba |     heartbeatFrequencyMS: 10000,
+29|fitx-ba |     localThresholdMS: 15,
+29|fitx-ba |     setName: 'atlas-ki1ce2-shard-0',
+29|fitx-ba |     maxElectionId: null,
+29|fitx-ba |     maxSetVersion: null,
+29|fitx-ba |     commonWireVersion: 0,
+29|fitx-ba |     logicalSessionTimeoutMinutes: null
+29|fitx-ba |   },
+29|fitx-ba |   code: undefined,
+29|fitx-ba |   cause: TopologyDescription {
+29|fitx-ba |     type: 'ReplicaSetNoPrimary',
+29|fitx-ba |     servers: Map(3) {
+29|fitx-ba |       'ac-zlb7ib8-shard-00-00.bfioa2b.mongodb.net:27017' => [ServerDescription],
+29|fitx-ba |       'ac-zlb7ib8-shard-00-02.bfioa2b.mongodb.net:27017' => [ServerDescription],
+29|fitx-ba |       'ac-zlb7ib8-shard-00-01.bfioa2b.mongodb.net:27017' => [ServerDescription]
+29|fitx-ba |     },
+29|fitx-ba |     stale: false,
+29|fitx-ba |     compatible: true,
+29|fitx-ba |     heartbeatFrequencyMS: 10000,
+29|fitx-ba |     localThresholdMS: 15,
+29|fitx-ba |     setName: 'atlas-ki1ce2-shard-0',
+29|fitx-ba |     maxElectionId: null,
+29|fitx-ba |     maxSetVersion: null,
+29|fitx-ba |     commonWireVersion: 0,
+29|fitx-ba |     logicalSessionTimeoutMinutes: null
+29|fitx-ba |   }
+29|fitx-ba | }
+
+/root/.pm2/logs/fitx-backend-out.log last 50 lines:
+29|fitx-ba | ⚡ Running Data Integrity Validation Seeder...
+29|fitx-ba | ✅ Database Seeding State Confirmed!
+29|fitx-ba | ◇ injected env (5) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+29|fitx-ba | ◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+29|fitx-ba | 🔌 Attempting database uplink to: mongodb://localhost:27017/fitx
+29|fitx-ba | 🚀 MongoDB Connected Successfully: localhost
+29|fitx-ba | ⚡ Running Data Integrity Validation Seeder...
+29|fitx-ba | ✅ Database Seeding State Confirmed!
+29|fitx-ba | ◇ injected env (5) from .env // tip: ⌘ override existing { override: true }
+29|fitx-ba | ◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+29|fitx-ba | 🔌 Attempting database uplink to: mongodb://localhost:27017/fitx
+29|fitx-ba | 🚀 MongoDB Connected Successfully: localhost
+29|fitx-ba | ⚡ Running Data Integrity Validation Seeder...
+29|fitx-ba | ✅ Database Seeding State Confirmed!
+29|fitx-ba | ◇ injected env (5) from .env // tip: ⌘ suppress logs { quiet: true }
+29|fitx-ba | ◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+29|fitx-ba | 🔌 Attempting database uplink to: mongodb://localhost:27017/fitx
+29|fitx-ba | 🚀 MongoDB Connected Successfully: localhost
+29|fitx-ba | ⚡ Running Data Integrity Validation Seeder...
+29|fitx-ba | ✅ Database Seeding State Confirmed!
+29|fitx-ba | ◇ injected env (5) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+29|fitx-ba | ◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+29|fitx-ba | 🔌 Attempting database uplink to: mongodb://localhost:27017/fitx
+29|fitx-ba | 🚀 MongoDB Connected Successfully: localhost
+29|fitx-ba | ⚡ Running Data Integrity Validation Seeder...
+29|fitx-ba | ✅ Database Seeding State Confirmed!
+29|fitx-ba | ◇ injected env (5) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+29|fitx-ba | ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+29|fitx-ba | 🔌 Attempting database uplink to: mongodb://localhost:27017/fitx
+29|fitx-ba | 🚀 MongoDB Connected Successfully: localhost
+29|fitx-ba | ⚡ Running Data Integrity Validation Seeder...
+29|fitx-ba | ✅ Database Seeding State Confirmed!
+29|fitx-ba | ◇ injected env (5) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+29|fitx-ba | ◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+29|fitx-ba | 🔌 Attempting database uplink to: cluster0.bfioa2b.mongodb.net/fitx-web
+29|fitx-ba | ◇ injected env (5) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+29|fitx-ba | ◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+29|fitx-ba | 🔌 Attempting database uplink to: cluster0.bfioa2b.mongodb.net/fitx-web
+29|fitx-ba | ◇ injected env (5) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+29|fitx-ba | ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+29|fitx-ba | 🔌 Attempting database uplink to: cluster0.bfioa2b.mongodb.net/fitx-web
+29|fitx-ba | ◇ injected env (5) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+29|fitx-ba | ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+29|fitx-ba | 🔌 Attempting database uplink to: cluster0.bfioa2b.mongodb.net/fitx-web
+29|fitx-ba | ◇ injected env (5) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+29|fitx-ba | ◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+29|fitx-ba | 🔌 Attempting database uplink to: cluster0.bfioa2b.mongodb.net/fitx-web
+29|fitx-ba | ◇ injected env (5) from .env // tip: ⌘ enable debugging { debug: true }
+29|fitx-ba | ◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+29|fitx-ba | 🔌 Attempting database uplink to: cluster0.bfioa2b.mongodb.net/fitx-web
+

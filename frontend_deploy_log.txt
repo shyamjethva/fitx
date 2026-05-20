@@ -1,0 +1,25 @@
+
+up to date, audited 181 packages in 1s
+
+25 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> fitx-frontend@0.0.0 build
+> vite build
+
+vite v6.4.2 building for production...
+transforming...
+✓ 2128 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.74 kB │ gzip:   0.41 kB
+dist/assets/index-B5Dgl7_v.css  148.73 kB │ gzip:  21.31 kB
+dist/assets/index-BCEgglra.js   884.28 kB │ gzip: 230.87 kB
+✓ built in 6.15s
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

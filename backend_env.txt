@@ -1,0 +1,12 @@
+PORT=6001
+MONGODB_URI=mongodb+srv://hiral:hiral123@cluster0.bfioa2b.mongodb.net/fitx-web
+# ADMIN_PASSWORD=admin123
+
+# Gmail SMTP for OTP (nodemailer)
+# Use your Gmail address and an App Password (not your normal Gmail password)
+# To generate App Password: Google Account → Security → 2-Step Verification → App passwords
+GMAIL_USER=fitxadmin404@gmail.com
+GMAIL_APP_PASS=bjpagenxoixarjis
+
+# Admin OTP Email — the only email allowed to login as admin
+ADMIN_OTP_EMAIL=fitxadmin404@gmail.com
