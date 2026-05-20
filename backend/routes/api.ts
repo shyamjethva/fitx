@@ -113,7 +113,7 @@ router.post('/upload', (req, res) => {
     const filePath = path.join(uploadsDir, uniqueFilename);
     fs.writeFileSync(filePath, buffer);
 
-    const fileUrl = `http://localhost:5000/uploads/${uniqueFilename}`;
+    const fileUrl = `/uploads/${uniqueFilename}`;
     res.json({ url: fileUrl });
   } catch (error: any) {
     console.error('Upload error:', error);
