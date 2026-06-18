@@ -51,7 +51,7 @@ export default function Home() {
    ];
 
    const dbGymImages = gallery.filter(g => g.type === 'gym').map(g => g.img);
-   const activityImages = dbGymImages?.length > 0 ? dbGymImages.slice(0, 8) : defaultActivityImages;
+   const activityImages = [...dbGymImages, ...defaultActivityImages].slice(0, 8);
 
    return (
       <div className="flex flex-col w-full premium-bg overflow-x-hidden">
