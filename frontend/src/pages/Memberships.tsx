@@ -254,30 +254,9 @@ export default function Memberships() {
       try {
         const adminPlans = await api.getMemberships();
 
-        const mappedPackages = adminPlans.map((plan: any, i: number): Membership => ({
-          id: plan.id || plan._id,
-          name: plan.name,
-          price: `$${plan.price}`,
-          period: plan.duration,
-          desc: plan.description || "Premium fitness plan for dedicated individuals.",
-          iconName: i === 0 ? "Dumbbell" : (i === 1 ? "Trophy" : "Crown"),
-          color: "from-[#00E5FF]/20 to-transparent",
-          popular: i === 1,
-          features: [
-            "Access to Gym Floor",
-            "Standard Locker Access",
-            "Initial Fitness Assessment"
-          ],
-          facilities: [
-            "Cardio Loft",
-            "Free Weights Area",
-            "Showers & Saunas"
-          ]
-        }));
-
-        if (mappedPackages.length > 0) {
-          setPackages(mappedPackages);
-          setSelectedPackage(mappedPackages.length > 1 ? mappedPackages[1] : mappedPackages[0]);
+                if (adminPlans && adminPlans.length > 0) {
+          setPackages(adminPlans);
+          setSelectedPackage(adminPlans.length > 1 ? adminPlans[1] : adminPlans[0]);
         } else {
           setPackages(FALLBACK_PACKAGES);
           setSelectedPackage(FALLBACK_PACKAGES[1]);

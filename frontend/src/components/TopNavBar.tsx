@@ -62,7 +62,7 @@ export const TopNavBar = () => {
         <div className="flex-1 flex items-center">
           <Link to="/" className="flex items-center gap-2 group">
             {logoUrl ? (
-              <img src={logoUrl} alt="FitX Logo" className="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+              <img src={logoUrl} alt="FitX Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
             ) : (
               <>
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
