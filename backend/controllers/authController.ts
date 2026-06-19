@@ -264,7 +264,7 @@ export const googleLogin = async (req: Request, res: Response): Promise<any> => 
       const newUser = new User({
         name,
         email: lowerEmail,
-        phone: '+91 00000 00000', // Dummy phone for Google users
+        phone: `+91 00000 ${Math.floor(10000 + Math.random() * 90000)}`, // Unique dummy phone for Google users
         password: hashedPassword,
         role: 'USER',
         assignedTrainer: assignedId,
