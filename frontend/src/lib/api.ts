@@ -307,10 +307,10 @@ export const api = {
   deleteProgram: (id: string) => safeFetch<{ success: boolean }>(`/programs/${id}`, { method: 'DELETE' }),
 
   // Memberships API
-  getMemberships: async (fallback?: Membership[]) => asArray(await safeFetch<any[]>('/plans', {}, fallback)).map(normalizeMembership),
-  createMembership: async (data: Partial<Membership>) => normalizeMembership(await safeFetch<any>('/plans', { method: 'POST', body: JSON.stringify(data) })),
-  updateMembership: async (id: string, data: Partial<Membership>) => normalizeMembership(await safeFetch<any>(`/plans/${id}`, { method: 'PUT', body: JSON.stringify(data) })),
-  deleteMembership: (id: string) => safeFetch<{ success: boolean }>(`/plans/${id}`, { method: 'DELETE' }),
+  getMemberships: async (fallback?: Membership[]) => asArray(await safeFetch<any[]>('/memberships', {}, fallback)).map(normalizeMembership),
+  createMembership: async (data: Partial<Membership>) => normalizeMembership(await safeFetch<any>('/memberships', { method: 'POST', body: JSON.stringify(data) })),
+  updateMembership: async (id: string, data: Partial<Membership>) => normalizeMembership(await safeFetch<any>(`/memberships/${id}`, { method: 'PUT', body: JSON.stringify(data) })),
+  deleteMembership: (id: string) => safeFetch<{ success: boolean }>(`/memberships/${id}`, { method: 'DELETE' }),
 
   // Gallery API
   getGallery: async (fallback?: GalleryItem[]) => asArray(await safeFetch<any[]>(`${CMS_PREFIX}/gallery`, {}, fallback)).map(normalizeGalleryItem),
