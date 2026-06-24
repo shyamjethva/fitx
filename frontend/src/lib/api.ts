@@ -184,7 +184,9 @@ const normalizeMembership = (item: any): Membership => {
     ...item,
     id: idOf(item),
     name,
-    price: item?.price != null ? `₹${Number(item.price).toLocaleString('en-IN')}` : item?.price || '',
+    price: item?.price != null 
+      ? (isNaN(Number(item.price)) ? String(item.price) : `₹${Number(item.price).toLocaleString('en-IN')}`) 
+      : '',
     period: item?.duration || item?.period || '',
     desc: item?.desc || description || `${name} membership plan`,
     iconName: item?.iconName || 'Trophy',
