@@ -127,7 +127,8 @@ export interface GymClient {
   qrCodeUrl?: string;
 }
 
-const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://127.0.0.1:5000/api';
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_URL = (import.meta as any).env?.VITE_API_URL || (isLocalhost ? 'http://127.0.0.1:5000/api' : '/api');
 const CMS_PREFIX = (import.meta as any).env?.VITE_CMS_PREFIX || '';
 
 const asArray = <T>(value: T[] | undefined | null): T[] => Array.isArray(value) ? value : [];
@@ -234,6 +235,36 @@ async function safeFetch<T>(endpoint: string, options?: RequestInit, fallbackDat
     throw err;
   }
 }
+let websiteDataCache: any = null;
+let websiteDataPromise: Promise<any> | null = null;
+
+export const getWebsiteData = async () => {
+  if (websiteDataCache) return websiteDataCache;
+  if (!websiteDataPromise) {
+    const domain = window.location.hostname;
+    websiteDataPromise = safeFetch<any>(`/public/website-data?domain=${domain}`).then(data => {
+      websiteDataCache = data;
+      
+      if (data && data.gymName) {
+        document.title = data.gymName;
+      }
+
+      const logoUrl = data?.appConfig?.logoUrl;
+      if (logoUrl) {
+        let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+        if (!link) {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            document.head.appendChild(link);
+        }
+        link.href = logoUrl;
+      }
+
+      return data;
+    });
+  }
+  return websiteDataPromise;
+};
 
 export const api = {
   // Unified Realistic Authentication Engine
@@ -283,7 +314,14 @@ export const api = {
   }),
 
   // Blogs API
-  getBlogs: async (fallback?: Blog[]) => asArray(await safeFetch<any[]>(`${CMS_PREFIX}/blogs`, {}, fallback)).map(normalizeBlog),
+  getBlogs: async (fallback?: Blog[]) => {
+    try {
+      const data = await getWebsiteData();
+      return asArray(data?.blogs).map(normalizeBlog);
+    } catch {
+      return fallback || [];
+    }
+  },
   createBlog: async (data: Partial<Blog>) => normalizeBlog(await safeFetch<any>(`${CMS_PREFIX}/blogs`, { method: 'POST', body: JSON.stringify(data) })),
   updateBlog: async (id: string, data: Partial<Blog>) => normalizeBlog(await safeFetch<any>(`${CMS_PREFIX}/blogs/${id}`, { method: 'PUT', body: JSON.stringify(data) })),
   deleteBlog: (id: string) => safeFetch<{ success: boolean }>(`${CMS_PREFIX}/blogs/${id}`, { method: 'DELETE' }),
@@ -295,7 +333,14 @@ export const api = {
   deleteTrainer: (id: string) => safeFetch<{ success: boolean }>(`/trainers/${id}`, { method: 'DELETE' }),
 
   // Transformations API
-  getTransformations: async (fallback?: Transformation[]) => asArray(await safeFetch<any[]>(`${CMS_PREFIX}/transformations`, {}, fallback)).map(normalizeTransformation),
+  getTransformations: async (fallback?: Transformation[]) => {
+    try {
+      const data = await getWebsiteData();
+      return asArray(data?.transformations).map(normalizeTransformation);
+    } catch {
+      return fallback || [];
+    }
+  },
   createTransformation: async (data: Partial<Transformation>) => normalizeTransformation(await safeFetch<any>(`${CMS_PREFIX}/transformations`, { method: 'POST', body: JSON.stringify(data) })),
   updateTransformation: async (id: string, data: Partial<Transformation>) => normalizeTransformation(await safeFetch<any>(`${CMS_PREFIX}/transformations/${id}`, { method: 'PUT', body: JSON.stringify(data) })),
   deleteTransformation: (id: string) => safeFetch<{ success: boolean }>(`${CMS_PREFIX}/transformations/${id}`, { method: 'DELETE' }),
@@ -309,13 +354,27 @@ export const api = {
   deleteProgram: (id: string) => safeFetch<{ success: boolean }>(`/programs/${id}`, { method: 'DELETE' }),
 
   // Memberships API
-  getMemberships: async (fallback?: Membership[]) => asArray(await safeFetch<any[]>('/memberships', {}, fallback)).map(normalizeMembership),
+  getMemberships: async (fallback?: Membership[]) => {
+    try {
+      const data = await getWebsiteData();
+      return asArray(data?.plans).map(normalizeMembership);
+    } catch {
+      return fallback || [];
+    }
+  },
   createMembership: async (data: Partial<Membership>) => normalizeMembership(await safeFetch<any>('/memberships', { method: 'POST', body: JSON.stringify(data) })),
   updateMembership: async (id: string, data: Partial<Membership>) => normalizeMembership(await safeFetch<any>(`/memberships/${id}`, { method: 'PUT', body: JSON.stringify(data) })),
   deleteMembership: (id: string) => safeFetch<{ success: boolean }>(`/memberships/${id}`, { method: 'DELETE' }),
 
   // Gallery API
-  getGallery: async (fallback?: GalleryItem[]) => asArray(await safeFetch<any[]>(`${CMS_PREFIX}/gallery`, {}, fallback)).map(normalizeGalleryItem),
+  getGallery: async (fallback?: GalleryItem[]) => {
+    try {
+      const data = await getWebsiteData();
+      return asArray(data?.gallery).map(normalizeGalleryItem);
+    } catch {
+      return fallback || [];
+    }
+  },
   createGalleryItem: async (data: Partial<GalleryItem>) => normalizeGalleryItem(await safeFetch<any>(`${CMS_PREFIX}/gallery`, { method: 'POST', body: JSON.stringify(data) })),
   deleteGalleryItem: (id: string) => safeFetch<{ success: boolean }>(`${CMS_PREFIX}/gallery/${id}`, { method: 'DELETE' }),
 
@@ -325,14 +384,28 @@ export const api = {
   deleteContact: (id: string) => safeFetch<{ success: boolean }>(`/contacts/${id}`, { method: 'DELETE' }),
 
   // Dynamic Page Heroes API
-  getPageHeroes: async () => asArray(await safeFetch<any[]>(`${CMS_PREFIX}/page-heroes`)).map(normalizePageHero),
+  getPageHeroes: async () => {
+    try {
+      const data = await getWebsiteData();
+      return asArray(data?.heroes).map(normalizePageHero);
+    } catch {
+      return [];
+    }
+  },
   updatePageHero: async (pageKey: string, data: Partial<PageHeroData>) => normalizePageHero(await safeFetch<any>(`${CMS_PREFIX}/page-heroes/${pageKey}`, {
     method: 'PUT',
     body: JSON.stringify(data)
   })),
 
   // Dynamic Promotional Offers Banner
-  getPromotionalOffer: async () => normalizeOffer(await safeFetch<any>(`${CMS_PREFIX}/promotional-offer`)),
+  getPromotionalOffer: async () => {
+    try {
+      const data = await getWebsiteData();
+      return normalizeOffer(data?.offer);
+    } catch {
+      return normalizeOffer(null);
+    }
+  },
   updatePromotionalOffer: async (data: Partial<PromotionalOfferData>) => normalizeOffer(await safeFetch<any>(`${CMS_PREFIX}/promotional-offer`, {
     method: 'PUT',
     body: JSON.stringify(data)

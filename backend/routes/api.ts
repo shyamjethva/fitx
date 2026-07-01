@@ -13,6 +13,9 @@ import { getPageHeroes, updatePageHero } from '../controllers/pageHeroController
 import { getOffer, updateOffer } from '../controllers/offerController.ts';
 import { generateAIPlan } from '../controllers/aiController.ts';
 import { getGymClients, createGymClient, updateGymClient, deleteGymClient } from '../controllers/gymClientController.ts';
+import { getDietPlans, getDietPlanById, createDietPlan, updateDietPlan, deleteDietPlan } from '../controllers/dietPlanController.ts';
+import { getFoodItems, createFoodItem, deleteFoodItem } from '../controllers/foodItemController.ts';
+import { getDietitians, getDietitianById, createDietitian, updateDietitian, deleteDietitian, dietitianLogin } from '../controllers/dietitianController.ts';
 
 const router = Router();
 
@@ -93,6 +96,25 @@ router.get('/clients', getGymClients);
 router.post('/clients', createGymClient);
 router.put('/clients/:id', updateGymClient);
 router.delete('/clients/:id', deleteGymClient);
+
+// --- DIETITIAN MODULE ---
+router.get('/diet-plans', getDietPlans);
+router.get('/diet-plans/:id', getDietPlanById);
+router.post('/diet-plans', createDietPlan);
+router.put('/diet-plans/:id', updateDietPlan);
+router.delete('/diet-plans/:id', deleteDietPlan);
+
+router.get('/food-items', getFoodItems);
+router.post('/food-items', createFoodItem);
+router.delete('/food-items/:id', deleteFoodItem);
+
+// --- DIETITIAN MODULE ---
+router.post('/dietitian/login', dietitianLogin);
+router.get('/dietitians', getDietitians);
+router.get('/dietitians/:id', getDietitianById);
+router.post('/dietitians', createDietitian);
+router.put('/dietitians/:id', updateDietitian);
+router.delete('/dietitians/:id', deleteDietitian);
 
 // --- SECURE FILE UPLOAD TELEMETRY ---
 router.post('/upload', (req, res) => {

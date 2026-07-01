@@ -21,6 +21,8 @@ interface UIContextType {
   activeUserId: string | null;
   setActiveUserId: (val: string | null) => void;
   globalSettings: PageHeroData | null;
+  gymName: string;
+  appConfig: any;
 }
 
 const UIContext = createContext<UIContextType | undefined>(undefined);
@@ -51,13 +53,22 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     return localStorage.getItem('fitx-userId') || null;
   });
   const [globalSettings, setGlobalSettings] = useState<PageHeroData | null>(null);
+  const [gymName, setGymName] = useState<string>('FitX');
+  const [appConfig, setAppConfig] = useState<any>(null);
 
   useEffect(() => {
     const loadGlobalSettings = () => {
-      api.getPageHeroes().then(data => {
-        const globalHero = data.find(h => h.pageKey === 'global_settings');
-        if (globalHero) setGlobalSettings(globalHero);
-      }).catch(console.error);
+      import('../lib/api').then(({ getWebsiteData, api }) => {
+        getWebsiteData().then(data => {
+            if (data?.gymName) setGymName(data.gymName);
+            if (data?.appConfig) setAppConfig(data.appConfig);
+        }).catch(console.error);
+
+        api.getPageHeroes().then(data => {
+          const globalHero = data.find(h => h.pageKey === 'global_settings');
+          if (globalHero) setGlobalSettings(globalHero);
+        }).catch(console.error);
+      });
     };
 
     loadGlobalSettings();
@@ -124,7 +135,9 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
       userProfileData, setUserProfileData,
       profileImage, setProfileImage,
       activeUserId, setActiveUserId,
-      globalSettings
+      globalSettings,
+      gymName,
+      appConfig
     }}>
       {children}
     </UIContext.Provider>

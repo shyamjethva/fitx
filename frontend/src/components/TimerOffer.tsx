@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Clock } from 'lucide-react';
 import { api, PromotionalOfferData } from '../lib/api';
+import { useUI } from '../context/UIContext';
 
 export const TimerOffer = () => {
+  const { isLoggedIn } = useUI();
   const [offer, setOffer] = useState<PromotionalOfferData | null>(null);
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
@@ -51,7 +53,7 @@ export const TimerOffer = () => {
     return () => clearInterval(timer);
   }, [offer]);
 
-  if (!offer || !offer.isActive) return null;
+  if (!offer || !offer.isActive || !isLoggedIn) return null;
 
   const currentTextColor = offer.textColor || '#000000';
 

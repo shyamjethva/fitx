@@ -13,7 +13,8 @@ export const TopNavBar = () => {
     setIsLoginModalOpen,
     isLoggedIn,
     globalSettings,
-    userProfileData
+    userProfileData,
+    gymName
   } = useUI();
   const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ export const TopNavBar = () => {
   const normalizeAssetUrl = (url?: string) =>
     url ? url.replace(/^http:\/\/(?:localhost|127\.0\.0\.1):5000/i, apiOrigin) : '';
   const logoUrl = normalizeAssetUrl(
-    globalSettings?.contentBlocks?.logo_url || globalSettings?.video || globalSettings?.image || '',
+    globalSettings?.contentBlocks?.logo_url || globalSettings?.video || ''
   );
 
   const isScrollAwayPage =
@@ -69,7 +70,11 @@ export const TopNavBar = () => {
                   <div className="w-4 h-4 bg-black rounded-sm rotate-45" />
                 </div>
                 <span className="font-sans text-xl md:text-2xl tracking-tighter text-white uppercase font-black">
-                  fit<span className="text-primary">X</span>
+                  {gymName === 'FitX' ? (
+                    <>fit<span className="text-primary">X</span></>
+                  ) : (
+                    <>{gymName}</>
+                  )}
                 </span>
               </>
             )}
