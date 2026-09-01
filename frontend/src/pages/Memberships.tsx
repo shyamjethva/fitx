@@ -62,7 +62,7 @@ const CanvasScrollBg = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 229, 255, ${0.2 + scrollValue * 0.3})`;
+        ctx.fillStyle = `rgba(255, 160, 64, ${0.2 + scrollValue * 0.3})`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -72,7 +72,7 @@ const CanvasScrollBg = () => {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(0, 229, 255, ${0.1 * (1 - dist / 200) * (1 + scrollValue)})`;
+            ctx.strokeStyle = `rgba(255, 160, 64, ${0.1 * (1 - dist / 200) * (1 + scrollValue)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -88,11 +88,9 @@ const CanvasScrollBg = () => {
   }, [dimensions, scrollYProgress]);
 
   return (
-    <div className="fixed inset-0 -z-10 bg-black">
+    <div className="fixed inset-0 -z-10 premium-bg">
       <canvas ref={canvasRef} width={dimensions.width} height={dimensions.height} className="opacity-40" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(0,229,255,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(0,229,255,0.08),transparent_50%)]" />
-    </div>
+                </div>
   );
 };
 
@@ -104,30 +102,46 @@ const Hero = ({ data }: { data: PageHeroData | null }) => {
 
   return (
     <section id="hero" className="relative w-full overflow-hidden bg-transparent">
-      <div className="relative w-full min-h-[420px] md:min-h-0 md:aspect-[25/9] h-auto flex flex-col justify-end">
+      <div className="relative w-full min-h-[100dvh] flex flex-col justify-center">
         <div className="absolute inset-0">
           <img
             src={imageSrc}
-            className="w-full h-full object-cover object-center opacity-60"
+            className="w-full h-full object-cover object-center opacity-100"
             alt="Membership Hero"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         </div>
 
-        <div className="relative z-10 pb-12 px-6 md:pb-20 md:px-24">
+        <style>{`
+          #root .memberships-hero h1 {
+            color: #D8B79A !important;
+            -webkit-text-fill-color: #D8B79A !important;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.9) !important;
+          }
+          #root .memberships-hero span {
+            color: #FFA040 !important;
+            -webkit-text-fill-color: #FFA040 !important;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.9) !important;
+          }
+          #root .memberships-hero p {
+            color: rgba(255,255,255,0.85) !important;
+            -webkit-text-fill-color: rgba(255,255,255,0.85) !important;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.9) !important;
+          }
+        `}</style>
+        <div className="relative z-10 px-6 md:px-24 memberships-hero">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-4xl"
           >
-            <span className="text-[#00E5FF] font-black text-xs md:text-sm tracking-[0.3em] uppercase mb-2 block animate-pulse">
+            <span className="font-black text-xs md:text-sm tracking-[0.3em] uppercase mb-2 block animate-pulse">
               {subtitle}
             </span>
-            <h1 className="font-black text-4xl md:text-8xl tracking-tighter mb-4 leading-none uppercase text-white whitespace-pre-line">
+            <h1 className="font-black text-4xl md:text-8xl tracking-tighter mb-4 leading-none uppercase whitespace-pre-line">
               {title}
             </h1>
-            <p className="text-white/70 font-bold text-sm md:text-xl tracking-tight uppercase max-w-xl whitespace-pre-line">
+            <p className="font-bold text-sm md:text-xl tracking-tight uppercase max-w-xl whitespace-pre-line">
               {description}
             </p>
           </motion.div>
@@ -145,7 +159,7 @@ const FALLBACK_PACKAGES: Membership[] = [
     period: "per 6 months",
     desc: "Essential access for those starting their fitness journey.",
     iconName: "Dumbbell",
-    color: "from-[#00E5FF]/20 to-transparent",
+    color: "from-[#FFA040]/20 to-transparent",
     features: [
       "Access to Gym Floor",
       "Standard Locker Access",
@@ -167,7 +181,7 @@ const FALLBACK_PACKAGES: Membership[] = [
     period: "per 6 months",
     desc: "Our most popular plan for dedicated athletes.",
     iconName: "Trophy",
-    color: "from-[#00E5FF]/20 to-transparent",
+    color: "from-[#FFA040]/20 to-transparent",
     popular: true,
     features: [
       "Unlimited Gym Access",
@@ -192,7 +206,7 @@ const FALLBACK_PACKAGES: Membership[] = [
     period: "per 6 months",
     desc: "The ultimate fitness experience with zero compromises.",
     iconName: "Crown",
-    color: "from-[#00E5FF]/20 to-transparent",
+    color: "from-[#FFA040]/20 to-transparent",
     features: [
       "24/7 VIP Access",
       "Unlimited 1-on-1 Coaching",
@@ -212,11 +226,11 @@ const FALLBACK_PACKAGES: Membership[] = [
 ];
 
 const renderMembershipIcon = (iconName: string) => {
-  const props = { className: "w-8 h-8 text-[#00E5FF]" };
+  const props = { className: "w-8 h-8 text-[#FFA040]" };
   switch (iconName) {
-    case 'Dumbbell': return <Dumbbell {...props} className="w-8 h-8 text-[#00E5FF]" />;
+    case 'Dumbbell': return <Dumbbell {...props} className="w-8 h-8 text-[#FFA040]" />;
     case 'Trophy': return <Trophy {...props} />;
-    case 'Crown': return <Crown {...props} className="w-8 h-8 text-[#00E5FF]" />;
+    case 'Crown': return <Crown {...props} className="w-8 h-8 text-[#FFA040]" />;
     default: return <Trophy {...props} />;
   }
 };
@@ -254,7 +268,7 @@ export default function Memberships() {
       try {
         const adminPlans = await api.getMemberships();
 
-                if (adminPlans && adminPlans.length > 0) {
+        if (adminPlans && adminPlans.length > 0) {
           setPackages(adminPlans);
           setSelectedPackage(adminPlans.length > 1 ? adminPlans[1] : adminPlans[0]);
         } else {
@@ -305,13 +319,20 @@ export default function Memberships() {
   };
 
   return (
-    <div className="relative w-full min-h-screen pt-16 selection:bg-[#FF7200]/30 premium-bg">
-      <CanvasScrollBg />
-      <BackgroundGlows />
+    <div
+      className="relative w-full min-h-screen pt-16 selection:bg-[#FFA040]/30"
+      style={{
+        background: 'linear-gradient(180deg, #F0B892 0%, #F5C7A1 20%, #F8DAC0 42%, #FAE0CC 62%, #FDF2EC 80%, #FFFFFF 100%)',
+        backgroundAttachment: 'fixed',
+        color: '#111827'
+      }}
+    >
+      
+      
 
       <div className="flex flex-col">
         {/* Hero Section Replace Top Text */}
-        <Hero />
+        <Hero data={heroData} />
 
         <ScrollReveal type="slide-up">
           <TimerOffer />
@@ -320,8 +341,8 @@ export default function Memberships() {
         {/* Packages Selection - Re-designed Cards */}
         <section className="px-6 md:px-24 mt-24 mb-16">
           <div className="text-center mb-12">
-            <p className="text-[#00E5FF] font-black tracking-[0.3em] uppercase text-[10px] mb-4">{content.tiers_subtitle || 'SELECT PROTOCOL'}</p>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">{content.tiers_title || 'Membership Tiers'}</h2>
+            <p className="text-[#FFA040] font-black tracking-[0.3em] uppercase text-[10px] mb-4">{content.tiers_subtitle || 'SELECT PROTOCOL'}</p>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-gray-900">{content.tiers_title || 'Membership Tiers'}</h2>
           </div>
 
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -330,30 +351,30 @@ export default function Memberships() {
                 <motion.div
                   onClick={() => setSelectedPackage(pkg)}
                   whileHover={{ y: -8 }}
-                  className={`membership-card relative p-8 rounded-[32px] border-2 cursor-pointer transition-all duration-500 overflow-hidden h-full flex flex-col ${selectedPackage?.id === pkg.id
+                  className={`membership-card relative p-8 rounded-[32px] border cursor-pointer transition-all duration-500 overflow-hidden h-full flex flex-col bg-white/20 backdrop-blur-2xl border-white/40 shadow-lg ${selectedPackage?.id === pkg.id
                     ? 'active scale-[1.02]'
                     : ''
                     }`}
                 >
                   {pkg.popular && (
-                    <div className="absolute top-6 right-6 bg-[#00E5FF] text-[#0A0F24] px-4 py-1.5 rounded-full text-[9px] font-black tracking-[0.2em] uppercase shadow-lg">
+                    <div className="absolute top-6 right-6 bg-[#FFA040] text-white px-4 py-1.5 rounded-full text-[9px] font-black tracking-[0.2em] uppercase shadow-lg">
                       POPULAR
                     </div>
                   )}
 
-                  <div className="mb-8 w-14 h-14 rounded-2xl bg-[#1F2328] border border-white/10 flex items-center justify-center">
+                  <div className="mb-8 w-14 h-14 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
                     {renderMembershipIcon(pkg.iconName)}
                   </div>
 
                   <div className="mb-6">
-                    <h3 className="text-2xl font-black mb-2 tracking-tight uppercase force-text-white">{pkg.name}</h3>
+                    <h3 className="text-2xl font-black mb-2 tracking-tight uppercase text-gray-900">{pkg.name}</h3>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-5xl font-black force-text-white">{pkg.price}</span>
-                      <span className="force-text-white-muted opacity-60 font-black uppercase text-[10px] tracking-widest">{pkg.period}</span>
+                      <span className="text-5xl font-black text-[#FFA040]">{pkg.price}</span>
+                      <span className="text-gray-500 font-bold uppercase text-[10px] tracking-widest">{pkg.period}</span>
                     </div>
                   </div>
 
-                  <p className="force-text-white-muted font-medium leading-relaxed mb-8 text-sm">
+                  <p className="text-gray-700 font-bold leading-relaxed mb-8 text-sm">
                     {pkg.desc}
                   </p>
 
@@ -361,8 +382,8 @@ export default function Memberships() {
                     <button
                       onClick={(e) => { e.stopPropagation(); handleAction(); }}
                       className={`w-full py-4 rounded-xl font-black text-xs tracking-[0.2em] uppercase transition-all border ${selectedPackage?.id === pkg.id
-                        ? 'bg-[#00E5FF] border-[#00E5FF] text-[#0A0F24] hover:bg-white hover:text-black hover:border-white'
-                        : 'bg-transparent border-white/20 text-white hover:border-white'
+                        ? 'bg-[#FFA040] text-white hover:bg-gray-900 shadow-xl border-none'
+                        : 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 hover:shadow-md'
                         }`}
                     >
                       SELECT PLAN
@@ -386,22 +407,22 @@ export default function Memberships() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="max-w-6xl mx-auto bg-[#16191d] rounded-[40px] border border-white/5 p-8 md:p-20 overflow-hidden relative"
+                  className="max-w-6xl mx-auto bg-white/30 backdrop-blur-2xl rounded-[40px] border border-white/60 shadow-2xl p-8 md:p-20 overflow-hidden relative"
                 >
                   <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24">
                     <div className="space-y-12">
                       <div>
-                        <h4 className="text-[#00E5FF] font-black text-[11px] tracking-[0.4em] uppercase mb-8 flex items-center gap-3">
+                        <h4 className="text-[#FFA040] font-black text-[11px] tracking-[0.4em] uppercase mb-8 flex items-center gap-3">
                           <Info className="w-4 h-4" />
                           Core Features
                         </h4>
                         <div className="grid grid-cols-1 gap-6">
                           {selectedPackage.features.map((feature, idx) => (
                             <div key={idx} className="flex items-center gap-5 group">
-                              <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-[#00E5FF] group-hover:text-[#0A0F24] transition-all">
+                              <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center border border-gray-200 shadow-sm group-hover:bg-[#FFA040] group-hover:text-white transition-all">
                                 <Check className="w-3 h-3" />
                               </div>
-                              <span className="text-white/80 font-bold text-lg tracking-tight group-hover:text-white transition-colors">{feature}</span>
+                              <span className="text-gray-700 font-bold text-lg tracking-tight group-hover:text-gray-900 transition-colors">{feature}</span>
                             </div>
                           ))}
                         </div>
@@ -410,24 +431,24 @@ export default function Memberships() {
 
                     <div className="space-y-12">
                       <div>
-                        <h4 className="text-[#00E5FF] font-black text-[11px] tracking-[0.4em] uppercase mb-8 flex items-center gap-3">
+                        <h4 className="text-[#FFA040] font-black text-[11px] tracking-[0.4em] uppercase mb-8 flex items-center gap-3">
                           <ShieldCheck className="w-4 h-4" />
                           Club Facilities
                         </h4>
                         <div className="grid grid-cols-1 gap-6">
                           {selectedPackage.facilities.map((facility, idx) => (
                             <div key={idx} className="flex items-center gap-5 group">
-                              <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#00E5FF] transition-all">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]" />
+                              <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center border border-gray-200 shadow-sm group-hover:border-[#FFA040] transition-all">
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#FFA040]" />
                               </div>
-                              <span className="text-white/80 font-bold text-lg tracking-tight group-hover:text-white transition-colors">{facility}</span>
+                              <span className="text-gray-700 font-bold text-lg tracking-tight group-hover:text-gray-900 transition-colors">{facility}</span>
                             </div>
                           ))}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00E5FF]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FFA040]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -440,9 +461,9 @@ export default function Memberships() {
             {/* Form Section - Spanning 8/12 cols for prominence */}
             <div className="lg:col-span-8 flex">
               <ScrollReveal type="slide-up" className="w-full flex">
-                <div className="booking-card bg-[#16191d] rounded-[32px] border border-white/10 p-8 md:p-16 text-white w-full flex flex-col h-full">
-                  <h2 className="font-black text-3xl md:text-5xl tracking-tighter mb-3 uppercase text-white">{content.contact_title || 'Secure Your Spot'}</h2>
-                  <p className="text-white/50 font-medium text-base md:text-lg uppercase mb-12 tracking-tight">{content.contact_subtitle || 'Book your free trial session or message our elite consulting team.'}</p>
+                <div className="booking-card bg-white/30 backdrop-blur-2xl rounded-[32px] border border-white/60 shadow-2xl p-8 md:p-16 text-gray-900 w-full flex flex-col h-full">
+                  <h2 className="font-black text-3xl md:text-5xl tracking-tighter mb-3 uppercase text-gray-900">{content.contact_title || 'Secure Your Spot'}</h2>
+                  <p className="text-gray-500 font-medium text-base md:text-lg uppercase mb-12 tracking-tight">{content.contact_subtitle || 'Book your free trial session or message our elite consulting team.'}</p>
 
                   <form className="space-y-5 mt-auto" onSubmit={handleFormSubmit}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -452,7 +473,7 @@ export default function Memberships() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="YOUR FULL NAME"
-                        className="dark-input w-full bg-[#121417] border border-white/10 rounded-xl p-5 font-bold text-xs tracking-widest text-white placeholder:text-white/20 focus:border-[#00E5FF] transition-all outline-none"
+                        className="dark-input w-full bg-white/50 border border-gray-200 shadow-sm rounded-xl p-5 font-bold text-xs tracking-widest text-gray-900 placeholder:text-gray-400 focus:border-[#FFA040] transition-all outline-none"
                       />
                       <input
                         type="email"
@@ -460,27 +481,27 @@ export default function Memberships() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="EMAIL ADDRESS"
-                        className="dark-input w-full bg-[#121417] border border-white/10 rounded-xl p-5 font-bold text-xs tracking-widest text-white placeholder:text-white/20 focus:border-[#00E5FF] transition-all outline-none"
+                        className="dark-input w-full bg-white/50 border border-gray-200 shadow-sm rounded-xl p-5 font-bold text-xs tracking-widest text-gray-900 placeholder:text-gray-400 focus:border-[#FFA040] transition-all outline-none"
                       />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <select
                         value={formData.type}
                         onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                        className="dark-input w-full bg-[#121417] border border-white/10 rounded-xl p-5 font-bold text-xs tracking-widest text-white appearance-none focus:border-[#00E5FF] transition-all outline-none cursor-pointer"
+                        className="dark-input w-full bg-white/50 border border-gray-200 shadow-sm rounded-xl p-5 font-bold text-xs tracking-widest text-gray-900 appearance-none focus:border-[#FFA040] transition-all outline-none cursor-pointer"
                       >
-                        <option className="bg-[#1a1d21]" value="FREE TRIAL BOOKING">FREE TRIAL BOOKING</option>
-                        <option className="bg-[#1a1d21]" value="MEMBERSHIP INQUIRY">MEMBERSHIP INQUIRY</option>
-                        <option className="bg-[#1a1d21]" value="PERSONAL TRAINING APPOINTMENT">PERSONAL TRAINING APPOINTMENT</option>
+                        <option className="bg-white text-gray-900" value="FREE TRIAL BOOKING">FREE TRIAL BOOKING</option>
+                        <option className="bg-white text-gray-900" value="MEMBERSHIP INQUIRY">MEMBERSHIP INQUIRY</option>
+                        <option className="bg-white text-gray-900" value="PERSONAL TRAINING APPOINTMENT">PERSONAL TRAINING APPOINTMENT</option>
                       </select>
                       <select
                         value={formData.plan}
                         onChange={(e) => setFormData({ ...formData, plan: e.target.value })}
-                        className="dark-input w-full bg-[#121417] border border-white/10 rounded-xl p-5 font-bold text-xs tracking-widest text-white appearance-none focus:border-[#00E5FF] transition-all outline-none cursor-pointer"
+                        className="dark-input w-full bg-white/50 border border-gray-200 shadow-sm rounded-xl p-5 font-bold text-xs tracking-widest text-gray-900 appearance-none focus:border-[#FFA040] transition-all outline-none cursor-pointer"
                       >
-                        <option className="bg-[#1a1d21]" value="STARTER">STARTER</option>
-                        <option className="bg-[#1a1d21]" value="PRO">PRO</option>
-                        <option className="bg-[#1a1d21]" value="ELITE">ELITE</option>
+                        <option className="bg-white text-gray-900" value="STARTER">STARTER</option>
+                        <option className="bg-white text-gray-900" value="PRO">PRO</option>
+                        <option className="bg-white text-gray-900" value="ELITE">ELITE</option>
                       </select>
                     </div>
                     <textarea
@@ -488,13 +509,13 @@ export default function Memberships() {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="HOW CAN WE HELP YOU HIT YOUR GOALS?"
                       rows={4}
-                      className="dark-input w-full bg-[#121417] border border-white/10 rounded-xl p-5 font-bold text-xs tracking-widest text-white placeholder:text-white/20 focus:border-[#00E5FF] transition-all outline-none resize-none"
+                      className="dark-input w-full bg-white/50 border border-gray-200 shadow-sm rounded-xl p-5 font-bold text-xs tracking-widest text-gray-900 placeholder:text-gray-400 focus:border-[#FFA040] transition-all outline-none resize-none"
                     />
 
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="w-full bg-white text-black py-5 rounded-xl font-black text-[11px] tracking-[0.3em] uppercase hover:bg-[#00E5FF] hover:text-[#0A0F24] disabled:opacity-50 transition-all mt-4 shadow-xl"
+                      className="w-full bg-[#FFA040] text-white py-5 rounded-xl font-black text-[11px] tracking-[0.3em] uppercase hover:bg-[#FFA040] disabled:opacity-50 transition-all mt-4 shadow-xl"
                     >
                       {submitting ? 'TRANSMITTING...' : 'TRANSMIT REQUEST'}
                     </button>
@@ -507,17 +528,17 @@ export default function Memberships() {
             <div className="lg:col-span-4 flex flex-col gap-6">
               {[
                 {
-                  icon: <Calendar className="w-6 h-6 text-[#00E5FF]" />,
+                  icon: <Calendar className="w-6 h-6 text-[#FFA040]" />,
                   title: "Instant Booking",
                   desc: "Get your slot confirmed in real time."
                 },
                 {
-                  icon: <MessageSquare className="w-6 h-6 text-[#00E5FF]" />,
+                  icon: <MessageSquare className="w-6 h-6 text-[#FFA040]" />,
                   title: "Expert Inquiry",
                   desc: "Speak directly to senior instructors."
                 },
                 {
-                  icon: <ShieldCheck className="w-6 h-6 text-[#00E5FF]" />,
+                  icon: <ShieldCheck className="w-6 h-6 text-[#FFA040]" />,
                   title: "Pulse Guarantee",
                   desc: "Total coverage. Zero hassle."
                 }
@@ -525,16 +546,16 @@ export default function Memberships() {
                 <ScrollReveal key={i} type="scale" className="flex-1 flex">
                   <div
                     onClick={handleAction}
-                    className="info-card bg-[#16191d] p-8 rounded-[24px] border border-white/10 flex items-center gap-6 group cursor-pointer hover:border-[#00E5FF]/50 hover:bg-[#1F2328] transition-all w-full h-full"
+                    className="info-card bg-white/30 backdrop-blur-2xl p-8 rounded-[24px] border border-white/60 shadow-xl flex items-center gap-6 group cursor-pointer hover:border-[#FFA040]/50 hover:bg-white transition-all w-full h-full"
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-[#121417] border border-white/5 flex items-center justify-center flex-shrink-0 transition-all group-hover:border-[#00E5FF]">
+                    <div className="w-14 h-14 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center flex-shrink-0 transition-all group-hover:border-[#FFA040]">
                       {item.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-black text-lg mb-1 uppercase text-white tracking-tight">{item.title}</h3>
-                      <p className="text-white/40 font-bold text-[10px] tracking-wider uppercase leading-tight">{item.desc}</p>
+                      <h3 className="font-black text-lg mb-1 uppercase text-gray-900 tracking-tight">{item.title}</h3>
+                      <p className="text-gray-500 font-bold text-[10px] tracking-wider uppercase leading-tight">{item.desc}</p>
                     </div>
-                    <ChevronRight className="w-5 h-5 text-white/20 group-hover:text-[#00E5FF] group-hover:translate-x-1 transition-all" />
+                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#FFA040] group-hover:translate-x-1 transition-all" />
                   </div>
                 </ScrollReveal>
               ))}

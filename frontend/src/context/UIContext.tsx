@@ -85,7 +85,7 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   useEffect(() => {
     const blocks = globalSettings?.contentBlocks || {};
     const root = document.documentElement;
-    const primary = blocks.primary_color || '#00E5FF';
+    const primary = blocks.primary_color || '#FFA040';
     const primaryLight = blocks.accent_color || '#33EBFF';
     const background = blocks.background_color || '#F8FAFC';
     const textColor = blocks.text_color || '#0A0F24';
@@ -95,7 +95,7 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     root.style.setProperty('--color-primary', primary);
     root.style.setProperty('--color-primary-light', primaryLight);
     root.style.setProperty('--color-blue-500', primary);
-    root.style.setProperty('--color-cyan-500', primary);
+    root.style.setProperty('--color-orange-600', primary);
     root.style.setProperty('--cms-primary', primary);
     root.style.setProperty('--cms-primary-light', primaryLight);
     root.style.setProperty('--cms-background', background);

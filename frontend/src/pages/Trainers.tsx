@@ -97,7 +97,7 @@ export default function Trainers() {
         <ScrollReveal type="slide-up">
           <div className="max-w-4xl">
             <h1 className="font-black text-6xl md:text-9xl tracking-tight mb-8 leading-none uppercase italic">
-              The Elite <br /> <span className="text-[#FF7200]">Squad</span>
+              The Elite <br /> <span className="text-[#FFA040]">Squad</span>
             </h1>
             <p className="text-white/60 font-black text-xl md:text-3xl tracking-tight uppercase max-w-2xl">
               Mandated by strength. Driven by precision. meet the architects of your evolution.
@@ -120,17 +120,17 @@ export default function Trainers() {
                   <img src={trainer.img} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" alt={trainer.name} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
                   <div className="absolute bottom-0 left-0 w-full p-8">
-                    <span className="text-[#FF7200] font-black text-[10px] tracking-widest uppercase block mb-2">{trainer.role}</span>
+                    <span className="text-[#FFA040] font-black text-[10px] tracking-widest uppercase block mb-2">{trainer.role}</span>
                     <h3 className="text-3xl font-black uppercase tracking-tighter">{trainer.name}</h3>
                   </div>
                 </div>
                 <div className="p-8 space-y-6">
                   <p className="text-white/40 font-bold text-sm uppercase">{trainer.bio}</p>
                   <div className="flex gap-4 pt-4 border-t border-white/5">
-                    <button className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-[#FF7200] hover:text-black transition-all">
+                    <button className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-[#FFA040] hover:text-black transition-all">
                       <Share2 className="w-4 h-4" />
                     </button>
-                    <button className="flex-grow flex items-center justify-center gap-3 bg-white text-black font-black text-[10px] tracking-widest uppercase rounded-xl hover:bg-[#FF7200] transition-colors">
+                    <button className="flex-grow flex items-center justify-center gap-3 bg-white text-black font-black text-[10px] tracking-widest uppercase rounded-xl hover:bg-[#FFA040] transition-colors">
                       <span>View Profile</span>
                       <ChevronRight className="w-3 h-3" />
                     </button>
@@ -149,11 +149,11 @@ export default function Trainers() {
             <div className="flex flex-col md:flex-row justify-between items-end mb-20">
               <div>
                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase italic">TRANSFORMATIONS</h2>
-                <p className="text-[#FF7200] font-black text-xl md:text-2xl uppercase tracking-tighter mt-4">REAL RESULTS. NO EXCUSES.</p>
+                <p className="text-[#FFA040] font-black text-xl md:text-2xl uppercase tracking-tighter mt-4">REAL RESULTS. NO EXCUSES.</p>
               </div>
-              <button className="hidden md:flex items-center gap-4 text-[#FF7200] font-black text-xs tracking-widest uppercase group">
+              <button className="hidden md:flex items-center gap-4 text-[#FFA040] font-black text-xs tracking-widest uppercase group">
                 <span>VIEW ALL STORIES</span>
-                <div className="w-10 h-10 rounded-full border border-[#FF7200]/30 flex items-center justify-center group-hover:bg-[#FF7200] group-hover:text-black transition-all">
+                <div className="w-10 h-10 rounded-full border border-[#FFA040]/30 flex items-center justify-center group-hover:bg-[#FFA040] group-hover:text-black transition-all">
                   <ChevronRight className="w-5 h-5" />
                 </div>
               </button>
@@ -171,12 +171,12 @@ export default function Trainers() {
                     </div>
                     <div className="relative">
                       <img src={t.after} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000" alt="After" />
-                      <div className="absolute top-8 right-8 bg-[#FF7200] text-black px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase">AFTER</div>
+                      <div className="absolute top-8 right-8 bg-[#FFA040] text-black px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase">AFTER</div>
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
                     <h4 className="text-4xl md:text-5xl font-black text-white uppercase italic">{t.name} - {t.weeks} WEEKS</h4>
-                    <p className="text-[#FF7200] font-bold text-xl mt-4 max-w-lg leading-snug">"{t.quote}"</p>
+                    <p className="text-[#FFA040] font-bold text-xl mt-4 max-w-lg leading-snug">"{t.quote}"</p>
                   </div>
                 </div>
               </ScrollReveal>

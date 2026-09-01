@@ -1,0 +1,100 @@
+const AtHomeWorkouts = ({ data }: { data: PageHeroData | null }) => {
+  const content = data?.contentBlocks || {};
+  const { isLoggedIn, setIsLoginModalOpen } = useUI();
+  const workouts = [
+    {
+      name: 'Cardio HIIT',
+      trainer: 'Rahul Shetty',
+      meta: 'CARDIO • BEGINNER • 30 Min',
+      img: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800'
+    },
+    {
+      name: 'Dance Fitness Xpress',
+      trainer: 'Isheeta Ray',
+      meta: 'DANCE • BEGINNER • 33 Min',
+      img: 'https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&q=80&w=800'
+    },
+    {
+      name: 'Dance Fitness Xtreme',
+      trainer: 'Nandini Shetty',
+      meta: 'DANCE • INTERMEDIATE • 47 Min',
+      img: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=800'
+    }
+  ];
+
+  return (
+    <section className="py-20 px-6 md:px-24 bg-transparent relative z-10">
+      <div className="max-w-6xl mx-auto relative">
+        <div className="text-center mb-16 relative z-10">
+          <p className="text-[#FFA040] font-black text-sm tracking-[0.2em] uppercase mb-4 drop-shadow-md">
+            {content.athome_subtitle || 'AT-HOME'}
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter drop-shadow-lg uppercase">
+            {content.athome_title || 'Unlimited home workouts with calorie tracking'}
+          </h2>
+        </div>
+
+        {/* Navigation Arrows */}
+        <button className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 lg:-translate-x-12 z-20 w-12 h-12 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-[#FFA040] hover:text-black hover:border-[#FFA040] transition-all hidden md:flex text-white shadow-xl">
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 lg:translate-x-12 z-20 w-12 h-12 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-[#FFA040] hover:text-black hover:border-[#FFA040] transition-all hidden md:flex text-white shadow-xl">
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {workouts.map((w, idx) => (
+            <motion.div
+              key={w.name}
+              initial="initial"
+              whileHover="hover"
+              className="relative aspect-[3/4.5] rounded-[32px] overflow-hidden group cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10"
+            >
+              <motion.img
+                src={w.img}
+                alt={w.name}
+                variants={{
+                  initial: { scale: 1 },
+                  hover: { scale: 1.1 }
+                }}
+                transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              
+              {/* Dark Gradient Overlay for perfect contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1C]/90 via-[#0A0F1C]/30 to-transparent pointer-events-none" />
+
+              {/* Glassmorphism Content Card */}
+              <motion.div
+                variants={{
+                  initial: { y: 20, opacity: 0.9 },
+                  hover: { y: 0, opacity: 1 }
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_15px_30px_rgba(0,0,0,0.3)] flex flex-col items-center text-center group-hover:border-[#FFA040]/50 transition-colors duration-500"
+              >
+                <p className="text-[#FFA040] text-[10px] font-black uppercase mb-1.5 tracking-[0.2em] drop-shadow-sm">{w.trainer}</p>
+                <h3 className="text-white font-black text-2xl md:text-3xl mb-1.5 tracking-tighter leading-tight drop-shadow-md">{w.name}</h3>
+                <p className="text-white/70 text-[9px] font-bold tracking-[0.2em] uppercase mb-6">{w.meta}</p>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isLoggedIn) {
+                      setIsLoginModalOpen(true);
+                    }
+                  }}
+                  className="w-full bg-[#FFA040] text-[#0A0F1C] py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-white transition-colors duration-300 shadow-[0_5px_15px_rgba(255,160,64,0.3)]"
+                >
+                  <div className="w-2 h-2 rounded-full bg-[#0A0F1C] animate-pulse" />
+                  <span className="font-black text-[11px] tracking-widest uppercase">JOIN CLASS</span>
+                </button>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+

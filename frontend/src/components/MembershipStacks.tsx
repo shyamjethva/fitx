@@ -20,12 +20,12 @@ export default function MembershipStacks() {
     {
       name: 'ELITE',
       desc: 'Unlimited access to group classes, all gyms and at-home workouts',
-      color: 'text-[#FF7200]'
+      color: 'text-[#FFA040]'
     },
     {
       name: 'PRO',
       desc: 'Unlimited access to all PRO gyms and at-home workouts',
-      color: 'text-[#FF8B10]'
+      color: 'text-[#FFA040]'
     },
     {
       name: 'SELECT',
@@ -37,7 +37,7 @@ export default function MembershipStacks() {
   const displayPlans = plans.length > 0 ? plans.map(p => ({
     name: p.name.toUpperCase(),
     desc: p.desc,
-    color: p.name.toUpperCase() === 'ELITE' ? 'text-[#FF7200]' : p.name.toUpperCase() === 'PRO' ? 'text-[#FF8B10]' : 'text-[#FF9942]'
+    color: p.name.toUpperCase() === 'ELITE' ? 'text-[#FFA040]' : p.name.toUpperCase() === 'PRO' ? 'text-[#FFA040]' : 'text-[#FF9942]'
   })) : fallbackPlans;
 
   return (
@@ -50,7 +50,7 @@ export default function MembershipStacks() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.2 }}
             viewport={{ once: true }}
-            className="flex-1 glass-panel p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer hover:border-[#FF7200]/50 transition-all duration-500"
+            className="flex-1 glass-panel p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer hover:border-[#FFA040]/50 transition-all duration-500"
           >
             <span className="font-bold text-xs tracking-widest text-white/40 uppercase mb-4">
               fitxpass
@@ -62,7 +62,7 @@ export default function MembershipStacks() {
               {plan.desc}
             </p>
             
-            <div className="mt-8 h-1 w-0 bg-[#FF7200] group-hover:w-12 transition-all duration-500" />
+            <div className="mt-8 h-1 w-0 bg-[#FFA040] group-hover:w-12 transition-all duration-500" />
           </motion.div>
         ))}
       </div>

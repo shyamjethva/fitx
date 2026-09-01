@@ -83,13 +83,13 @@ export default function Blogs() {
   const otherBlogs = filteredBlogs.filter(b => b.id !== featuredBlog?.id);
 
   return (
-    <div className="flex flex-col w-full premium-bg min-h-screen pt-32 pb-20 overflow-x-hidden relative selection:bg-[#00E5FF]/20">
+    <div className="flex flex-col w-full premium-bg min-h-screen pt-32 pb-20 overflow-x-hidden relative selection:bg-[#FFA040]/20">
       <BackgroundGlows />
       
       {/* Centered Premium Title Header */}
       <section className="px-6 md:px-24 text-center max-w-5xl mx-auto mb-16">
         <ScrollReveal type="slide-up">
-          <span className="text-[#00E5FF] font-black text-xs md:text-sm tracking-[0.4em] uppercase block mb-4">
+          <span className="text-[#FFA040] font-black text-xs md:text-sm tracking-[0.4em] uppercase block mb-4">
             ATHLETIC LIFESTYLE INTEL
           </span>
           <h1 className="font-sans text-white font-black text-6xl md:text-8xl tracking-tight mb-6 leading-none uppercase">
@@ -106,13 +106,13 @@ export default function Blogs() {
         <ScrollReveal type="slide-up" className="w-full">
           {/* Search Input Control */}
           <div className="relative w-full group">
-             <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30 group-focus-within:text-[#00E5FF] transition-colors" />
+             <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30 group-focus-within:text-[#FFA040] transition-colors" />
              <input
                type="text"
                value={searchQuery}
                onChange={(e) => setSearchQuery(e.target.value)}
                placeholder="SEARCH ARTICLES..."
-               className="w-full bg-white/5 border border-white/10 rounded-[24px] py-6 pl-16 pr-6 font-sans text-white text-xs tracking-widest uppercase focus:outline-none focus:border-[#00E5FF]/50 transition-all shadow-xl"
+               className="w-full bg-white/5 border border-white/10 rounded-[24px] py-6 pl-16 pr-6 font-sans text-white text-xs tracking-widest uppercase focus:outline-none focus:border-[#FFA040]/50 transition-all shadow-xl"
              />
           </div>
         </ScrollReveal>
@@ -128,7 +128,7 @@ export default function Blogs() {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-8 py-4 rounded-[24px] font-sans text-[10px] font-black tracking-[0.2em] uppercase transition-all duration-300 ${
                     isSelected 
-                      ? 'bg-gradient-to-r from-[#00E5FF] to-[#00B0FF] text-slate-950 font-black shadow-[0_4px_20px_rgba(0,229,255,0.35)] scale-105' 
+                      ? 'bg-gradient-to-r from-[#FFA040] to-[#00B0FF] text-slate-950 font-black shadow-[0_4px_20px_rgba(255, 160, 64,0.35)] scale-105' 
                       : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
                   }`}
                 >
@@ -158,12 +158,12 @@ export default function Blogs() {
               {/* Text Container with elevated z-index */}
               <div className="absolute inset-x-0 bottom-0 p-8 md:p-24 flex flex-col justify-end items-start gap-8 z-20">
                 <div className="flex items-center gap-4">
-                  <span className="bg-gradient-to-r from-[#00E5FF] to-[#00B0FF] text-black px-6 py-2 rounded-full font-sans text-[10px] font-black tracking-widest uppercase shadow-lg">FEATURED DAILY</span>
-                  <span className="text-[#00E5FF] font-sans text-xs font-black uppercase tracking-widest bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-[#00E5FF]/20 shadow-md">{featuredBlog.category}</span>
+                  <span className="bg-gradient-to-r from-[#FFA040] to-[#00B0FF] text-black px-6 py-2 rounded-full font-sans text-[10px] font-black tracking-widest uppercase shadow-lg">FEATURED DAILY</span>
+                  <span className="text-[#FFA040] font-sans text-xs font-black uppercase tracking-widest bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-[#FFA040]/20 shadow-md">{featuredBlog.category}</span>
                 </div>
 
                 <div className="max-w-4xl space-y-6">
-                  <h2 className="font-sans blog-image-title font-black text-4xl md:text-7xl leading-tight tracking-tighter group-hover:text-[#00E5FF] transition-colors">
+                  <h2 className="font-sans blog-image-title font-black text-4xl md:text-7xl leading-tight tracking-tighter group-hover:text-[#FFA040] transition-colors">
                     {featuredBlog.title}
                   </h2>
                   <p className="font-sans blog-image-description text-lg md:text-2xl font-bold leading-snug max-w-2xl">
@@ -210,7 +210,7 @@ export default function Blogs() {
                 <div className="relative h-72 overflow-hidden">
                   <img src={blog.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={blog.title} />
                   <div className="absolute top-6 left-6">
-                    <span className="bg-black/90 backdrop-blur-md text-white px-4 py-2 rounded-full font-sans text-[10px] font-black tracking-widest uppercase border border-[#00E5FF]/30 shadow-lg">
+                    <span className="bg-black/90 backdrop-blur-md text-white px-4 py-2 rounded-full font-sans text-[10px] font-black tracking-widest uppercase border border-[#FFA040]/30 shadow-lg">
                       {blog.category}
                     </span>
                   </div>
@@ -218,7 +218,7 @@ export default function Blogs() {
 
                 <div className="p-6 flex flex-col flex-grow gap-6">
                   <div className="space-y-4">
-                    <h3 className="font-sans text-white font-black text-2xl leading-tight group-hover:text-[#00E5FF] transition-colors">
+                    <h3 className="font-sans text-white font-black text-2xl leading-tight group-hover:text-[#FFA040] transition-colors">
                       {blog.title}
                     </h3>
                     <p className="font-sans blog-card-description text-sm font-bold leading-relaxed line-clamp-3">
@@ -231,7 +231,7 @@ export default function Blogs() {
                       <Clock className="w-4 h-4 text-white/20" />
                       <span className="text-white/20 font-sans font-bold text-[10px] uppercase tracking-widest">{blog.readTime}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-[#00E5FF] font-black text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center gap-2 text-[#FFA040] font-black text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
                       <span>READ MORE</span>
                       <ChevronRight className="w-4 h-4" />
                     </div>
@@ -273,7 +273,7 @@ export default function Blogs() {
               {/* Floating Close Button */}
               <button
                 onClick={() => setSelectedBlog(null)}
-                className="absolute top-6 right-6 z-40 bg-black/60 border border-white/10 text-white hover:text-[#00E5FF] hover:border-[#00E5FF]/30 p-3 px-5 rounded-full backdrop-blur-md transition-all font-bold uppercase tracking-widest text-[10px] flex items-center gap-2"
+                className="absolute top-6 right-6 z-40 bg-black/60 border border-white/10 text-white hover:text-[#FFA040] hover:border-[#FFA040]/30 p-3 px-5 rounded-full backdrop-blur-md transition-all font-bold uppercase tracking-widest text-[10px] flex items-center gap-2"
               >
                 <X className="w-3.5 h-3.5" />
                 <span>Close Reader</span>
@@ -290,7 +290,7 @@ export default function Blogs() {
                 
                 {/* Meta Details overlay */}
                 <div className="absolute bottom-8 left-8 right-8 space-y-3">
-                  <span className="bg-[#00E5FF] text-slate-950 px-4 py-1.5 rounded-full font-sans text-[10px] font-black tracking-widest uppercase">
+                  <span className="bg-[#FFA040] text-slate-950 px-4 py-1.5 rounded-full font-sans text-[10px] font-black tracking-widest uppercase">
                     {selectedBlog.category}
                   </span>
                   <h1 className="text-2xl md:text-4xl font-black text-white force-text-white uppercase tracking-tight leading-tight max-w-3xl">
@@ -304,15 +304,15 @@ export default function Blogs() {
                 {/* Credentials Matrix */}
                 <div className="flex flex-wrap items-center gap-6 pb-6 border-b border-white/5 text-[10px] blog-reader-meta uppercase tracking-widest font-bold">
                   <div className="flex items-center gap-2">
-                    <User className="w-4 h-4 text-[#00E5FF]" />
+                    <User className="w-4 h-4 text-[#FFA040]" />
                     <span>{selectedBlog.author}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-[#00E5FF]" />
+                    <Calendar className="w-4 h-4 text-[#FFA040]" />
                     <span>{selectedBlog.date}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#00E5FF]" />
+                    <Clock className="w-4 h-4 text-[#FFA040]" />
                     <span>{selectedBlog.readTime}</span>
                   </div>
                 </div>
@@ -328,7 +328,7 @@ export default function Blogs() {
                 <div className="pt-8 border-t border-white/5">
                   <button
                     onClick={() => setSelectedBlog(null)}
-                    className="bg-white/5 border border-white/10 hover:border-[#00E5FF]/30 hover:bg-[#00E5FF]/10 text-white font-black text-xs tracking-widest uppercase px-8 py-4 rounded-2xl transition-all"
+                    className="bg-white/5 border border-white/10 hover:border-[#FFA040]/30 hover:bg-[#FFA040]/10 text-white font-black text-xs tracking-widest uppercase px-8 py-4 rounded-2xl transition-all"
                   >
                     ← Back to Journal
                   </button>

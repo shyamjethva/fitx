@@ -38,7 +38,18 @@ export const LocationModal = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-start justify-end pt-20 pr-6 md:pr-12 pointer-events-none">
+      <div className="fixed inset-0 z-[100] flex items-start justify-end pt-20 pr-6 md:pr-12 pointer-events-none location-modal-wrapper">
+        <style>{`
+          #root .location-modal-wrapper * {
+            color: #7A5737 !important;
+            -webkit-text-fill-color: #7A5737 !important;
+          }
+          #root .location-modal-wrapper input::placeholder {
+            color: #7A5737 !important;
+            -webkit-text-fill-color: #7A5737 !important;
+            opacity: 0.6 !important;
+          }
+        `}</style>
         {/* Backdrop — only for closing */}
         <div 
           className="absolute inset-0 pointer-events-auto" 

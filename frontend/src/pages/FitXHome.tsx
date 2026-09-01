@@ -91,7 +91,7 @@ const Hero = ({ data }: { data: PageHeroData | null }) => {
   const title = data?.title || 'fitX HOME';
   const subtitle = data?.subtitle || 'Starting at ₹115 / month*';
   const rawDescription = data?.description || 'Unlimited live workouts at home\nInteractive calorie tracking\nExpert guidance via fitX app';
-  const image = data?.image || 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1200';
+  const image = data?.image || '/home-hero-bg.png';
   const video = data?.video || '';
   const ctaText = data?.ctaText || 'EXPLORE PLANS';
 
@@ -99,16 +99,41 @@ const Hero = ({ data }: { data: PageHeroData | null }) => {
   const bullets = rawDescription.split('\n').filter(Boolean);
 
   return (
-    <section id="hero" className="relative w-full overflow-hidden scroll-mt-32 bg-[#0A0F24]">
-      <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row min-h-[85vh]">
-        <div className="flex-1 flex flex-col justify-center px-6 md:px-20 py-10 lg:py-0 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+    <section id="hero" className="relative w-full overflow-hidden scroll-mt-32 min-h-[85vh]">
+      {/* Full Screen Background Image */}
+      <div className="absolute inset-0 z-0">
+        {video ? (
+          <video
+            src={video}
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : (
+          <img
+            src={image}
+            className="w-full h-full object-cover"
+            style={{ objectPosition: '50% 30%' }}
+            alt={title}
+          />
+        )}
+        {/* Dark left gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/5 to-transparent" />
+        {/* Orange bottom fade to blend into page background */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#F0B892] to-transparent" />
+      </div>
+
+      <div className="max-w-screen-2xl mx-auto flex flex-col justify-center min-h-[85vh] px-6 md:px-20 py-16 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl"
+        >
             <div className="flex items-baseline gap-3 mb-12">
-              <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase">
+              <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase drop-shadow-lg">
                 {title.includes(' ') ? (
                   <>
                     {title.substring(0, title.lastIndexOf(' '))} <span className="text-[#FF7200]">{title.substring(title.lastIndexOf(' ') + 1)}</span>
@@ -162,32 +187,10 @@ const Hero = ({ data }: { data: PageHeroData | null }) => {
               </button>
             </div>
 
-            <p className="text-white/30 text-[10px] font-bold uppercase tracking-tight italic">
+            <p className="text-gray-300 text-[10px] font-bold uppercase tracking-tight italic">
               *Effective Monthly Pricing including Extension, if any
             </p>
-          </motion.div>
-        </div>
-
-        <div className="flex-1 relative min-h-[60vh] lg:min-h-0">
-          {video ? (
-            <video
-              src={video}
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-          ) : (
-            <img
-              src={image}
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              alt={title}
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-transparent to-transparent lg:block hidden" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111]/80 via-transparent to-transparent lg:hidden block" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -207,11 +210,11 @@ const FeaturesGrid = ({ data }: { data: PageHeroData | null }) => {
           {/* Card 1: Library of Videos */}
           <motion.div
             whileHover={{ y: -5 }}
-            className="bg-[#161616] rounded-[40px] p-6 flex flex-col items-center justify-center text-center border border-white/5 relative overflow-hidden"
+            className="bg-white rounded-[40px] p-6 flex flex-col items-center justify-center text-center border border-[#7A5737]/10 relative overflow-hidden shadow-xl"
           >
             {/* Premium Ambient Grid & Light */}
             <div className="absolute inset-0 opacity-40 pointer-events-none">
-              <div className="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] [background-size:20px_20px]" />
+              <div className="absolute inset-0 bg-[radial-gradient(#00000006_1px,transparent_1px)] [background-size:20px_20px]" />
               <div className="absolute top-0 right-0 w-48 h-48 bg-[#FF7200]/10 blur-[70px] rounded-full" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#FF8B10]/5 blur-[80px] rounded-full" />
             </div>
@@ -219,14 +222,14 @@ const FeaturesGrid = ({ data }: { data: PageHeroData | null }) => {
             <div className="relative z-10 flex flex-col items-center">
               <h3 className="text-[#FF7200] font-black text-lg uppercase tracking-tight mb-2">Library of</h3>
               <div className="text-7xl font-black text-[#FF7200] mb-2 tracking-tighter drop-shadow-[0_0_30px_rgba(255,114,0,0.3)]">1000+</div>
-              <p className="text-white font-bold text-sm tracking-widest uppercase opacity-80">WORKOUT VIDEOS</p>
+              <p className="text-[#7A5737] font-bold text-sm tracking-widest uppercase opacity-80">WORKOUT VIDEOS</p>
             </div>
           </motion.div>
 
           {/* Card 2: Smart AI Tracking (Tall) */}
           <motion.div
             whileHover={{ y: -5 }}
-            className="md:row-span-2 bg-[#161616] rounded-[40px] p-6 flex flex-col items-center text-center border border-white/5 relative overflow-hidden"
+            className="md:row-span-2 bg-white rounded-[40px] p-6 flex flex-col items-center text-center border border-[#7A5737]/10 relative overflow-hidden shadow-xl"
           >
             <h3 className="text-[#FF7200] font-black text-2xl uppercase tracking-tight mb-12 relative z-10">Smart AI Tracking</h3>
 
@@ -236,7 +239,7 @@ const FeaturesGrid = ({ data }: { data: PageHeroData | null }) => {
               <div className="absolute w-[350px] h-[350px] bg-[#FF7200]/10 blur-[90px] rounded-full animate-pulse duration-[5000ms]" />
 
               {/* Matrix Grid Base */}
-              <div className="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] [background-size:24px_24px]" />
+              <div className="absolute inset-0 bg-[radial-gradient(#00000006_1px,transparent_1px)] [background-size:24px_24px]" />
 
               {/* Rotating Dashboard Ring 1 */}
               <motion.div
@@ -245,9 +248,15 @@ const FeaturesGrid = ({ data }: { data: PageHeroData | null }) => {
                 className="absolute opacity-[0.15]"
               >
                 <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="250" cy="250" r="130" stroke="white" strokeWidth="0.5" strokeDasharray="4 10" />
-                  <circle cx="250" cy="250" r="190" stroke="#FF7200" strokeWidth="1.5" strokeDasharray="30 50" />
-                  <circle cx="250" cy="250" r="260" stroke="white" strokeWidth="0.5" strokeDasharray="2 15" />
+                  <circle cx="250" cy="250" r="180" stroke="url(#dashRing1)" strokeWidth="1" strokeDasharray="4 8" />
+                  <circle cx="250" cy="250" r="140" stroke="url(#dashRing1)" strokeWidth="0.5" strokeDasharray="1 12" />
+                  <defs>
+                    <linearGradient id="dashRing1" x1="0" y1="0" x2="500" y2="500" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#FF7200" stopOpacity="0" />
+                      <stop offset="50%" stopColor="#FF7200" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#FF7200" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
                 </svg>
               </motion.div>
 
@@ -309,7 +318,7 @@ const FeaturesGrid = ({ data }: { data: PageHeroData | null }) => {
           {/* Card 3: Live Sessions */}
           <motion.div
             whileHover={{ y: -5 }}
-            className="bg-[#161616] rounded-[40px] overflow-hidden border border-white/5 relative group"
+            className="bg-white rounded-[40px] overflow-hidden border border-[#7A5737]/10 relative group shadow-xl"
           >
             <img src="/live_trainer.jpg" className="absolute inset-0 w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700" alt="Live Sessions" />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-700" />
@@ -328,7 +337,7 @@ const FeaturesGrid = ({ data }: { data: PageHeroData | null }) => {
           {/* Card 4: Train with Experts */}
           <motion.div
             whileHover={{ y: -5 }}
-            className="bg-[#161616] rounded-[40px] overflow-hidden border border-white/5 relative group"
+            className="bg-white rounded-[40px] overflow-hidden border border-[#7A5737]/10 relative group shadow-xl"
           >
             <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700" alt="Yoga" />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-700" />
@@ -340,11 +349,11 @@ const FeaturesGrid = ({ data }: { data: PageHeroData | null }) => {
           {/* Card 5: Global Leaderboards */}
           <motion.div
             whileHover={{ y: -5 }}
-            className="bg-[#161616] rounded-[40px] p-8 flex flex-col items-center justify-center text-center border border-white/5 relative overflow-hidden group"
+            className="bg-white rounded-[40px] p-8 flex flex-col items-center justify-center text-center border border-[#7A5737]/10 relative overflow-hidden group shadow-xl"
           >
             {/* Dynamic Chart Background Blended Layer */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-20 group-hover:opacity-40 transition-all duration-700 overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] [background-size:20px_20px] z-10" />
+              <div className="absolute inset-0 bg-[radial-gradient(#00000006_1px,transparent_1px)] [background-size:20px_20px] z-10" />
               <img
                 src="/leaderboards_chart.png"
                 className="w-full h-full object-cover transform scale-125 group-hover:scale-110 transition-transform duration-[1.5s] filter invert hue-rotate-180 contrast-[1.1] brightness-[0.85] mix-blend-screen"
@@ -352,14 +361,14 @@ const FeaturesGrid = ({ data }: { data: PageHeroData | null }) => {
               />
               {/* Peripheral Framing Glow */}
               <div className="absolute bottom-0 right-0 w-48 h-48 bg-[#FF7200]/10 blur-[80px] rounded-full" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-[#161616] z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white z-10" />
             </div>
 
             <div className="relative z-10 flex flex-col items-center">
               <div className="w-20 h-20 bg-[#FF7200]/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(255,114,0,0.2)] border border-[#FF7200]/20 group-hover:scale-110 transition-transform duration-300">
                 <Trophy className="w-10 h-10 text-[#FF7200]" />
               </div>
-              <h3 className="text-white font-black text-xs uppercase tracking-widest mb-1 opacity-60">GLOBAL</h3>
+              <h3 className="text-[#7A5737] font-black text-xs uppercase tracking-widest mb-1 opacity-60">GLOBAL</h3>
               <p className="text-[#FF7200] font-black text-3xl uppercase tracking-tighter drop-shadow-md">Leaderboards</p>
             </div>
           </motion.div>
@@ -410,31 +419,29 @@ const TrainerLedClasses = ({ data }: { data: PageHeroData | null }) => {
           <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">{content.classes_title || 'Trainer-led group classes'}</h2>
         </div>
 
-        <div className="relative group">
-          <div className="flex gap-6 overflow-x-auto pb-12 scrollbar-hide snap-x px-4">
-            {classes.map((c, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="min-w-[300px] md:min-w-[400px] relative rounded-[40px] overflow-hidden snap-center border border-white/10 group/card bg-[#0A0F24] flex flex-col shadow-2xl"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={c.img} className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" alt={c.name} />
-                </div>
-                <div className="p-6 text-center flex flex-col items-center justify-center flex-grow">
-                  <span className="text-4xl mb-4 bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center border border-white/10 shrink-0">{c.icon}</span>
-                  <h3 className="text-white font-black text-3xl uppercase tracking-tighter mb-2 leading-none">{c.name}</h3>
-                  <p className="text-white/40 font-bold text-[10px] tracking-[0.2em] uppercase">{c.tags}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <button className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-black/50 backdrop-blur-md border border-white/10 rounded-full hidden md:flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all -translate-x-1/2">
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-black/50 backdrop-blur-md border border-white/10 rounded-full hidden md:flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all translate-x-1/2">
-            <ChevronRight className="w-6 h-6" />
-          </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+          {classes.map((c, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.15, ease: "easeOut" }}
+              whileHover={{ y: -15, scale: 1.03 }}
+              className="relative aspect-[4/3] rounded-[32px] overflow-hidden border border-white/10 group/card shadow-xl cursor-pointer bg-[#0A0F1C]"
+            >
+              <img src={c.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" alt={c.name} />
+              
+              {/* Glass effect panel for text content */}
+              <div className="absolute inset-x-0 bottom-0 p-4 pt-6 text-center flex flex-col items-center bg-[#0A0F1C]/70 backdrop-blur-md border-t border-white/10 transition-transform duration-500">
+                <span className="absolute -top-6 bg-[#0A0F1C]/90 w-12 h-12 rounded-xl flex items-center justify-center shadow-lg border border-[#F0B892]/40 transition-transform duration-500 group-hover/card:-translate-y-2">
+                  {c.icon}
+                </span>
+                <h3 className="text-white font-black text-2xl uppercase tracking-tighter mb-1 mt-2 leading-none transition-transform duration-500 group-hover/card:-translate-y-1">{c.name}</h3>
+                <p className="text-white/70 font-bold text-[9px] tracking-[0.2em] uppercase transition-transform duration-500">{c.tags}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -450,70 +457,84 @@ const AtHomeWorkouts = ({ data }: { data: PageHeroData | null }) => {
       title: 'Dance Fitness Xtreme',
       type: 'DANCE • INTERMEDIATE • 47 Min',
       img: '/athome1.jpeg',
-      live: '26+ LIVE',
-      btn: 'JOIN'
+      live: '26+ LIVE'
     },
     {
       trainer: 'Rahul Shetty',
       title: 'Cardio HIIT',
       type: 'CARDIO • BEGINNER • 30 Min',
       img: '/athome2.jpeg',
-      btn: 'BOOK'
     },
     {
       trainer: 'Isheeta Ray',
       title: 'Dance Fitness Xpress',
       type: 'DANCE • BEGINNER • 33 Min',
       img: '/athome3.jpeg',
-      btn: 'BOOK'
     }
   ];
 
   return (
-    <section id="at-home" className="py-16 overflow-hidden relative border-t border-white/5 scroll-mt-32">
-      <div className="max-w-screen-2xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="text-white/40 font-black tracking-[0.4em] uppercase text-[10px] mb-3">{content.athome_subtitle || 'AT-HOME'}</p>
-          <h2 className="text-2xl md:text-4xl font-bold text-white uppercase tracking-tighter leading-none">{content.athome_title || 'Unlimited home workouts with calorie tracking'}</h2>
+    <section className="py-20 px-6 md:px-24 bg-transparent relative z-10">
+      <div className="max-w-6xl mx-auto relative">
+        <div className="text-center mb-16 relative z-10">
+          <p className="text-[#FFA040] font-black text-sm tracking-[0.2em] uppercase mb-4 drop-shadow-md">
+            {content.athome_subtitle || 'AT-HOME'}
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter drop-shadow-lg uppercase">
+            {content.athome_title || 'Unlimited home workouts with calorie tracking'}
+          </h2>
         </div>
 
-        <div className="relative">
-          <div className="flex flex-wrap justify-center gap-8 px-4">
-            {workouts.map((w, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -5 }}
-                className="min-w-[300px] md:min-w-[340px] max-w-[360px] rounded-[16px] overflow-hidden bg-[#2a3038] flex flex-col group/card border border-white/5 shadow-lg"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {workouts.map((w, idx) => (
+            <motion.div
+              key={w.title}
+              initial="initial"
+              whileHover="hover"
+              className="relative aspect-[3/4.5] rounded-[32px] overflow-hidden group cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-[#7A5737]"
+            >
+              <motion.img
+                src={w.img}
+                alt={w.title}
+                variants={{
+                  initial: { scale: 1 },
+                  hover: { scale: 1.05 }
+                }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              
+              {w.live && (
+                <div className="absolute top-6 left-6 bg-black/80 px-3 py-1.5 rounded-lg text-[10px] font-black text-white z-10 tracking-wider shadow-lg">
+                  {w.live}
+                </div>
+              )}
+
+              {/* Dark semi-transparent box at the bottom */}
+              <div
+                className="absolute bottom-0 left-0 right-0 pt-8 pb-6 px-6 bg-[#7A5737]/95 rounded-t-[32px] flex flex-col items-center text-center transition-transform duration-500 transform translate-y-2 group-hover:translate-y-0"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={w.img} className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" alt={w.title} />
-                  {w.live && (
-                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-md text-[10px] font-black text-white z-10 tracking-wider">
-                      {w.live}
-                    </div>
-                  )}
-                </div>
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                
+                <p className="text-[#FFA040] text-[10px] font-black uppercase mb-1.5 tracking-[0.2em]">{w.trainer}</p>
+                <h3 className="text-white font-black text-2xl md:text-3xl mb-2 tracking-tighter leading-tight">{w.title}</h3>
+                <p className="text-white/60 text-[9px] font-bold tracking-[0.2em] uppercase mb-6">{w.type}</p>
 
-                <div className="p-5 flex flex-col items-center text-center flex-1">
-                  <p className="text-white/50 font-medium text-xs mb-2">{w.trainer}</p>
-                  <h3 className="text-white font-bold text-xl mb-2 tracking-tight">{w.title}</h3>
-                  <p className="text-white/60 font-bold text-[10px] tracking-wider uppercase mb-6">{w.type}</p>
-
-                  <div className="mt-auto">
-                    <button
-                      onClick={() => {
-                        if (!isLoggedIn) setIsLoginModalOpen(true);
-                      }}
-                      className="flex items-center gap-2 bg-[#373e48] text-white font-bold px-6 py-2 rounded-lg text-[11px] tracking-wider uppercase hover:bg-white hover:text-black transition-all"
-                    >
-                      <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.5)]" />
-                      JOIN
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isLoggedIn) {
+                      setIsLoginModalOpen(true);
+                    }
+                  }}
+                  className="w-full bg-[#FFA040] text-black py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-white transition-colors duration-300 shadow-lg"
+                >
+                  <div className="w-2 h-2 rounded-full bg-black animate-pulse" />
+                  <span className="font-black text-[11px] tracking-widest uppercase">JOIN CLASS</span>
+                </button>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -715,11 +736,11 @@ const MembershipComparison = ({ data }: { data: PageHeroData | null }) => {
             >
               <div className="flex justify-between items-start mb-12">
                 <div>
-                  <span className="text-sm text-white/20 font-black line-through block mb-2 italic">{currentPlan.originalPrice}</span>
-                  <h3 className="text-6xl font-black text-white tracking-tighter italic">
+                  <span className="text-sm text-[#FF7200]/50 font-black line-through block mb-2 italic">{currentPlan.originalPrice}</span>
+                  <h3 className="text-6xl font-black text-[#FF7200] tracking-tighter italic">
                     {currentPlan.price}
                   </h3>
-                  <p className="text-[#FF7200] font-black text-[10px] uppercase tracking-[0.2em] mt-2">{currentPlan.monthly} / month*</p>
+                  <p className="text-[#FF7200]/80 font-black text-[10px] uppercase tracking-[0.2em] mt-2">{currentPlan.monthly} / month*</p>
                 </div>
                 <div className="bg-[#FF7200] text-black font-black px-4 py-2 rounded-lg text-[10px] uppercase">
                   BEST VALUE
@@ -730,7 +751,7 @@ const MembershipComparison = ({ data }: { data: PageHeroData | null }) => {
                 {currentPlan.features.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#FF7200]" />
-                    <span className="text-white/60 font-black text-[10px] uppercase tracking-wider">{f}</span>
+                    <span className="text-[#FF7200] font-black text-[10px] uppercase tracking-wider">{f}</span>
                   </div>
                 ))}
               </div>
@@ -837,7 +858,14 @@ export default function FitXHome() {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen pt-16 selection:bg-[#FF7200]/30 premium-bg">
+    <div
+      className="relative w-full min-h-screen pt-16 selection:bg-[#FF7200]/30 premium-bg"
+      style={{
+        background: 'linear-gradient(180deg, #F0B892 0%, #F5C7A1 20%, #F8DAC0 42%, #FAE0CC 62%, #FDF2EC 80%, #FFFFFF 100%)',
+        backgroundAttachment: 'fixed',
+        color: '#111827'
+      }}
+    >
       <CanvasScrollBg />
       <FitnessSubNav />
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
-import { MapPinned, CircleUser, ChevronDown, Menu, X } from 'lucide-react';
+import { MapPinned, CircleUser, ChevronDown, Menu, X, Dumbbell } from 'lucide-react';
 import { useUI } from '../context/UIContext';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -51,13 +51,15 @@ export const TopNavBar = () => {
     location.pathname === '/gallery' ||
     location.pathname.startsWith('/programs');
 
+  const isElitePage = location.pathname === '/fitness/elite';
+
   return (
     <>
       <header className={cn(
         "w-full z-50 px-6 md:px-12 h-16 flex justify-between items-center transition-all duration-500",
-        isScrollAwayPage ? "absolute" : "fixed",
-        (location.pathname === '/' && !isScrolled) ? "bg-transparent" : "bg-black border-b border-white/5",
-        !isScrollAwayPage && "top-0"
+        isElitePage ? "elite-header fixed top-0" : isScrollAwayPage ? "absolute" : "fixed",
+        !isElitePage && ((location.pathname === '/' && !isScrolled) ? "bg-transparent" : "bg-black border-b border-white/5"),
+        !isScrollAwayPage && !isElitePage && "top-0"
       )}>
         {/* Left: Logo */}
         <div className="flex-1 flex items-center">
@@ -66,12 +68,13 @@ export const TopNavBar = () => {
               <img src={logoUrl} alt="FitX Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
             ) : (
               <>
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-4 h-4 bg-black rounded-sm rotate-45" />
+                <div className="relative w-8 h-8 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Dumbbell className="absolute text-[#FF7200] w-7 h-7 rotate-45" />
+                  <Dumbbell className="absolute text-[#FF7200] w-7 h-7 -rotate-45" />
                 </div>
-                <span className="font-sans text-xl md:text-2xl tracking-tighter text-white uppercase font-black">
+                <span className={cn("font-sans text-xl md:text-2xl tracking-tighter uppercase font-black", isElitePage ? "text-gray-900" : "text-white")}>
                   {gymName === 'FitX' ? (
-                    <>fit<span className="text-primary">X</span></>
+                    <>fit<span className="text-[#FF7200]">X</span></>
                   ) : (
                     <>{gymName}</>
                   )}
@@ -98,13 +101,13 @@ export const TopNavBar = () => {
                   }
                 }}
                 className={cn(
-                  "font-sans text-[13px] font-bold tracking-[0.1em] transition-all duration-300 relative py-1 hover:text-[#00E5FF]",
-                  isActive ? "text-[#00E5FF]" : "text-white/60"
+                  "font-sans text-[13px] font-bold tracking-[0.1em] transition-all duration-300 relative py-1 hover:text-[#FF7200]",
+                  isActive ? "text-[#FF7200]" : isElitePage ? "text-gray-800" : "text-white/60"
                 )}
               >
                 {link.name}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00E5FF] shadow-[0_0_8px_rgba(0,229,255,0.8)] rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF7200] shadow-[0_0_8px_rgba(255,114,0,0.8)] rounded-full" />
                 )}
               </Link>
             );
@@ -118,11 +121,11 @@ export const TopNavBar = () => {
             onClick={() => setIsLocationModalOpen(true)}
             className="flex items-center gap-2 cursor-pointer group"
           >
-            <span className="font-sans text-[11px] font-bold text-white group-hover:text-primary uppercase tracking-widest transition-colors">
+            <span className={cn("font-sans text-[11px] font-bold group-hover:text-[#FF7200] uppercase tracking-widest transition-colors", isElitePage ? "text-gray-800" : "text-white")}>
               {selectedLocation}
             </span>
-            <MapPinned className="w-4 h-4 text-white group-hover:text-primary transition-colors" />
-            <ChevronDown className="w-3 h-3 text-white/40" />
+            <MapPinned className={cn("w-4 h-4 group-hover:text-[#FF7200] transition-colors", isElitePage ? "text-gray-800" : "text-white")} />
+            <ChevronDown className={cn("w-3 h-3", isElitePage ? "text-gray-500" : "text-white/40")} />
           </div>
 
           {/* Join Button (Get App Style) */}
@@ -131,7 +134,7 @@ export const TopNavBar = () => {
               const footer = document.querySelector('footer');
               footer?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="hidden sm:flex border border-white/30 text-white font-sans px-5 py-2 text-[11px] font-bold tracking-widest hover:bg-white hover:text-black transition-all rounded-[4px] uppercase"
+            className={cn("hidden sm:flex font-sans px-5 py-2 text-[11px] font-bold tracking-widest transition-all rounded-[4px] uppercase border", isElitePage ? "border-orange-500/40 text-gray-900 hover:bg-[#FF7200] hover:text-white" : "border-white/30 text-white hover:bg-white hover:text-black")}
           >
             GET APP
           </button>
@@ -193,7 +196,7 @@ export const TopNavBar = () => {
                     to={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="font-sans text-lg font-black tracking-[0.15em] transition-all duration-300 py-2 uppercase"
-                    style={{ color: isActive ? '#00E5FF' : '#ffffff' }}
+                    style={{ color: isActive ? '#FFA040' : '#ffffff' }}
                   >
                     {link.name}
                   </Link>
@@ -229,7 +232,7 @@ export const TopNavBar = () => {
                 >
                   <div className="flex items-center gap-3">
                     <CircleUser className="w-5 h-5" style={{ color: '#ffffff' }} />
-                    <span className="font-sans text-sm font-black uppercase tracking-widest text-white group-hover:text-[#00E5FF] transition-colors">
+                    <span className="font-sans text-sm font-black uppercase tracking-widest text-white group-hover:text-[#FFA040] transition-colors">
                       {isLoggedIn ? "MY PROFILE" : "LOGIN / ACCESS"}
                     </span>
                   </div>
@@ -254,7 +257,7 @@ export const TopNavBar = () => {
                             setIsLoginModalOpen(true);
                           }
                         }}
-                        className="py-2 text-left font-sans text-xs font-black tracking-widest text-white/60 hover:text-[#00E5FF] uppercase transition-colors"
+                        className="py-2 text-left font-sans text-xs font-black tracking-widest text-white/60 hover:text-[#FFA040] uppercase transition-colors"
                       >
                         • {isLoggedIn ? 'User Dashboard' : 'User Account Portal'}
                       </button>
@@ -270,8 +273,8 @@ export const TopNavBar = () => {
                   const footer = document.querySelector('footer');
                   footer?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full border border-[#00E5FF] text-[#00E5FF] font-sans py-3 text-xs font-black tracking-widest transition-all rounded-lg uppercase text-center mt-2 bg-[#00E5FF]/10 hover:bg-[#00E5FF] hover:text-[#0A0F24]"
-                style={{ color: '#00E5FF' }}
+                className="w-full border border-[#FFA040] text-[#FFA040] font-sans py-3 text-xs font-black tracking-widest transition-all rounded-lg uppercase text-center mt-2 bg-[#FFA040]/10 hover:bg-[#FFA040] hover:text-[#0A0F24]"
+                style={{ color: '#FFA040' }}
               >
                 GET APP
               </button>

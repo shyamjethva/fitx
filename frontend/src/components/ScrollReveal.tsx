@@ -52,7 +52,7 @@ export default function ScrollReveal({ children, className, type = 'fade' }: Scr
     <motion.div
       ref={ref}
       style={getTransform()}
-      className={className}
+      className={`relative ${className || ''}`}
     >
       {children}
     </motion.div>

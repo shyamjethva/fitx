@@ -62,7 +62,7 @@ const CanvasScrollBg = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 114, 0, ${0.2 + scrollValue * 0.3})`; 
+        ctx.fillStyle = `rgba(255, 160, 64, ${0.2 + scrollValue * 0.3})`; 
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -88,10 +88,10 @@ const CanvasScrollBg = () => {
   }, [dimensions, scrollYProgress]);
 
   return (
-    <div className="fixed inset-0 -z-10 bg-black">
+    <div className="fixed inset-0 -z-10 premium-bg">
       <canvas ref={canvasRef} width={dimensions.width} height={dimensions.height} className="opacity-40" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,114,0,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(255,139,16,0.1),transparent_50%)]" />
+      
+      
     </div>
   );
 };
@@ -99,27 +99,34 @@ const CanvasScrollBg = () => {
 const Hero = () => {
   return (
     <section id="hero" className="relative w-full overflow-hidden bg-transparent">
-      <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[25/9]">
+      <div className="relative w-full min-h-[100dvh] flex flex-col justify-center">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=80&w=1600"
-            className="w-full h-full object-cover object-center opacity-70"
+            className="w-full h-full object-cover object-center opacity-100"
             alt="Gallery Hero"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+          
+          {/* Softer text-side shadow overlay for readability */}
+          <div className="absolute inset-y-0 left-0 w-full md:w-[70%] lg:w-[60%] z-10 bg-gradient-to-r from-[#0A0F1C]/90 via-[#0A0F1C]/60 to-transparent pointer-events-none" />
         </div>
 
-        <div className="absolute inset-0 flex flex-col justify-end pb-12 px-6 md:px-24">
+        <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-24">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl"
+            className="max-w-4xl z-20"
           >
-            <h1 className="font-black text-5xl md:text-8xl tracking-tighter mb-4 leading-none uppercase text-white" style={{ color: '#ffffff' }}>
-              Visual <br /> Fit<span className="text-[#FF7200]">X</span>
+            <h1 className="font-black text-6xl md:text-8xl tracking-tighter mb-4 leading-[0.9] uppercase text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+               <span className="block hover:text-[#FFA040] transition-colors duration-500 text-[#FFA040]">
+                 Visual
+               </span>
+               <span className="block hover:text-white transition-colors duration-500 text-white">
+                 FitX
+               </span>
             </h1>
-            <p className="text-white/70 font-bold text-lg md:text-xl tracking-tight uppercase max-w-2xl" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            <p className="text-[#FFA040] text-lg md:text-xl font-bold tracking-tight drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] uppercase max-w-2xl mt-6">
               High-performance aesthetics captured at our worldwide centers.
             </p>
           </motion.div>
@@ -187,7 +194,14 @@ export default function Gallery() {
     : "max-w-screen-2xl mx-auto flex flex-wrap justify-center gap-8";
 
   return (
-    <div className="flex flex-col w-full premium-bg min-h-screen pb-20 overflow-x-hidden text-white font-sans relative">
+    <div
+      className="flex flex-col w-full premium-bg min-h-screen pb-20 font-sans relative"
+      style={{
+        background: 'linear-gradient(180deg, #F0B892 0%, #F5C7A1 20%, #F8DAC0 42%, #FAE0CC 62%, #FDF2EC 80%, #FFFFFF 100%)',
+        backgroundAttachment: 'fixed',
+        color: '#111827'
+      }}
+    >
       <CanvasScrollBg />
       <BackgroundGlows />
       
@@ -213,7 +227,7 @@ export default function Gallery() {
                   onClick={() => setActiveTab(cat.id)}
                   className={`flex items-center gap-2.5 px-6 py-3 rounded-full text-[10px] font-black tracking-widest uppercase transition-all border ${
                     activeTab === cat.id 
-                      ? 'active bg-[#FF7200] text-white border-[#FF7200] shadow-[0_5px_15px_rgba(255,114,0,0.3)]' 
+                      ? 'active bg-[#FFA040] text-white border-[#FFA040] shadow-[0_5px_15px_rgba(255, 160, 64,0.3)]' 
                       : 'bg-transparent text-white/50 border-transparent hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -229,7 +243,7 @@ export default function Gallery() {
       <section className="px-6 md:px-24 mb-32">
         {loading ? (
           <div className="flex justify-center items-center py-24">
-            <div className="w-10 h-10 border-4 border-[#FF7200] border-t-transparent rounded-full animate-spin" />
+            <div className="w-10 h-10 border-4 border-[#FFA040] border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
           <motion.div
@@ -246,7 +260,7 @@ export default function Gallery() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   onClick={() => setSelectedItem(item)}
-                  className={`relative break-inside-avoid rounded-[24px] overflow-hidden group cursor-pointer border-2 border-transparent hover:border-[#FF7200]/40 shadow-xl transition-all duration-500 ${!isMasonry ? 'w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)]' : 'w-full'} ${item.isVideo ? 'aspect-[9/16]' : 'aspect-[4/3]'} ${item.type === '3d' ? 'bg-gradient-to-b from-[#1a1c20] to-[#0d0e11]' : 'bg-black'} ${isMasonry ? 'mb-6' : ''}`}
+                  className={`relative break-inside-avoid rounded-[24px] overflow-hidden group cursor-pointer border-2 border-transparent hover:border-[#FFA040]/40 shadow-xl transition-all duration-500 ${!isMasonry ? 'w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)]' : 'w-full'} ${item.isVideo ? 'aspect-[9/16]' : 'aspect-[4/3]'} ${item.type === '3d' ? 'bg-gradient-to-b from-[#1a1c20] to-[#0d0e11]' : 'bg-black'} ${isMasonry ? 'mb-6' : ''}`}
                 >
                   {item.isVideo ? (
                     <video
@@ -268,7 +282,7 @@ export default function Gallery() {
                   {/* Video Overlay for Visual Hierarchy */}
                   {item.isVideo && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-2xl group-hover:scale-110 group-hover:bg-[#FF7200] group-hover:border-[#FF7200] transition-all duration-500">
+                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-2xl group-hover:scale-110 group-hover:bg-[#FFA040] group-hover:border-[#FFA040] transition-all duration-500">
                         <Play className="w-6 h-6 text-white fill-white" />
                       </div>
                     </div>
@@ -277,14 +291,14 @@ export default function Gallery() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
                     <div className="flex justify-between items-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <div className="space-y-1">
-                        <span className="text-[#FF7200] text-[9px] font-black tracking-[0.3em] uppercase">
+                        <span className="text-[#FFA040] text-[9px] font-black tracking-[0.3em] uppercase">
                           {item.isVideo ? 'DYNAMIC REEL' : item.type === '3d' ? 'SYSTEM OVERVIEW' : 'CENTER CAPTURE'}
                         </span>
                         <h3 className="text-xl font-black uppercase tracking-tight force-text-white">{item.title}</h3>
                       </div>
                       <div 
                         onClick={() => setSelectedItem(item)}
-                        className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center scale-0 group-hover:scale-100 transition-all duration-500 shadow-lg hover:bg-[#FF7200] hover:text-white cursor-pointer"
+                        className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center scale-0 group-hover:scale-100 transition-all duration-500 shadow-lg hover:bg-[#FFA040] hover:text-white cursor-pointer"
                       >
                         <Maximize2 className="w-4 h-4" />
                       </div>
@@ -303,17 +317,17 @@ export default function Gallery() {
           <div className="booking-card max-w-4xl mx-auto rounded-[32px] bg-[#16191d] p-10 flex flex-col items-center text-center text-white relative overflow-hidden border border-white/10 shadow-2xl">
             <div className="relative z-10 flex flex-col items-center">
               <div className="w-14 h-14 rounded-2xl bg-[#1F2328] border border-white/10 flex items-center justify-center mb-6">
-                <Instagram className="w-7 h-7 text-[#FF7200]" />
+                <Instagram className="w-7 h-7 text-[#FFA040]" />
               </div>
               <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase mb-4 leading-none">Join the <br /> Visual Pulse</h2>
               <p className="text-white/50 font-medium text-base tracking-tight uppercase mb-10 max-w-md">Tag your achievements and get featured in the international grid.</p>
               
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-[#00E5FF] text-[#0A0F24] px-8 py-4 rounded-xl font-black text-[10px] tracking-[0.3em] uppercase flex items-center gap-3 hover:bg-[#33EBFF] transition-all shadow-[0_10px_30px_rgba(0,229,255,0.2)] hover:scale-105" style={{ color: '#0A0F24' }}>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-[#FFA040] text-black px-8 py-4 rounded-xl font-black text-[10px] tracking-[0.3em] uppercase flex items-center gap-3 hover:bg-white hover:text-black transition-all shadow-[0_10px_30px_rgba(255, 160, 64,0.2)] hover:scale-105">
                 <span>LAUNCH INSTAGRAM</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF7200]/10 rounded-full blur-[100px] -translate-y-32 translate-x-32 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFA040]/10 rounded-full blur-[100px] -translate-y-32 translate-x-32 pointer-events-none" />
           </div>
         </ScrollReveal>
       </section>
@@ -367,7 +381,7 @@ export default function Gallery() {
               className="mt-6 text-center select-none cursor-default"
             >
               <h3 className="text-2xl font-black uppercase tracking-tighter force-text-white mb-1">{selectedItem.title}</h3>
-              <p className="text-xs font-black tracking-widest uppercase text-[#FF7200]">
+              <p className="text-xs font-black tracking-widest uppercase text-[#FFA040]">
                 {selectedItem.isVideo ? 'FULLSPEED REEL' : 'HIGH-FIDELITY CAPTURE'}
               </p>
             </motion.div>

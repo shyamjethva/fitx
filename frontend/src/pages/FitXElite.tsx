@@ -396,16 +396,20 @@ const TrainerLedClasses = ({ data }: { data: PageHeroData | null }) => {
           <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">{content.classes_title || 'Trainer-led group classes'}</h2>
         </div>
 
-        <div className="relative group">
-          <div className="flex gap-6 overflow-x-auto pb-12 scrollbar-hide snap-x px-4">
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-12 px-4">
             {classes.map((c, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="min-w-[300px] md:min-w-[400px] relative rounded-[40px] overflow-hidden snap-center border border-white/10 group/card bg-[#0A0F24] flex flex-col shadow-2xl"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.15, type: 'spring', bounce: 0.4 }}
+                whileHover={{ y: -15, scale: 1.03 }}
+                className="relative rounded-[40px] overflow-hidden border border-white/20 group/card bg-[#0A0F24]/40 backdrop-blur-2xl flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-[#0A0F24]/50 transition-colors duration-500"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={c.img} className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" alt={c.name} />
+                  <img src={c.img} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover/card:scale-110" alt={c.name} />
                 </div>
                 <div className="p-6 text-center flex flex-col items-center justify-center flex-grow">
                   <span className="text-4xl mb-4 bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center border border-white/10 shrink-0">{c.icon}</span>
@@ -415,14 +419,6 @@ const TrainerLedClasses = ({ data }: { data: PageHeroData | null }) => {
               </motion.div>
             ))}
           </div>
-
-          {/* Navigation Arrows */}
-          <button className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-black/50 backdrop-blur-md border border-white/10 rounded-full hidden md:flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all -translate-x-1/2">
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-black/50 backdrop-blur-md border border-white/10 rounded-full hidden md:flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all translate-x-1/2">
-            <ChevronRight className="w-6 h-6" />
-          </button>
         </div>
       </div>
     </section>
@@ -453,51 +449,38 @@ const AtHomeWorkouts = ({ data }: { data: PageHeroData | null }) => {
       title: 'Dance Fitness Xpress',
       type: 'DANCE • BEGINNER • 33 Min',
       img: '/athome3.jpeg',
-      btn: 'BOOK'
     }
   ];
 
   return (
-    <section id="at-home" className="py-16 overflow-hidden relative border-t border-white/5 scroll-mt-32">
+    <section id="at-home" className="py-8 overflow-hidden relative border-t border-white/5 scroll-mt-32">
       <div className="max-w-screen-2xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <p className="text-white/40 font-black tracking-[0.4em] uppercase text-[10px] mb-3">{content.athome_subtitle || 'AT-HOME'}</p>
           <h2 className="text-2xl md:text-4xl font-bold text-white uppercase tracking-tighter leading-none">{content.athome_title || 'Unlimited home workouts with calorie tracking'}</h2>
         </div>
 
-        <div className="relative">
-          <div className="flex flex-wrap justify-center gap-8 px-4">
+        <div className="relative max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
             {workouts.map((w, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
-                className="min-w-[300px] md:min-w-[340px] max-w-[360px] rounded-[16px] overflow-hidden bg-[#2a3038] flex flex-col group/card border border-white/5 shadow-lg"
+                className="w-full max-w-[280px] md:max-w-[300px] rounded-[16px] overflow-hidden bg-[#7A5737]/95 flex flex-col group/card border border-[#7A5737] shadow-lg mx-auto"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={w.img} className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" alt={w.title} />
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <img src={w.img} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover/card:scale-105" alt={w.title} />
                   {w.live && (
-                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-md text-[10px] font-black text-white z-10 tracking-wider">
+                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-md text-[10px] font-black text-[#D8B79A] z-10 tracking-wider">
                       {w.live}
                     </div>
                   )}
                 </div>
 
-                <div className="p-5 flex flex-col items-center text-center flex-1">
+                <div className="p-4 pb-5 flex flex-col items-center text-center flex-1">
                   <p className="text-white/50 font-medium text-xs mb-2">{w.trainer}</p>
                   <h3 className="text-white font-bold text-xl mb-2 tracking-tight">{w.title}</h3>
-                  <p className="text-white/60 font-bold text-[10px] tracking-wider uppercase mb-6">{w.type}</p>
-
-                  <div className="mt-auto">
-                    <button
-                      onClick={() => {
-                        if (!isLoggedIn) setIsLoginModalOpen(true);
-                      }}
-                      className="flex items-center gap-2 bg-[#373e48] text-white font-bold px-6 py-2 rounded-lg text-[11px] tracking-wider uppercase hover:bg-white hover:text-black transition-all"
-                    >
-                      <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.5)]" />
-                      JOIN
-                    </button>
-                  </div>
+                  <p className="text-white/60 font-bold text-[10px] tracking-wider uppercase mb-4">{w.type}</p>
                 </div>
               </motion.div>
             ))}
@@ -652,7 +635,7 @@ const MembershipComparison = () => {
               onClick={() => setSelectedPlan(p.duration)}
               className={`px-8 py-4 rounded-2xl border transition-all flex flex-col items-center min-w-[160px] ${selectedPlan === p.duration
                 ? 'bg-[#FF7200]/10 border-[#FF7200] shadow-[0_0_20px_rgba(246,224,94,0.1)]'
-                : 'bg-[#1c1c1c] border-white/5 hover:border-white/20'
+                : 'bg-[rgba(21,30,50,0.05)] border-[rgba(21,30,50,0.1)] hover:border-white/20'
                 }`}
             >
               <span className={`text-[10px] font-black tracking-[0.2em] uppercase mb-1 ${selectedPlan === p.duration ? 'text-[#FF7200]' : 'text-white/40'}`}>
@@ -875,13 +858,13 @@ const MembershipPricingCards = () => {
             >
               <div className="flex justify-between items-start mb-16 relative z-10">
                 <div className="flex flex-col">
-                  <span className="text-6xl font-black text-white leading-none mb-2">{card.months}</span>
-                  <span className="text-xs font-black text-white/40 uppercase tracking-[0.3em]">MONTHS</span>
+                  <span className="text-6xl font-black text-[#FF7200] leading-none mb-2">{card.months}</span>
+                  <span className="text-xs font-black text-[#FF7200]/80 uppercase tracking-[0.3em]">MONTHS</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-sm text-white/20 font-black line-through block mb-1 italic">₹{card.originalPrice}</span>
-                  <span className="text-5xl font-black text-white block mb-2 tracking-tighter">₹{card.price}</span>
-                  <span className="text-[10px] text-white/40 font-black uppercase tracking-[0.2em]">{card.monthly} per month*</span>
+                  <span className="text-sm text-[#FF7200]/50 font-black line-through block mb-1 italic">₹{card.originalPrice}</span>
+                  <span className="text-5xl font-black text-[#FF7200] block mb-2 tracking-tighter">₹{card.price}</span>
+                  <span className="text-[10px] text-[#FF7200]/80 font-black uppercase tracking-[0.2em]">{card.monthly} per month*</span>
                 </div>
               </div>
 
@@ -889,7 +872,7 @@ const MembershipPricingCards = () => {
                 {card.features.map((f, fi) => (
                   <div key={fi} className="flex items-start gap-4">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#FF7200] mt-1.5 shrink-0" />
-                    <p className="text-white/70 text-[11px] font-bold leading-snug uppercase tracking-tight">{f}</p>
+                    <p className="text-[#FF7200] text-[11px] font-bold leading-snug uppercase tracking-tight">{f}</p>
                   </div>
                 ))}
               </div>

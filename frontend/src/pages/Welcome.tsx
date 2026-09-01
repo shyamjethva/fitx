@@ -58,7 +58,7 @@ const CanvasScrollBg = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 114, 0, ${0.2 + scrollValue * 0.3})`; 
+        ctx.fillStyle = `rgba(255, 160, 64, ${0.2 + scrollValue * 0.3})`; 
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -84,11 +84,9 @@ const CanvasScrollBg = () => {
   }, [dimensions, scrollYProgress]);
 
   return (
-    <div className="fixed inset-0 -z-10 bg-black">
+    <div className="fixed inset-0 -z-10 premium-bg">
       <canvas ref={canvasRef} width={dimensions.width} height={dimensions.height} className="opacity-40" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,114,0,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(255,139,16,0.1),transparent_50%)]" />
-    </div>
+                </div>
   );
 };
 
@@ -96,11 +94,11 @@ export default function Welcome() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen w-full relative bg-black overflow-hidden flex items-center justify-center selection:bg-[#FF7200]/30">
+    <div className="min-h-screen w-full relative bg-black overflow-hidden flex items-center justify-center selection:bg-[#FFA040]/30">
       <CanvasScrollBg />
       
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#FF7200]/20 blur-[120px] rounded-full opacity-60 animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#FF8B10]/10 blur-[150px] rounded-full opacity-40" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#FFA040]/20 blur-[120px] rounded-full opacity-60 animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#FFA040]/10 blur-[150px] rounded-full opacity-40" />
 
       <div className="relative z-10 max-w-4xl px-6 w-full text-center py-20">
         <motion.div
@@ -109,12 +107,12 @@ export default function Welcome() {
           transition={{ duration: 0.8, type: "spring" }}
           className="flex justify-center mb-10"
         >
-          <div className="w-24 h-24 bg-[#FF7200] rounded-full flex items-center justify-center shadow-[0_0_60px_rgba(255,114,0,0.4)] relative">
+          <div className="w-24 h-24 bg-[#FFA040] rounded-full flex items-center justify-center shadow-[0_0_60px_rgba(255, 160, 64,0.4)] relative">
              <CheckCircle2 className="w-12 h-12 text-black" strokeWidth={3} />
              <motion.div 
                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
                transition={{ repeat: Infinity, duration: 2 }}
-               className="absolute inset-0 border-2 border-[#FF7200] rounded-full"
+               className="absolute inset-0 border-2 border-[#FFA040] rounded-full"
              />
           </div>
         </motion.div>
@@ -126,7 +124,7 @@ export default function Welcome() {
         >
           <h1 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none mb-6">
             WELCOME TO THE<br />
-            <span className="text-[#FF7200] italic">EVOLUTION</span>
+            <span className="text-[#FFA040] italic">EVOLUTION</span>
           </h1>
           <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto font-medium uppercase tracking-widest mb-16">
             Your profile has been activated successfully. <br/>The future of fitness begins now.
@@ -144,9 +142,9 @@ export default function Welcome() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6 + (idx * 0.15), duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 text-center hover:border-[#FF7200]/40 hover:bg-white/10 transition-all group"
+              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 text-center hover:border-[#FFA040]/40 hover:bg-white/10 transition-all group"
             >
-              <div className="text-[#FF7200] w-10 h-10 mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <div className="text-[#FFA040] w-10 h-10 mx-auto mb-4 group-hover:scale-110 transition-transform">
                 {item.icon}
               </div>
               <h3 className="text-white font-black text-lg tracking-tighter uppercase mb-2">{item.title}</h3>
@@ -162,7 +160,7 @@ export default function Welcome() {
         >
           <button
             onClick={() => navigate('/dashboard')}
-            className="bg-white text-black font-black px-12 py-5 rounded-full text-base tracking-widest uppercase flex items-center gap-3 mx-auto hover:bg-[#FF7200] hover:text-black transition-all shadow-[0_15px_40px_rgba(255,255,255,0.2)] hover:shadow-[0_15px_40px_rgba(255,114,0,0.4)] active:scale-95 group"
+            className="bg-white text-black font-black px-12 py-5 rounded-full text-base tracking-widest uppercase flex items-center gap-3 mx-auto hover:bg-[#FFA040] hover:text-black transition-all shadow-[0_15px_40px_rgba(255,255,255,0.2)] hover:shadow-[0_15px_40px_rgba(255, 160, 64,0.4)] active:scale-95 group"
           >
             GO TO DASHBOARD
             <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
