@@ -104,7 +104,7 @@ function AppContent() {
   }, [isIsolatedRoute]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-[#D8DCDF] font-sans antialiased selection:bg-[#FF7200] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-background text-[#D8DCDF] font-sans antialiased selection:bg-[#FFA040] selection:text-black">
       {!isIsolatedRoute && <TopNavBar />}
       <main className="flex-grow">
         <Routes>

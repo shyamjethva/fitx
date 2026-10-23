@@ -61,31 +61,31 @@ export default function HelpCenter() {
   };
 
   return (
-    <div className="relative w-full min-h-screen pt-32 pb-24 bg-black overflow-hidden selection:bg-[#00E5FF]/30">
+    <div className="relative w-full min-h-screen pt-32 pb-24 bg-black overflow-hidden selection:bg-[#FFA040]/30">
       {/* Background Neon Elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#00E5FF]/10 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#FFA040]/10 rounded-full blur-[130px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#00B0FF]/8 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         {/* Header */}
         <ScrollReveal type="slide-up">
           <div className="text-center mb-16">
-            <span className="text-[#00E5FF] font-black text-xs md:text-sm tracking-[0.4em] uppercase block mb-4">
+            <span className="text-[#FFA040] font-black text-xs md:text-sm tracking-[0.4em] uppercase block mb-4">
               FITX INTELLIGENT HELPDESK
             </span>
             <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-none mb-8">
-              SUPPORT <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-[#00B0FF]">CENTER</span>
+              SUPPORT <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFA040] to-[#00B0FF]">CENTER</span>
             </h1>
 
             {/* Search Input */}
             <div className="relative max-w-xl mx-auto group">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30 group-focus-within:text-[#00E5FF] transition-colors" />
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30 group-focus-within:text-[#FFA040] transition-colors" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="SEARCH KNOWLEDGE BASE OR QUESTIONS..."
-                className="w-full bg-white/5 border border-white/10 rounded-[24px] py-6 pl-16 pr-6 font-sans text-white text-xs tracking-widest uppercase focus:outline-none focus:border-[#00E5FF]/50 transition-all shadow-xl"
+                className="w-full bg-white/5 border border-white/10 rounded-[24px] py-6 pl-16 pr-6 font-sans text-white text-xs tracking-widest uppercase focus:outline-none focus:border-[#FFA040]/50 transition-all shadow-xl"
               />
             </div>
           </div>
@@ -103,7 +103,7 @@ export default function HelpCenter() {
                 }}
                 className={`px-6 py-3.5 rounded-[24px] font-sans text-[10px] font-black tracking-widest uppercase transition-all ${
                   activeCategory === cat 
-                    ? 'bg-gradient-to-r from-[#00E5FF] to-[#00B0FF] text-slate-950 shadow-[0_4px_15px_rgba(0,229,255,0.25)] scale-105'
+                    ? 'bg-gradient-to-r from-[#FFA040] to-[#00B0FF] text-slate-950 shadow-[0_4px_15px_rgba(255, 160, 64,0.25)] scale-105'
                     : 'text-white/55 hover:text-white hover:bg-white/[0.03]'
                 }`}
               >
@@ -135,7 +135,7 @@ export default function HelpCenter() {
                     >
                       <span className="text-lg font-bold text-white uppercase tracking-tight pr-4">{faq.q}</span>
                       <span className="shrink-0 p-2 bg-white/5 rounded-full border border-white/10 text-white/60">
-                        {isOpen ? <Minus className="w-4 h-4 text-[#00E5FF]" /> : <Plus className="w-4 h-4" />}
+                        {isOpen ? <Minus className="w-4 h-4 text-[#FFA040]" /> : <Plus className="w-4 h-4" />}
                       </span>
                     </button>
 
@@ -169,9 +169,9 @@ export default function HelpCenter() {
         {/* Support Options footer */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { icon: <MessageSquare className="w-6 h-6 text-[#00E5FF]" />, title: 'Live Chat', label: 'Connect Instant', value: '2 min wait' },
-            { icon: <PhoneCall className="w-6 h-6 text-[#00E5FF]" />, title: 'Voice Support', label: 'Toll-free Hotline', value: '1800-419-XFIT' },
-            { icon: <Mail className="w-6 h-6 text-[#00E5FF]" />, title: 'Email Desk', label: 'Direct Response', value: 'support@fitx.com' }
+            { icon: <MessageSquare className="w-6 h-6 text-[#FFA040]" />, title: 'Live Chat', label: 'Connect Instant', value: '2 min wait' },
+            { icon: <PhoneCall className="w-6 h-6 text-[#FFA040]" />, title: 'Voice Support', label: 'Toll-free Hotline', value: '1800-419-XFIT' },
+            { icon: <Mail className="w-6 h-6 text-[#FFA040]" />, title: 'Email Desk', label: 'Direct Response', value: 'support@fitx.com' }
           ].map(opt => (
             <ScrollReveal key={opt.title} type="scale">
               <div className="p-8 rounded-[32px] border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all flex flex-col items-center text-center gap-4">
@@ -182,7 +182,7 @@ export default function HelpCenter() {
                   <h4 className="text-white font-bold uppercase tracking-tight">{opt.title}</h4>
                   <p className="text-white/40 text-[10px] uppercase font-bold tracking-widest mt-1">{opt.label}</p>
                 </div>
-                <div className="text-[#00E5FF] font-black text-xs tracking-wider uppercase mt-2">
+                <div className="text-[#FFA040] font-black text-xs tracking-wider uppercase mt-2">
                   {opt.value}
                 </div>
               </div>

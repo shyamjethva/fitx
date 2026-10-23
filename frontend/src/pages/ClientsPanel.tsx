@@ -59,7 +59,7 @@ export function ClientsPanel({
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-black text-xl">Clients</h3>
-          <button onClick={() => setEditingClient({ name: '', slug: '', features: [], primaryColor: '#00E5FF', secondaryColor: '#0A0F24', status: 'active' })} className="primary-button text-xs py-1.5 px-3">
+          <button onClick={() => setEditingClient({ name: '', slug: '', features: [], primaryColor: '#FFA040', secondaryColor: '#0A0F24', status: 'active' })} className="primary-button text-xs py-1.5 px-3">
             + Add Client
           </button>
         </div>
@@ -91,7 +91,7 @@ export function ClientsPanel({
             <div className="flex items-center justify-between border-b border-[#d7e8e8] pb-4">
               <h3 className="font-black text-xl">{editingClient.id ? 'Edit Client' : 'New Client'}</h3>
               {editingClient.id && (
-                <button type="button" onClick={() => onDelete(editingClient.id!)} className="text-red-500 hover:bg-red-50 p-2 rounded-xl transition">
+                <button type="button" onClick={() => onDelete(editingClient.id!)} className="text-[#FFA040] hover:bg-red-50 p-2 rounded-xl transition">
                   <Trash2 className="w-5 h-5" />
                 </button>
               )}
@@ -109,8 +109,8 @@ export function ClientsPanel({
             <div className="grid gap-4 md:grid-cols-2">
               <Field label="Primary Color">
                 <div className="flex gap-2 items-center">
-                  <input type="color" value={editingClient.primaryColor || '#00E5FF'} onChange={(e) => setEditingClient({ ...editingClient, primaryColor: e.target.value })} className="h-10 w-12 rounded-xl border-0 cursor-pointer" />
-                  <input type="text" value={editingClient.primaryColor || '#00E5FF'} onChange={(e) => setEditingClient({ ...editingClient, primaryColor: e.target.value })} className="admin-light-input flex-1 uppercase" />
+                  <input type="color" value={editingClient.primaryColor || '#FFA040'} onChange={(e) => setEditingClient({ ...editingClient, primaryColor: e.target.value })} className="h-10 w-12 rounded-xl border-0 cursor-pointer" />
+                  <input type="text" value={editingClient.primaryColor || '#FFA040'} onChange={(e) => setEditingClient({ ...editingClient, primaryColor: e.target.value })} className="admin-light-input flex-1 uppercase" />
                 </div>
               </Field>
               <Field label="Secondary Color">

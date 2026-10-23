@@ -104,7 +104,7 @@ const defaultOffer: PromotionalOfferData = {
   title: '',
   subtitle: '',
   targetDate: '',
-  bgColor: '#00E5FF',
+  bgColor: '#FFA040',
   textColor: '#0A0F24',
   isActive: false,
 };
@@ -597,7 +597,7 @@ export default function Admin() {
                 />
               </label>
               {error && (
-                <div className="flex gap-3 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-600">
+                <div className="flex gap-3 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-bold text-[#FFA040]">
                   <ShieldAlert className="h-4 w-4 shrink-0" />
                   {error}
                 </div>
@@ -629,7 +629,7 @@ export default function Admin() {
                 />
               </label>
               {error && (
-                <div className="flex gap-3 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-600">
+                <div className="flex gap-3 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-bold text-[#FFA040]">
                   <ShieldAlert className="h-4 w-4 shrink-0" />
                   {error}
                 </div>
@@ -1339,7 +1339,7 @@ function OfferPanel({
         </Field>
         <div className="grid gap-3 sm:grid-cols-3">
           <Field label="Background">
-            <input type="color" value={offer.bgColor || '#00E5FF'} onChange={(e) => setOffer((item) => ({ ...item, bgColor: e.target.value }))} className="h-12 w-full rounded-xl border-0 bg-white/70" />
+            <input type="color" value={offer.bgColor || '#FFA040'} onChange={(e) => setOffer((item) => ({ ...item, bgColor: e.target.value }))} className="h-12 w-full rounded-xl border-0 bg-white/70" />
           </Field>
           <Field label="Text">
             <input type="color" value={offer.textColor || '#0A0F24'} onChange={(e) => setOffer((item) => ({ ...item, textColor: e.target.value }))} className="h-12 w-full rounded-xl border-0 bg-white/70" />
@@ -1351,7 +1351,7 @@ function OfferPanel({
         </div>
         <SaveButton onClick={onSave} saving={saving} />
       </div>
-      <div className="panel-card flex min-h-64 items-center justify-center" style={{ backgroundColor: offer.bgColor || '#00E5FF', color: offer.textColor || '#0A0F24' }}>
+      <div className="panel-card flex min-h-64 items-center justify-center" style={{ backgroundColor: offer.bgColor || '#FFA040', color: offer.textColor || '#0A0F24' }}>
         <div className="text-center">
           <p className="text-xs font-black uppercase tracking-widest opacity-70">Live preview</p>
           <h3 className="mt-3 text-3xl font-black">{offer.title || 'Offer title'}</h3>
@@ -1660,7 +1660,7 @@ function InquiriesPanel({
                 <td className="text-sm font-bold">{contact.plan || 'N/A'}</td>
                 <td className="max-w-sm truncate text-sm text-[#5f777b]">{contact.message}</td>
                 <td className="text-right">
-                  <button onClick={() => onDelete(contact.id)} className="icon-button text-red-500">
+                  <button onClick={() => onDelete(contact.id)} className="icon-button text-[#FFA040]">
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </td>
@@ -1691,7 +1691,7 @@ function TrainersPanel({ trainers, onEdit, onDelete }: { trainers: Trainer[]; on
             <p className="mt-2 line-clamp-3 text-sm text-[#638488]">{trainer.bio}</p>
             <div className="mt-5 flex gap-2">
               <button onClick={() => onEdit(trainer)} className="secondary-button"><Edit3 className="h-4 w-4" /> Edit</button>
-              <button onClick={() => onDelete(trainer.id)} className="secondary-button text-red-500"><Trash2 className="h-4 w-4" /> Delete</button>
+              <button onClick={() => onDelete(trainer.id)} className="secondary-button text-[#FFA040]"><Trash2 className="h-4 w-4" /> Delete</button>
             </div>
           </div>
         ))}
@@ -2128,7 +2128,7 @@ function BlogsPanel({
               </button>
               <button
                 onClick={() => onDelete(blog.id!)}
-                className="secondary-button text-red-500 flex-grow justify-center"
+                className="secondary-button text-[#FFA040] flex-grow justify-center"
               >
                 <Trash2 className="h-3.5 w-3.5" /> Delete
               </button>

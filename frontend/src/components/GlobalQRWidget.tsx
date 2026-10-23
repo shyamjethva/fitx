@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useLocation } from 'react-router-dom';
 import { useUI } from '../context/UIContext';
 
 /**
@@ -19,7 +20,7 @@ export default function GlobalQRWidget() {
       const totalHeight = document.documentElement.scrollHeight;
 
       // If the user gets within 300px of the bottom (roughly footer start), hide it.
-      const isNearFooter = (scrolledFromTop + viewportHeight) > (totalHeight - 450);
+      const isNearFooter = totalHeight > viewportHeight * 1.2 && (scrolledFromTop + viewportHeight) > (totalHeight - 300);
 
       if (isNearFooter && isVisible) {
         setIsVisible(false);
@@ -34,6 +35,9 @@ export default function GlobalQRWidget() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isVisible]);
 
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -42,7 +46,11 @@ export default function GlobalQRWidget() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 50, scale: 0.9 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[200] flex flex-col items-center gap-1.5 md:gap-2 rounded-2xl md:rounded-[20px] p-2 md:p-3 shadow-[0_15px_40px_rgba(18,98,107,0.06)] w-[85px] md:w-[110px]"
+          className={`fixed z-[200] flex flex-col items-center gap-1.5 md:gap-2 rounded-2xl md:rounded-[20px] p-2 md:p-3 shadow-[0_15px_40px_rgba(18,98,107,0.06)] w-[85px] md:w-[110px] ${
+            isHomePage 
+              ? 'bottom-8 right-6 md:bottom-12 md:right-10' 
+              : 'bottom-4 right-4 md:bottom-6 md:right-6'
+          }`}
           style={{
             backgroundColor: 'rgba(255, 255, 255, 0.55)',
             backdropFilter: 'blur(20px)',

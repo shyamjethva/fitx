@@ -20,7 +20,7 @@ import FitnessSubNav from '../components/FitnessSubNav';
 import { useUI } from '../context/UIContext';
 import { TimerOffer } from '../components/TimerOffer';
 import { api, PageHeroData } from '../lib/api';
-
+import FannedCardGallery from '../components/FannedCardGallery';
 const CanvasScrollBg = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { scrollYProgress } = useScroll();
@@ -77,7 +77,7 @@ const CanvasScrollBg = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 114, 0, ${0.2 + scrollValue * 0.3})`; // Teal
+        ctx.fillStyle = `rgba(255, 160, 64, ${0.2 + scrollValue * 0.3})`; // Teal
         ctx.fill();
 
         // Lines
@@ -104,11 +104,9 @@ const CanvasScrollBg = () => {
   }, [dimensions, scrollYProgress]);
 
   return (
-    <div className="fixed inset-0 -z-10 bg-black">
+    <div className="fixed inset-0 -z-10 premium-bg">
       <canvas ref={canvasRef} width={dimensions.width} height={dimensions.height} className="opacity-40" />
       {/* Mesh Gradients Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,114,0,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(255,139,16,0.1),transparent_50%)]" />
     </div>
   );
 };
@@ -134,67 +132,91 @@ const Hero = ({ data }: { data: PageHeroData | null }) => {
   );
 };
 
-const ClassSlider = ({ data }: { data: PageHeroData | null }) => {
+
+const AtHomeWorkouts = ({ data }: { data: PageHeroData | null }) => {
   const content = data?.contentBlocks || {};
-  const classes = [
+  const { isLoggedIn, setIsLoginModalOpen } = useUI();
+  const workouts = [
     {
-      name: 'evolve YOGA',
-      desc: 'FLEXIBILITY • MINDFUL TRANSITIONS',
-      img: '/Yoga.jpg',
-      color: 'from-[#1a0a00]/60'
+      trainer: 'Nandini Shetty',
+      title: 'Dance Fitness Xtreme',
+      type: 'DANCE • INTERMEDIATE • 47 Min',
+      img: '/athome1.jpeg',
+      live: '26+ LIVE'
     },
     {
-      name: 'adidas strength +',
-      desc: 'PLYO-AGILITY • ENDURANCE',
-      img: '/athletic.png',
-      color: 'from-orange-900/60'
+      trainer: 'Rahul Shetty',
+      title: 'Cardio HIIT',
+      type: 'CARDIO • BEGINNER • 30 Min',
+      img: '/athome2.jpeg',
     },
     {
-      name: 'HRX WORKOUT',
-      desc: 'MUSCLE GAIN • STRENGTH',
-      img: 'https://images.unsplash.com/photo-1517438984742-1262db08379e?auto=format&fit=crop&q=80&w=800',
-      color: 'from-blue-900/60'
-    },
-    {
-      name: 'fitX RUN',
-      desc: 'OUTDOOR • AEROBIC RUN',
-      img: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&q=80&w=800',
-      color: 'from-emerald-900/60'
-    },
+      trainer: 'Isheeta Ray',
+      title: 'Dance Fitness Xpress',
+      type: 'DANCE • BEGINNER • 33 Min',
+      img: '/athome3.jpeg',
+    }
   ];
 
   return (
-    <section className="py-12 px-6 md:px-24 bg-transparent">
-      <div className="max-w-screen-2xl mx-auto relative">
-        <div className="text-center mb-16">
-          <p className="text-white/40 font-bold text-sm tracking-[0.2em] uppercase mb-4">{content.classes_subtitle || 'AT-CENTER'}</p>
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">{content.classes_title || 'Trainer-led group classes'}</h2>
+    <section className="py-20 px-6 md:px-24 bg-transparent relative z-10">
+      <div className="max-w-6xl mx-auto relative">
+        <div className="text-center mb-16 relative z-10">
+          <p className="text-[#7A5737] font-black text-sm tracking-[0.2em] uppercase mb-4 drop-shadow-md">
+            {content.athome_subtitle || 'AT-HOME'}
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#7A5737] tracking-tighter drop-shadow-lg uppercase">
+            {content.athome_title || 'Unlimited home workouts with calorie tracking'}
+          </h2>
         </div>
 
-        {/* Navigation Arrows */}
-        <button className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-black/60 transition-colors hidden md:flex">
-          <ChevronLeft className="w-6 h-6 text-white" />
-        </button>
-        <button className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-black/60 transition-colors hidden md:flex">
-          <ChevronRight className="w-6 h-6 text-white" />
-        </button>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
-          {classes.map((cls) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {workouts.map((w, idx) => (
             <motion.div
-              key={cls.name}
-              whileHover={{ y: -5 }}
-              className="relative aspect-[3/4.5] rounded-lg overflow-hidden group cursor-pointer shadow-2xl"
+              key={w.title}
+              initial="initial"
+              whileHover="hover"
+              className="relative aspect-[3/4.5] rounded-[32px] overflow-hidden group cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-2 border-[#7A5737]"
             >
-              <img src={cls.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={cls.name} />
-              <div className={`absolute inset-0 bg-gradient-to-t ${cls.color} via-transparent to-transparent opacity-80`} />
-              <div className="absolute inset-x-0 bottom-0 p-8 text-center flex flex-col items-center">
-                <h3 className="force-text-white font-black text-3xl italic uppercase tracking-tighter leading-none mb-2 drop-shadow-lg">
-                  {cls.name}
-                </h3>
-                <p className="force-text-cyan text-[10px] font-bold tracking-widest uppercase">
-                  {cls.desc}
-                </p>
+              <motion.img
+                src={w.img}
+                alt={w.title}
+                variants={{
+                  initial: { scale: 1 },
+                  hover: { scale: 1.05 }
+                }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              {w.live && (
+                <div className="absolute top-6 left-6 bg-black/80 px-3 py-1.5 rounded-lg text-[10px] font-black text-[#7A5737] z-10 tracking-wider shadow-lg">
+                  {w.live}
+                </div>
+              )}
+
+              {/* Dark semi-transparent box at the bottom */}
+              <div
+                className="absolute bottom-0 left-0 right-0 pt-8 pb-6 px-6 bg-[#7A5737]/95 rounded-t-[32px] flex flex-col items-center text-center transition-transform duration-500 transform translate-y-2 group-hover:translate-y-0"
+              >
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+                <p className="text-[#7A5737] text-[10px] font-black uppercase mb-1.5 tracking-[0.2em]">{w.trainer}</p>
+                <h3 className="text-[#7A5737] font-black text-2xl md:text-3xl mb-2 tracking-tighter leading-tight">{w.title}</h3>
+                <p className="text-[rgba(122,87,55,0.72)] text-[9px] font-bold tracking-[0.2em] uppercase mb-6">{w.type}</p>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isLoggedIn) {
+                      setIsLoginModalOpen(true);
+                    }
+                  }}
+                  className="w-full bg-[#FFA040] text-[#0F0F10] py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-white transition-colors duration-300 shadow-lg"
+                >
+                  <div className="w-2 h-2 rounded-full bg-[#0A0F1C] animate-pulse" />
+                  <span className="font-black text-[11px] tracking-widest uppercase">JOIN CLASS</span>
+                </button>
               </div>
             </motion.div>
           ))}
@@ -204,128 +226,40 @@ const ClassSlider = ({ data }: { data: PageHeroData | null }) => {
   );
 };
 
-const AtHomeWorkouts = ({ data }: { data: PageHeroData | null }) => {
-  const content = data?.contentBlocks || {};
-  const { isLoggedIn, setIsLoginModalOpen } = useUI();
-  const workouts = [
-    {
-      name: 'Cardio HIIT',
-      trainer: 'Rahul Shetty',
-      meta: 'CARDIO • BEGINNER • 30 Min',
-      img: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800'
-    },
-    {
-      name: 'Dance Fitness Xpress',
-      trainer: 'Isheeta Ray',
-      meta: 'DANCE • BEGINNER • 33 Min',
-      img: 'https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&q=80&w=800'
-    },
-    {
-      name: 'Dance Fitness Xtreme',
-      trainer: 'Nandini Shetty',
-      meta: 'DANCE • INTERMEDIATE • 47 Min',
-      img: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=800'
-    }
-  ];
+const PremiumVideo = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "center center"]
+  });
+
+  const videoScale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const videoOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="py-16 px-6 md:px-24 bg-transparent">
-      <div className="max-w-5xl mx-auto relative">
-        <div className="text-center mb-16">
-          <p className="text-white/40 font-bold text-sm tracking-[0.2em] uppercase mb-4">{content.athome_subtitle || 'AT-HOME'}</p>
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">{content.athome_title || 'Unlimited home workouts with calorie tracking'}</h2>
-        </div>
-
-        {/* Navigation Arrows */}
-        <button className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors hidden md:flex">
-          <ChevronLeft className="w-8 h-8 text-white/40 hover:text-white" />
-        </button>
-        <button className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors hidden md:flex">
-          <ChevronRight className="w-8 h-8 text-white/40 hover:text-white" />
-        </button>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {workouts.map((w) => (
-            <div key={w.name} className="bg-[#242933] rounded-xl overflow-hidden group cursor-pointer border border-white/5 shadow-2xl">
-              <div className="aspect-[4/3] overflow-hidden relative">
-                <img src={w.img} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt={w.name} />
-              </div>
-              <div className="p-8 flex flex-col items-center text-center">
-                <p className="text-white/40 text-[10px] font-bold uppercase mb-2">{w.trainer}</p>
-                <h3 className="text-white font-black text-2xl mb-2">{w.name}</h3>
-                <p className="text-white/30 text-[9px] font-black tracking-[0.2em] uppercase mb-6">{w.meta}</p>
-
-                <button
-                  onClick={() => {
-                    if (!isLoggedIn) {
-                      setIsLoginModalOpen(true);
-                    }
-                  }}
-                  className="bg-[#1f232b] border border-white/10 px-8 py-2 rounded-md flex items-center gap-2 hover:bg-[#2a2f3a] transition-all"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
-                  <span className="text-white font-black text-[10px] tracking-widest">BOOK</span>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const FreeTrials = ({ data }: { data: PageHeroData | null }) => {
-  const content = data?.contentBlocks || {};
-  const { setIsFreeTrialModalOpen } = useUI();
-  const trials = [
-    {
-      title: 'FUN GROUP CLASSES',
-      desc: 'Yoga, dance, HRX and many more',
-      img: '/yoga_group.jpg',
-      hasButton: true
-    },
-    {
-      title: 'AT-HOME WORKOUTS',
-      desc: 'Yoga, dance, HRX and many more',
-      img: '/Yoga.jpg',
-      hasButton: true
-    },
-    {
-      title: 'WORKOUT AT ELITE & PRO GYMS',
-      desc: 'Yoga, dance, HRX and many more',
-      img: '/athletic.png',
-      hasButton: true
-    }
-  ];
-
-  return (
-    <section className="py-16 px-6 md:px-24 bg-transparent">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-black text-white text-center mb-16 uppercase tracking-tight">{content.freetrials_title || 'FREE TRIALS'}</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {trials.map((trial, idx) => (
-            <div key={idx} className="relative aspect-[3/4] overflow-hidden group cursor-pointer rounded-[20px] border border-white/5">
-              <img src={trial.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={trial.title} />
-              <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors" />
-
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                <h3 className="force-text-white font-black text-xl md:text-2xl mb-2 tracking-tighter uppercase leading-tight">{trial.title}</h3>
-                <p className="force-text-white-muted text-xs font-bold mb-8 uppercase tracking-widest">{trial.desc}</p>
-
-                {trial.hasButton && (
-                  <button
-                    onClick={() => setIsFreeTrialModalOpen(true)}
-                    className="bg-white text-black font-black px-8 py-3 rounded-full text-[11px] tracking-widest opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 uppercase shadow-[0_10px_25px_rgba(255,255,255,0.2)]"
-                  >
-                    START A FREE TRIAL
-                  </button>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+    <section ref={sectionRef} className="py-20 bg-transparent relative z-10 w-full overflow-hidden">
+      <div className="w-full mx-auto max-w-7xl px-6 md:px-12">
+        <h2 className="text-4xl md:text-6xl font-black text-[#7A5737] text-center mb-10 uppercase tracking-tight drop-shadow-lg">
+          FREE TRIALS
+        </h2>
+        <motion.div
+          style={{ scale: videoScale, opacity: videoOpacity }}
+          className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden mb-8 rounded-[40px] shadow-[0_20px_60px_rgba(255, 160, 64,0.15)] border border-white/10 mx-auto"
+        >
+          <video
+            src="/animo-focus-slider.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none text-center">
+            <p className="text-[#7A5737] font-bold tracking-widest text-sm mb-2 uppercase drop-shadow-md">Unlock your potential</p>
+            <h3 className="text-[#7A5737] text-3xl md:text-5xl font-black uppercase tracking-tighter drop-shadow-xl">EXPERIENCE FITX PREMIUM</h3>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -334,38 +268,35 @@ const FreeTrials = ({ data }: { data: PageHeroData | null }) => {
 const TransformSection = ({ data }: { data: PageHeroData | null }) => {
   const content = data?.contentBlocks || {};
   return (
-    <section className="py-16 px-6 md:px-24 relative overflow-hidden bg-[#0A0F24]">
-      {/* Background Decorative Images */}
-      <div className="absolute top-0 right-0 w-1/3 h-full opacity-40 pointer-events-none hidden lg:block">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800" className="w-full object-contain -translate-y-10 translate-x-20 rotate-12" alt="" />
-      </div>
-      <div className="absolute bottom-0 right-0 w-1/2 h-full opacity-50 pointer-events-none hidden lg:block">
-        <img src="https://images.unsplash.com/photo-1594882645126-14020914d58d?auto=format&fit=crop&q=80&w=800" className="w-full object-contain translate-y-32 translate-x-10 -rotate-12" alt="" />
+    <section className="py-24 px-6 md:px-24 relative overflow-hidden bg-gradient-to-br from-white via-orange-50 to-orange-100 border-y border-orange-200">
+      {/* Decorative Image - Floating Right */}
+      <div className="absolute inset-y-0 my-auto right-12 w-[40%] max-w-[600px] h-[75%] rounded-[60px] overflow-hidden shadow-2xl pointer-events-none hidden lg:block border border-orange-100 opacity-100">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover" alt="Healthy Food" />
       </div>
 
-      <div className="max-w-screen-2xl mx-auto relative z-10">
+      <div className="max-w-screen-2xl mx-auto relative z-10 flex">
         <div className="max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-2 uppercase tracking-tighter">{content.transform_subtitle || 'fitX transform'}</h2>
-          <p className="text-4xl md:text-5xl font-medium text-white/80 mb-12 tracking-tight">{content.transform_title || 'Lose weight for good'}</p>
+          <h2 className="text-2xl md:text-3xl font-black text-[#7A5737] mb-1 uppercase tracking-wider drop-shadow-sm">{content.transform_subtitle || 'fitX transform'}</h2>
+          <p className="text-4xl md:text-6xl font-black text-[#7A5737] mb-16 tracking-tight leading-tight">{content.transform_title || 'Lose weight for good'}</p>
 
           <div className="space-y-8 mb-16">
             {[
-              { text: 'Online Habit Coach', icon: <CheckCircle2 className="w-8 h-8 text-[#FF7200]" /> },
-              { text: 'Detailed Nutritional Guidelines', icon: <Apple className="w-8 h-8 text-[#FF7200]" /> },
-              { text: 'Customized Workout Plan', icon: <Dumbbell className="w-8 h-8 text-[#FF7200]" /> },
-              { text: 'Daily Check-ins & More!', icon: <Activity className="w-8 h-8 text-[#FF7200]" /> }
+              { text: 'Online Habit Coach', icon: <CheckCircle2 className="w-6 h-6 text-[#7A5737]" /> },
+              { text: 'Detailed Nutritional Guidelines', icon: <Apple className="w-6 h-6 text-[#7A5737]" /> },
+              { text: 'Customized Workout Plan', icon: <Dumbbell className="w-6 h-6 text-[#7A5737]" /> },
+              { text: 'Daily Check-ins & More!', icon: <Activity className="w-6 h-6 text-[#7A5737]" /> }
             ].map((item, idx) => (
               <div key={idx} className="flex items-center gap-6 group">
-                <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-[#FF7200]/20 group-hover:border-[#FF7200]/50 transition-all">
+                <div className="w-14 h-14 rounded-2xl bg-white/60 backdrop-blur-md border border-white/80 shadow-lg flex items-center justify-center group-hover:bg-white group-hover:shadow-xl transition-all duration-300">
                   {item.icon}
                 </div>
-                <span className="text-xl md:text-2xl font-bold text-white/90 group-hover:text-white transition-colors">{item.text}</span>
+                <p className="text-xl md:text-2xl font-bold text-[#7A5737]">{item.text}</p>
               </div>
             ))}
           </div>
 
-          <Link to="/fitness/transform" className="text-[#FF8B10] font-black text-lg tracking-widest uppercase border-b-2 border-[#FF8B10]/30 hover:border-[#FF8B10] transition-all">
-            EXPLORE OFFERS
+          <Link to="/fitness/transform" className="inline-block text-[#0F0F10] bg-[#FFA040] px-8 py-4 rounded-full font-black text-lg tracking-widest uppercase hover:bg-white transition-all shadow-[0_10px_30px_rgba(255, 160, 64,0.3)] hover:shadow-xl">
+            View transformation plans
           </Link>
         </div>
       </div>
@@ -394,14 +325,14 @@ const Community = ({ data }: { data: PageHeroData | null }) => {
 
       <div className="max-w-screen-2xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
         <div className="max-w-2xl">
-          <p className="text-[#FF7200] font-black text-sm tracking-[0.2em] uppercase mb-8">{content.community_subtitle || 'fitX COMMUNITY'}</p>
-          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8 leading-[0.95] uppercase" dangerouslySetInnerHTML={{ __html: content.community_title?.replace(/\n/g, '<br />') || 'Be a part of our<br />global community' }} />
-          <p className="text-white/60 text-xl font-bold mb-12 leading-relaxed uppercase tracking-tight">{content.community_desc || 'Experience shared motivation, real-time updates, and direct fitness tips by joining the elite Facebook group today.'}</p>
+          <p className="text-[#7A5737] font-black text-sm tracking-[0.2em] uppercase mb-8">{content.community_subtitle || 'fitX COMMUNITY'}</p>
+          <h2 className="text-5xl md:text-7xl font-black text-[#7A5737] tracking-tighter mb-8 leading-[0.95] uppercase" dangerouslySetInnerHTML={{ __html: content.community_title?.replace(/\n/g, '<br />') || 'Be a part of our<br />global community' }} />
+          <p className="text-[rgba(122,87,55,0.88)] text-xl font-bold mb-12 leading-relaxed uppercase tracking-tight">{content.community_desc || 'Experience shared motivation, real-time updates, and direct fitness tips by joining the elite Facebook group today.'}</p>
           <a
             href="https://facebook.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex bg-[#FF7200] text-black font-black px-10 py-4 rounded-full text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all shadow-[0_15px_30px_rgba(255,114,0,0.3)] group"
+            className="inline-flex bg-[#FFA040] text-[#0F0F10] font-black px-10 py-4 rounded-full text-sm tracking-widest uppercase hover:bg-white hover:text-[#0F0F10] transition-all shadow-[0_15px_30px_rgba(255, 160, 64,0.3)] group"
           >
             JOIN THE NETWORK NOW
           </a>
@@ -409,7 +340,7 @@ const Community = ({ data }: { data: PageHeroData | null }) => {
 
         <div className="relative flex justify-center items-center">
           {/* Subtle Soft Glow */}
-          <div className="absolute inset-0 bg-[#FF7200]/20 blur-[80px] rounded-full opacity-60 transform scale-75" />
+          <div className="absolute inset-0 bg-[#FFA040]/20 blur-[80px] rounded-full opacity-60 transform scale-75" />
 
           {/* Dynamic Main Image Frame */}
           <div className="relative z-10 w-full aspect-[16/10] rounded-[40px] overflow-hidden shadow-[0_32px_64px_rgba(0,0,0,0.5)] border border-white/10 group">
@@ -436,9 +367,9 @@ const FAQAccordion = () => {
   ];
 
   return (
-    <section className="py-20 px-6 md:px-24 bg-transparent">
-      <div className="max-w-screen-2xl mx-auto">
-        <h2 className="text-6xl font-black text-white mb-20 uppercase italic">FAQS</h2>
+    <section className="py-24 px-6 md:px-24 bg-gradient-to-br from-white via-orange-50 to-orange-100 border-t border-b border-orange-200 shadow-2xl relative">
+      <div className="max-w-screen-xl mx-auto">
+        <h2 className="text-5xl md:text-7xl font-black text-[#7A5737] mb-20 uppercase tracking-tighter text-center drop-shadow-sm">FAQS</h2>
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
             <div key={idx} className="border-b border-white/10 overflow-hidden">
@@ -446,8 +377,8 @@ const FAQAccordion = () => {
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 className="w-full py-8 flex justify-between items-center text-left"
               >
-                <span className="text-xl font-bold text-white/90">{faq.q}</span>
-                {openIndex === idx ? <Minus className="w-6 h-6 text-white" /> : <Plus className="w-6 h-6 text-white" />}
+                <span className="text-xl font-bold text-[#7A5737]">{faq.q}</span>
+                {openIndex === idx ? <Minus className="w-6 h-6 text-[#7A5737]" /> : <Plus className="w-6 h-6 text-[#7A5737]" />}
               </button>
               <AnimatePresence>
                 {openIndex === idx && (
@@ -455,7 +386,7 @@ const FAQAccordion = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="pb-8 text-white/50 font-bold leading-relaxed"
+                    className="pb-8 text-[rgba(122,87,55,0.88)] font-bold leading-relaxed"
                   >
                     {faq.a}
                   </motion.div>
@@ -464,6 +395,61 @@ const FAQAccordion = () => {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+};
+
+const FitnessHero = () => {
+  return (
+    <section className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-transparent">
+      {/* Full Background Image - Custom generated unique premium gym interior without distracting text or subjects */}
+      <div
+        className="absolute inset-0 opacity-100"
+        style={{
+          backgroundImage: 'url(/premium_gym_background.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          filter: 'contrast(1.1) saturate(1.1)'
+        }}
+      />
+
+      {/* Premium Cinematic Color Overlay - Orange overlay to blend seamlessly into page background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1C]/90 via-[#0A0F1C]/70 to-transparent pointer-events-none z-0" />
+
+      <style>{`
+        #fitness-hero-section h2 { color: #FFA040 !important; -webkit-text-fill-color: #FFA040 !important; }
+        #fitness-hero-section h1 { color: #D8B79A !important; -webkit-text-fill-color: #D8B79A !important; }
+        #fitness-hero-section h1 span { color: #FFA040 !important; -webkit-text-fill-color: #FFA040 !important; }
+        #fitness-hero-section p { color: rgba(216, 183, 154, 0.90) !important; -webkit-text-fill-color: rgba(216, 183, 154, 0.90) !important; }
+      `}</style>
+
+      <div id="fitness-hero-section" className="relative z-10 w-full max-w-5xl mx-auto px-6 flex flex-col items-center justify-center text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-[#FF7200] font-black text-xl md:text-2xl tracking-widest uppercase mb-6 drop-shadow-md"
+        >
+          FITX PREMIUM
+        </motion.h2>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-6xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-8 drop-shadow-2xl"
+        >
+          ELEVATE<br /><span className="text-[#FF7200]">YOUR GAME</span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-white/80 text-xl md:text-2xl max-w-2xl mx-auto font-medium leading-relaxed"
+        >
+          Experience the future of fitness with advanced tracking and personalized routines tailored specifically for you.
+        </motion.p>
       </div>
     </section>
   );
@@ -485,16 +471,23 @@ export default function Fitness() {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen pt-16 selection:bg-[#FF7200]/30 premium-bg">
+    <div
+      className="relative w-full min-h-screen pt-16 selection:bg-[#FFA040]/30 premium-bg"
+      style={{
+        background: 'linear-gradient(180deg, #F0B892 0%, #F5C7A1 20%, #F8DAC0 42%, #FAE0CC 62%, #FDF2EC 80%, #FFFFFF 100%)',
+        backgroundAttachment: 'fixed',
+        color: '#111827'
+      }}
+    >
       <CanvasScrollBg />
       <FitnessSubNav />
 
       <div className="flex flex-col">
-        <ScrollReveal type="fade"><Hero data={heroData} /></ScrollReveal>
+        <ScrollReveal type="fade"><FitnessHero /></ScrollReveal>
         <TimerOffer />
-        <ScrollReveal type="slide-up"><ClassSlider data={heroData} /></ScrollReveal>
+        <ScrollReveal type="slide-up"><FannedCardGallery data={heroData} /></ScrollReveal>
         <ScrollReveal type="slide-up"><AtHomeWorkouts data={heroData} /></ScrollReveal>
-        <ScrollReveal type="scale"><FreeTrials data={heroData} /></ScrollReveal>
+        <ScrollReveal type="scale"><PremiumVideo /></ScrollReveal>
         <ScrollReveal type="slide-up"><TransformSection data={heroData} /></ScrollReveal>
         <ScrollReveal type="slide-up"><Community data={heroData} /></ScrollReveal>
         <ScrollReveal type="fade"><FAQAccordion /></ScrollReveal>

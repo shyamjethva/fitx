@@ -4,7 +4,7 @@ import { Youtube, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { useUI } from '../context/UIContext';
 
 export const Footer = () => {
-   const { globalSettings } = useUI();
+   const { globalSettings, gymName } = useUI();
    const blocks = globalSettings?.contentBlocks || {};
 
    return (
@@ -14,15 +14,19 @@ export const Footer = () => {
             {/* Left Section: Branding & About */}
             <div className="col-span-2 md:col-span-4 lg:col-span-4 flex flex-col">
                <div className="flex items-center gap-2 mb-6 md:mb-8 group">
-                  {globalSettings?.video ? (
-                     <img src={globalSettings.video} alt="FitX Logo" className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+                  {(blocks.logo_url || globalSettings?.video) ? (
+                     <img src={blocks.logo_url || globalSettings?.video} alt="FitX Logo" className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
                   ) : (
                      <>
-                        <div className="w-8 h-8 bg-[#00E5FF] rounded-full flex items-center justify-center transition-transform group-hover:rotate-12 duration-300">
+                        <div className="w-8 h-8 bg-[#FFA040] rounded-full flex items-center justify-center transition-transform group-hover:rotate-12 duration-300">
                            <div className="w-4 h-4 bg-[#0A0F24] rounded-sm rotate-45" />
                         </div>
                         <span className="font-sans text-3xl md:text-3xl tracking-tight text-white uppercase font-black">
-                           fit<span className="text-[#00E5FF]">X</span>
+                           {gymName === 'FitX' ? (
+                             <>fit<span className="text-[#FFA040]">X</span></>
+                           ) : (
+                             <>{gymName}</>
+                           )}
                         </span>
                      </>
                   )}
@@ -30,7 +34,7 @@ export const Footer = () => {
                <p className="font-sans text-white/50 text-sm leading-relaxed max-w-sm mb-4">
                   At FitX, we make group workouts fun, daily food healthy & tasty, mental fitness easy with yoga & meditation, and medical & lifestyle care hassle-free.
                </p>
-               <p className="font-sans text-[#00E5FF] font-black tracking-widest text-xs uppercase">#BeBetterEveryDay</p>
+               <p className="font-sans text-[#FFA040] font-black tracking-widest text-xs uppercase">#BeBetterEveryDay</p>
             </div>
 
             {/* Links Column 1 */}
@@ -93,7 +97,7 @@ export const Footer = () => {
                </p>
                <span className="hidden sm:block text-white/10">|</span>
                <p className="text-white/20 text-[10px] font-bold uppercase tracking-widest">
-                  Design by <span className="text-[#00E5FF]/50">Hiral</span>
+                  Design by <span className="text-[#FFA040]/50">Hiral</span>
                </p>
             </div>
          </div>

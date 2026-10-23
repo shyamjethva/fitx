@@ -21,6 +21,8 @@ interface UIContextType {
   activeUserId: string | null;
   setActiveUserId: (val: string | null) => void;
   globalSettings: PageHeroData | null;
+  gymName: string;
+  appConfig: any;
 }
 
 const UIContext = createContext<UIContextType | undefined>(undefined);
@@ -51,13 +53,22 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     return localStorage.getItem('fitx-userId') || null;
   });
   const [globalSettings, setGlobalSettings] = useState<PageHeroData | null>(null);
+  const [gymName, setGymName] = useState<string>('FitX');
+  const [appConfig, setAppConfig] = useState<any>(null);
 
   useEffect(() => {
     const loadGlobalSettings = () => {
-      api.getPageHeroes().then(data => {
-        const globalHero = data.find(h => h.pageKey === 'global_settings');
-        if (globalHero) setGlobalSettings(globalHero);
-      }).catch(console.error);
+      import('../lib/api').then(({ getWebsiteData, api }) => {
+        getWebsiteData().then(data => {
+            if (data?.gymName) setGymName(data.gymName);
+            if (data?.appConfig) setAppConfig(data.appConfig);
+        }).catch(console.error);
+
+        api.getPageHeroes().then(data => {
+          const globalHero = data.find(h => h.pageKey === 'global_settings');
+          if (globalHero) setGlobalSettings(globalHero);
+        }).catch(console.error);
+      });
     };
 
     loadGlobalSettings();
@@ -74,7 +85,7 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   useEffect(() => {
     const blocks = globalSettings?.contentBlocks || {};
     const root = document.documentElement;
-    const primary = blocks.primary_color || '#00E5FF';
+    const primary = blocks.primary_color || '#FFA040';
     const primaryLight = blocks.accent_color || '#33EBFF';
     const background = blocks.background_color || '#F8FAFC';
     const textColor = blocks.text_color || '#0A0F24';
@@ -84,7 +95,7 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     root.style.setProperty('--color-primary', primary);
     root.style.setProperty('--color-primary-light', primaryLight);
     root.style.setProperty('--color-blue-500', primary);
-    root.style.setProperty('--color-cyan-500', primary);
+    root.style.setProperty('--color-orange-600', primary);
     root.style.setProperty('--cms-primary', primary);
     root.style.setProperty('--cms-primary-light', primaryLight);
     root.style.setProperty('--cms-background', background);
@@ -124,7 +135,9 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
       userProfileData, setUserProfileData,
       profileImage, setProfileImage,
       activeUserId, setActiveUserId,
-      globalSettings
+      globalSettings,
+      gymName,
+      appConfig
     }}>
       {children}
     </UIContext.Provider>

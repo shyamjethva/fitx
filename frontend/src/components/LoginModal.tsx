@@ -10,7 +10,7 @@ import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 export const LoginModal = () => {
   const { isLoginModalOpen } = useUI();
   if (!isLoginModalOpen) return null;
-  
+
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || "placeholder-client-id"}>
       <LoginModalContent />
@@ -19,8 +19,8 @@ export const LoginModal = () => {
 };
 
 const LoginModalContent = () => {
-  const { 
-    setIsLoginModalOpen, setIsLoggedIn, 
+  const {
+    setIsLoginModalOpen, setIsLoggedIn,
     setUserRole, setUserProfileData, profileImage, setProfileImage,
     setActiveUserId
   } = useUI();
@@ -81,7 +81,7 @@ const LoginModalContent = () => {
             setUserProfileData(response.data);
             setActiveUserId(response.data.id || response.data._id);
             if (response.data.avatar) setProfileImage(response.data.avatar);
-            
+
             setIsLoggedIn(true);
             setIsLoginModalOpen(false);
             resetForm();
@@ -108,17 +108,17 @@ const LoginModalContent = () => {
 
     try {
       const response = await api.login(email, password);
-      
+
       if (response && response.success && response.token) {
         // Save session locally
         localStorage.setItem('fitx-token', response.token);
-        
+
         // Set active context
         setUserRole(response.role as any);
         setUserProfileData(response.data);
         setActiveUserId(response.data.id || response.data._id);
         if (response.data.avatar) setProfileImage(response.data.avatar);
-        
+
         setIsLoggedIn(true);
         setIsLoginModalOpen(false);
         resetForm();
@@ -152,16 +152,16 @@ const LoginModalContent = () => {
 
     try {
       const response = await api.registerProfile(payload);
-      
+
       if (response && response.success && response.token) {
         // Save session
         localStorage.setItem('fitx-token', response.token);
-        
+
         // Update context state
         setUserRole(response.role as any);
         setUserProfileData(response.data);
         setActiveUserId(response.data.id || response.data._id);
-        
+
         setIsLoggedIn(true);
         setIsLoginModalOpen(false);
         resetForm();
@@ -188,7 +188,7 @@ const LoginModalContent = () => {
             setIsLoginModalOpen(false);
             setTimeout(() => resetForm(), 300);
           }}
-          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/30 backdrop-blur-sm"
         />
 
         <motion.div
@@ -200,18 +200,18 @@ const LoginModalContent = () => {
           className="auth-modal relative w-full max-w-md bg-[#1c1c1c] border border-white/10 rounded-[32px] shadow-[0_32px_64px_rgba(0,0,0,0.5)] z-10 flex flex-col max-h-[92vh] overflow-y-auto scrollbar-hide"
         >
           {/* Glow accent bar */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#00E5FF] via-cyan-500 to-[#00E5FF]" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#FFA040] via-orange-600 to-[#FFA040]" />
 
           <div className="p-8 pb-4 flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#00E5FF] rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+              <div className="w-8 h-8 bg-[#FFA040] rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(255, 160, 64,0.4)]">
                 <div className="w-4 h-4 bg-black rounded-sm rotate-45" />
               </div>
               <span className="font-sans text-xl tracking-tighter text-white uppercase font-black">
-                fit<span className="text-[#00E5FF]">X</span>
+                fit<span className="text-[#FFA040]">X</span>
               </span>
             </div>
-            <button 
+            <button
               onClick={() => {
                 setIsLoginModalOpen(false);
                 setTimeout(() => resetForm(), 300);
@@ -225,13 +225,13 @@ const LoginModalContent = () => {
           {/* Error notification ribbon */}
           <AnimatePresence>
             {errorMsg && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }} 
-                animate={{ height: 'auto', opacity: 1 }} 
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 className="px-8"
               >
-                <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 flex items-start gap-3 text-red-500 mb-2">
+                <div className="bg-[#FFA040]/10 border border-[#FFA040]/20 rounded-2xl p-4 flex items-start gap-3 text-[#FFA040] mb-2">
                   <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-black uppercase tracking-wider leading-tight">Security Alert</p>
@@ -251,32 +251,32 @@ const LoginModalContent = () => {
             </p>
 
             <form onSubmit={mode === 'login' ? handleLoginSubmit : handleRegisterSubmit} className="space-y-4">
-              
+
               {/* Registration Exclusive Fields */}
               {mode === 'register' && (
                 <>
                   {/* Avatar Upload */}
                   <div className="flex justify-center mb-2">
                     <div className="relative group">
-                      <div className="w-20 h-20 rounded-[1.5rem] bg-black/30 border-2 border-white/10 flex items-center justify-center overflow-hidden relative group-hover:border-[#00E5FF] transition-colors shadow-[inset_0_0_20px_rgba(0,0,0,0.6)]">
+                      <div className="w-20 h-20 rounded-[1.5rem] bg-black/30 border-2 border-white/10 flex items-center justify-center overflow-hidden relative group-hover:border-[#FFA040] transition-colors shadow-[inset_0_0_20px_rgba(0,0,0,0.6)]">
                         {profileImage ? (
                           <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
                         ) : (
                           <div className="text-white/20 flex flex-col items-center gap-1">
                             <Camera className="w-6 h-6 opacity-40" />
-                            <span className="text-[7px] font-black tracking-wider text-[#00E5FF] uppercase">ADD PHOTO</span>
+                            <span className="text-[7px] font-black tracking-wider text-[#FFA040] uppercase">ADD PHOTO</span>
                           </div>
                         )}
                         <label htmlFor="profile-upload-modal" className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center cursor-pointer transition-opacity">
                           <Camera className="w-5 h-5 text-white" />
                         </label>
                       </div>
-                      <input 
+                      <input
                         id="profile-upload-modal"
-                        type="file" 
-                        accept="image/*" 
+                        type="file"
+                        accept="image/*"
                         onChange={handleImageChange}
-                        className="hidden" 
+                        className="hidden"
                       />
                     </div>
                   </div>
@@ -284,7 +284,7 @@ const LoginModalContent = () => {
                   {/* Full Name */}
                   <div className="relative">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 border-r border-white/10 pr-3">
-                      <User className="w-4 h-4 text-[#00E5FF]" />
+                      <User className="w-4 h-4 text-[#FFA040]" />
                     </div>
                     <input
                       type="text"
@@ -292,14 +292,14 @@ const LoginModalContent = () => {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Full Name"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white font-bold text-sm focus:border-[#00E5FF] focus:ring-1 focus:ring-[#00E5FF]/20 outline-none transition-all"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white font-bold text-sm focus:border-[#FFA040] focus:ring-1 focus:ring-[#FFA040]/20 outline-none transition-all"
                     />
                   </div>
 
                   {/* Phone Number */}
                   <div className="relative">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 border-r border-white/10 pr-3">
-                      <Phone className="w-4 h-4 text-[#00E5FF]" />
+                      <Phone className="w-4 h-4 text-[#FFA040]" />
                     </div>
                     <input
                       type="tel"
@@ -307,7 +307,7 @@ const LoginModalContent = () => {
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       placeholder="Mobile Number (eg. 9876543210)"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white font-bold text-sm focus:border-[#00E5FF] focus:ring-1 focus:ring-[#00E5FF]/20 outline-none transition-all"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white font-bold text-sm focus:border-[#FFA040] focus:ring-1 focus:ring-[#FFA040]/20 outline-none transition-all"
                     />
                   </div>
                 </>
@@ -316,7 +316,7 @@ const LoginModalContent = () => {
               {/* Common Email Field */}
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 border-r border-white/10 pr-3">
-                  <Mail className="w-4 h-4 text-[#00E5FF]" />
+                  <Mail className="w-4 h-4 text-[#FFA040]" />
                 </div>
                 <input
                   type="email"
@@ -324,14 +324,14 @@ const LoginModalContent = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email Address (eg. user@gmail.com)"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white font-bold text-sm focus:border-[#00E5FF] focus:ring-1 focus:ring-[#00E5FF]/20 outline-none transition-all"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white font-bold text-sm focus:border-[#FFA040] focus:ring-1 focus:ring-[#FFA040]/20 outline-none transition-all"
                 />
               </div>
 
               {/* Common Password Field */}
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 border-r border-white/10 pr-3">
-                  <Lock className="w-4 h-4 text-[#00E5FF]" />
+                  <Lock className="w-4 h-4 text-[#FFA040]" />
                 </div>
                 <input
                   type="password"
@@ -339,7 +339,7 @@ const LoginModalContent = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={mode === 'login' ? 'Password' : 'Set Account Password'}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white font-bold text-sm tracking-wide focus:border-[#00E5FF] focus:ring-1 focus:ring-[#00E5FF]/20 outline-none transition-all"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white font-bold text-sm tracking-wide focus:border-[#FFA040] focus:ring-1 focus:ring-[#FFA040]/20 outline-none transition-all"
                 />
               </div>
 
@@ -347,7 +347,7 @@ const LoginModalContent = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#00E5FF] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white text-black hover:text-black force-hover-text-black font-black py-4 mt-4 rounded-2xl transition-all flex items-center justify-center gap-2 uppercase shadow-[0_10px_25px_rgba(0,229,255,0.25)] active:scale-95"
+                className="w-full bg-[#FFA040] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white text-black hover:text-black force-hover-text-black font-black py-4 mt-4 rounded-2xl transition-all flex items-center justify-center gap-2 uppercase shadow-[0_10px_25px_rgba(255, 160, 64,0.25)] active:scale-95"
               >
                 {isLoading ? 'Processing Gateway...' : mode === 'login' ? 'AUTHENTICATE & ENTER' : 'GENERATE FITX PROFILE'}
                 {!isLoading && <ArrowRight className="w-4 h-4" />}
@@ -386,7 +386,7 @@ const LoginModalContent = () => {
               <button
                 type="button"
                 onClick={toggleMode}
-                className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-[#00E5FF] transition-colors"
+                className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-[#FFA040] transition-colors"
               >
                 {mode === 'login' ? "Don't have an account? Create One" : 'Already registered? Login Here'}
               </button>

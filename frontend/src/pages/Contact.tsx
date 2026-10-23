@@ -21,7 +21,7 @@ export default function Contact() {
     {
       title: heroData?.contentBlocks?.box1_title || "Call Us",
       value: heroData?.contentBlocks?.box1_value || "+1 (800) IRON-PULSE",
-      icon: <Phone className="w-6 h-6 text-orange-400" />,
+      icon: <Phone className="w-6 h-6 text-[#FFA040]" />,
       desc: heroData?.contentBlocks?.box1_desc || "Available 24/7 for urgent inquiries."
     },
     {
@@ -82,7 +82,7 @@ export default function Contact() {
       <section className="px-6 md:px-24 mb-12">
         <ScrollReveal type="slide-up">
           <div className="max-w-4xl">
-            <h1 className="font-black text-6xl md:text-8xl tracking-tight mb-8 leading-none uppercase" dangerouslySetInnerHTML={{ __html: heroData?.title || 'Connect <br /> with Fit<span class="text-[#FF7200]">X</span>' }} />
+            <h1 className="font-black text-6xl md:text-8xl tracking-tight mb-8 leading-none uppercase" dangerouslySetInnerHTML={{ __html: heroData?.title || 'Connect <br /> with Fit<span class="text-[#FFA040]">X</span>' }} />
             <p className="text-white/60 font-bold text-xl tracking-tight uppercase max-w-2xl">
               {heroData?.subtitle || 'Ready to transcend your limits? Our elite support team is standing by to assist your evolution.'}
             </p>

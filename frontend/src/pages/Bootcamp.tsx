@@ -99,7 +99,7 @@ const Hero = ({ data }: { data: PageHeroData | null }) => {
   const title = data?.title || 'A 6-WEEK WEIGHT LOSS\nPROGRAM';
   const subtitle = data?.subtitle || 'TALK TO EXPERT';
   const rawDescription = data?.description || 'Small batch workouts at center\n1:1 Nutritionist & personalised meal plans\nLifestyle coach to help you with healthy habits';
-  const image = data?.image || 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&q=80&w=1200';
+  const image = data?.image || 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=1600';
   const ctaText = data?.ctaText || 'TALK TO EXPERT';
 
   const bullets = rawDescription.split('\n').filter(Boolean);
@@ -129,57 +129,62 @@ const Hero = ({ data }: { data: PageHeroData | null }) => {
   };
 
   return (
-    <section id="hero" className="relative w-full overflow-hidden scroll-mt-32 bg-[#0A0F24]">
-      <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row min-h-[85vh]">
-        <div className="flex-1 flex flex-col justify-center px-6 md:px-20 py-10 lg:py-0 relative z-10">
+    <section id="hero" className="relative w-full min-h-[100dvh] overflow-hidden flex items-center pt-20" style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      
+      {/* Darker shadow overlay that ensures text readability without obscuring the image */}
+      <div className="absolute inset-y-0 left-0 w-full md:w-[65%] lg:w-[50%] z-10 bg-gradient-to-r from-[#0A0F1C] via-[#0A0F1C]/80 to-transparent pointer-events-none" />
+      {/* Orange bottom fade to blend into page background */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 z-10 bg-gradient-to-t from-[#F0B892] to-transparent pointer-events-none" />
+
+      {/* Content Layer */}
+      <div className="max-w-screen-2xl mx-auto w-full px-6 md:px-20 relative z-20 flex flex-col justify-center h-full pb-10">
+        
+        {/* Left Side Content */}
+        <div className="w-full md:w-1/2 lg:w-[50%] flex flex-col items-start text-left">
+          
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase leading-[0.9] mb-12">
+            {/* Huge Typography Title */}
+            <h1 className="text-6xl md:text-7xl lg:text-[85px] font-black text-white tracking-tighter uppercase leading-[0.9] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] mb-8">
               {title.includes('<br />') ? (
                 <span dangerouslySetInnerHTML={{ __html: title }} />
               ) : title.includes('\n') ? (
                 <span dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
               ) : title.includes(' ') ? (
                 <>
-                  {title.substring(0, title.lastIndexOf(' '))} <span className="text-[#FF7200]">{title.substring(title.lastIndexOf(' ') + 1)}</span>
+                  {title.substring(0, title.lastIndexOf(' '))} <span className="text-[#FFA040] drop-shadow-[0_4px_20px_rgba(255, 160, 64,0.4)]">{title.substring(title.lastIndexOf(' ') + 1)}</span>
                 </>
               ) : (
-                <span className="text-[#FF7200]">{title}</span>
+                <span className="text-[#FFA040] drop-shadow-[0_4px_20px_rgba(255, 160, 64,0.4)]">{title}</span>
               )}
             </h1>
 
-            <ul className="space-y-6 mb-12">
+            {/* Description Bullets */}
+            <ul className="space-y-4 mb-10 relative">
               {bullets.map((bullet, idx) => (
-                <li key={idx} className="flex items-center gap-4 text-white/90 text-xl font-bold">
-                  <ChevronRight className="w-5 h-5 text-orange-500" />
+                <li key={idx} className="flex items-center gap-4 text-white text-lg md:text-xl font-bold tracking-tight drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
+                  <ChevronRight className="w-5 h-5 text-[#FFA040] drop-shadow-[0_0_10px_rgba(255, 160, 64,0.5)]" />
                   {bullet}
                 </li>
               ))}
             </ul>
 
-            <div className="flex flex-wrap gap-4">
+            {/* CTA Button */}
+            <div className="flex flex-wrap gap-4 mt-8">
               <button 
                 onClick={handleApply}
                 disabled={submitting}
-                className="bg-white text-black font-black px-12 py-4 rounded-md tracking-widest text-[10px] uppercase hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(255,107,0,0.2)] disabled:opacity-50"
+                className="bg-[#FFA040] text-white font-black px-12 py-4 rounded-full tracking-widest text-[11px] uppercase hover:scale-105 transition-all duration-300 shadow-[0_15px_40px_rgba(255, 160, 64,0.4)] disabled:opacity-50 flex items-center gap-3"
               >
                 {submitting ? 'REGISTERING...' : ctaText}
+                {!submitting && <ChevronRight className="w-4 h-4" />}
               </button>
             </div>
           </motion.div>
-        </div>
 
-        <div className="flex-1 relative min-h-[60vh] lg:min-h-0">
-          <img
-            src={image}
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            alt={title}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-transparent lg:block hidden" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/80 via-transparent to-transparent lg:hidden block" />
         </div>
       </div>
     </section>
@@ -206,16 +211,16 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-12 border-t border-white/5 scroll-mt-32">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-20 items-start relative">
-        <div className="md:w-1/3 md:sticky md:top-40 self-start pt-10">
+    <section id="how-it-works" className="py-24 border-t border-white/5 scroll-mt-32 relative">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-20 items-start relative">
+        <div className="md:col-span-5 md:sticky md:top-32 pt-10 h-fit z-10">
           <p className="text-white/40 font-black tracking-[0.2em] uppercase text-[10px] mb-4">How it works</p>
           <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-tight">
             Weight loss made simple,<br />fun & permanent!
           </h2>
         </div>
 
-        <div className="md:w-2/3 relative">
+        <div className="md:col-span-7 relative">
           <div className="absolute left-[31px] top-6 bottom-20 w-[1px] bg-white/10" />
 
           <div className="space-y-40">
@@ -254,7 +259,7 @@ const AdditionalFeatures = () => {
     {
       title: "Weekly masterclasses",
       desc: "Workshops by experts on various aspects of weight loss",
-      icon: <GraduationCap className="w-8 h-8 text-orange-500" />,
+      icon: <GraduationCap className="w-8 h-8 text-[#FFA040]" />,
       gradient: "from-orange-500/10 to-transparent"
     },
     {
@@ -321,7 +326,7 @@ const WeeklySnapshot = () => {
     { day: "T", type: "HOME WORKOUT", title: "Hatha Yoga + Step count challenge", icon: <Zap className="w-5 h-5" />, color: "bg-sky-500" },
     { day: "F", type: "AT-CENTER WORKOUT", title: "Strength Circuit + Core & Stability workout", icon: <Dumbbell className="w-5 h-5" />, color: "bg-emerald-500" },
     { day: "S", type: "WEEKLY MASTERCLASS", title: "Mobility | Movements | Nutrition | Dance + more", icon: <GraduationCap className="w-5 h-5" />, color: "bg-rose-500" },
-    { day: "S", type: "ACTIVE RECOVERY", title: "Walk and Relax", icon: <Heart className="w-5 h-5" />, color: "bg-orange-500" },
+    { day: "S", type: "ACTIVE RECOVERY", title: "Walk and Relax", icon: <Heart className="w-5 h-5" />, color: "bg-[#FFA040]" },
   ];
 
   return (
@@ -338,11 +343,11 @@ const WeeklySnapshot = () => {
             </h2>
             <ul className="space-y-6">
               <li className="flex items-center gap-4 text-white/60 font-bold text-lg uppercase tracking-tight">
-                <Check className="w-5 h-5 text-[#FF7200]" />
+                <Check className="w-5 h-5 text-[#FFA040]" />
                 Weekly Catchups with the nutritionist
               </li>
               <li className="flex items-center gap-4 text-white/60 font-bold text-lg uppercase tracking-tight">
-                <Check className="w-5 h-5 text-[#FF7200]" />
+                <Check className="w-5 h-5 text-[#FFA040]" />
                 On demand 1:1 calls as per your chosen slot
               </li>
             </ul>
@@ -433,12 +438,12 @@ const FAQSection = () => {
                 className="w-full py-8 flex items-center justify-between group text-left"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-1 h-1 rounded-full bg-orange-500" />
-                  <span className="text-white font-bold text-sm md:text-base group-hover:text-orange-500 transition-all">
+                  <div className="w-1 h-1 rounded-full bg-[#FFA040]" />
+                  <span className="text-white font-bold text-sm md:text-base group-hover:text-[#FFA040] transition-all">
                     {faq.q}
                   </span>
                 </div>
-                <ChevronDown className={`w-5 h-5 text-white/20 transition-transform duration-500 ${openIndex === i ? 'rotate-180 text-orange-500' : ''}`} />
+                <ChevronDown className={`w-5 h-5 text-white/20 transition-transform duration-500 ${openIndex === i ? 'rotate-180 text-[#FFA040]' : ''}`} />
               </button>
               <AnimatePresence>
                 {openIndex === i && (
@@ -501,7 +506,14 @@ export default function Bootcamp() {
   };
 
   return (
-    <div className="relative w-full min-h-screen pt-16 selection:bg-orange-500/30 premium-bg">
+    <div
+      className="relative w-full min-h-screen pt-16 selection:bg-[#FFA040]/30 premium-bg"
+      style={{
+        background: 'linear-gradient(180deg, #F0B892 0%, #F5C7A1 20%, #F8DAC0 42%, #FAE0CC 62%, #FDF2EC 80%, #FFFFFF 100%)',
+        backgroundAttachment: 'fixed',
+        color: '#111827'
+      }}
+    >
       <CanvasScrollBg />
       <FitnessSubNav />
 
@@ -509,7 +521,7 @@ export default function Bootcamp() {
       <div className="flex flex-col">
         <Hero data={heroData} />
         <TimerOffer />
-        <ScrollReveal type="slide-up"><HowItWorks /></ScrollReveal>
+        <HowItWorks />
         <ScrollReveal type="slide-up"><AdditionalFeatures /></ScrollReveal>
         <ScrollReveal type="slide-up"><WeeklySnapshot /></ScrollReveal>
         

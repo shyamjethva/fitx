@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Clock } from 'lucide-react';
 import { api, PromotionalOfferData } from '../lib/api';
+import { useUI } from '../context/UIContext';
 
 export const TimerOffer = () => {
   const [offer, setOffer] = useState<PromotionalOfferData | null>(null);

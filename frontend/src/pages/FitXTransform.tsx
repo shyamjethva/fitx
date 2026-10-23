@@ -129,19 +129,15 @@ const Hero = ({ data }: { data: PageHeroData | null }) => {
         {image ? (
           <img
             src={image}
-            className="w-full h-full object-cover opacity-50"
+            className="w-full h-full object-cover opacity-100"
             alt={title}
           />
         ) : (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover opacity-50"
-          >
-            <source src="/transform.mp4" type="video/mp4" />
-          </video>
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=1920"
+            className="w-full h-full object-cover opacity-100"
+            alt="FitX Transform - Personal Coaching"
+          />
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
       </div>
@@ -288,7 +284,7 @@ const StatsShowcase = ({ data }: { data: PageHeroData | null }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="relative aspect-[4/5] rounded-[32px] overflow-hidden group border border-white/5 bg-[#1c1c1c]"
+              className="relative aspect-[4/3] md:aspect-[4/3] rounded-[32px] overflow-hidden group border border-white/5 bg-[#1c1c1c]"
             >
               <img
                 src={stat.img}
@@ -314,6 +310,18 @@ const AccessGrid = ({ data }: { data: PageHeroData | null }) => {
   const content = data?.contentBlocks || {};
   return (
     <section id="access" className="py-12 relative overflow-hidden scroll-mt-32 border-t border-white/5">
+      <style>{`
+        #root .transform-card-title {
+          color: #D8B79A !important;
+          -webkit-text-fill-color: #D8B79A !important;
+          text-shadow: 0 4px 20px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.9) !important;
+        }
+        #root .transform-card-desc {
+          color: #D8B79A !important;
+          -webkit-text-fill-color: #D8B79A !important;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.9) !important;
+        }
+      `}</style>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <p className="text-white/60 font-bold uppercase tracking-widest text-sm mb-4">{content.access_subtitle || 'With fitX Transform, you can'}</p>
@@ -330,13 +338,12 @@ const AccessGrid = ({ data }: { data: PageHeroData | null }) => {
               whileHover={{ scale: 1.02 }}
               className="relative aspect-[4/3] rounded-[40px] overflow-hidden border border-white/10 group"
             >
-              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-60" alt="Workouts" />
-              <div className="absolute inset-0 bg-black/40" />
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-100" alt="Workouts" />
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                <h3 className="text-[#00E5FF] font-black text-3xl md:text-4xl uppercase tracking-tighter leading-none mb-4 italic">
+                <h3 className="transform-card-title font-black text-3xl md:text-4xl uppercase tracking-tighter leading-none mb-4 italic">
                   Custom<br />Workout Plans
                 </h3>
-                <p className="force-text-white-muted text-[10px] font-bold uppercase leading-relaxed max-w-xs">
+                <p className="transform-card-desc text-[10px] font-bold uppercase leading-relaxed max-w-xs">
                   Your coach creates a routine that fits your travel plans, schedule and goals so you never have to guess what to do next.
                 </p>
               </div>
@@ -347,13 +354,12 @@ const AccessGrid = ({ data }: { data: PageHeroData | null }) => {
               whileHover={{ scale: 1.02 }}
               className="relative aspect-square rounded-[40px] overflow-hidden border border-white/10 group"
             >
-              <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-60" alt="Habits" />
-              <div className="absolute inset-0 bg-black/40" />
+              <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-100" alt="Habits" />
 
               {/* Checklist Mockup UI */}
               <div className="absolute top-6 left-10 w-32 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-                <div className="force-text-white-muted opacity-60 text-[8px] font-bold uppercase mb-2">After every meeting</div>
-                <div className="force-text-white font-bold text-xs mb-3">I will do 5 squats</div>
+                <div className="text-white/60 text-[8px] font-bold uppercase mb-2">After every meeting</div>
+                <div className="text-white font-bold text-xs mb-3">I will do 5 squats</div>
                 <div className="flex gap-2">
                   <div className="w-6 h-6 rounded-md border border-white/20 flex items-center justify-center text-white/40"><X className="w-3 h-3" /></div>
                   <div className="w-6 h-6 rounded-md bg-[#FF7200] flex items-center justify-center text-white"><Check className="w-3 h-3" /></div>
@@ -361,10 +367,10 @@ const AccessGrid = ({ data }: { data: PageHeroData | null }) => {
               </div>
 
               <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center">
-                <h3 className="text-[#00E5FF] font-black text-3xl md:text-4xl uppercase tracking-tighter leading-none mb-4 italic">
+                <h3 className="transform-card-title font-black text-3xl md:text-4xl uppercase tracking-tighter leading-none mb-4 italic">
                   Daily<br />Habits + Progress
                 </h3>
-                <p className="force-text-white-muted text-[10px] font-bold uppercase leading-relaxed max-w-xs">
+                <p className="transform-card-desc text-[10px] font-bold uppercase leading-relaxed max-w-xs">
                   Build healthier habits and get lasting results so you don't have to try another weight loss program ever again.
                 </p>
               </div>
@@ -376,13 +382,12 @@ const AccessGrid = ({ data }: { data: PageHeroData | null }) => {
             whileHover={{ scale: 1.02 }}
             className="relative rounded-[40px] overflow-hidden border border-white/10 group h-full"
           >
-            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-60" alt="Coach" />
-            <div className="absolute inset-0 bg-black/40" />
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-100" alt="Coach" />
             <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center">
-              <h3 className="text-[#00E5FF] font-black text-4xl md:text-5xl uppercase tracking-tighter leading-none mb-6 italic">
+              <h3 className="transform-card-title font-black text-4xl md:text-5xl uppercase tracking-tighter leading-none mb-6 italic">
                 Transform Coach
               </h3>
-              <p className="force-text-white-muted text-[10px] font-bold uppercase leading-relaxed max-w-xs mb-4">
+              <p className="transform-card-desc text-[10px] font-bold uppercase leading-relaxed max-w-xs mb-4">
                 Your coach checks in daily to keep you accountable, track your progress, celebrate your wins and help you push through when you need it.
               </p>
             </div>
@@ -395,13 +400,12 @@ const AccessGrid = ({ data }: { data: PageHeroData | null }) => {
               whileHover={{ scale: 1.02 }}
               className="relative aspect-square rounded-[40px] overflow-hidden border border-white/10 group"
             >
-              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-60" alt="Meal Plans" />
-              <div className="absolute inset-0 bg-black/40" />
+              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-100" alt="Meal Plans" />
               <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center">
-                <h3 className="text-[#00E5FF] font-black text-3xl md:text-4xl uppercase tracking-tighter leading-none mb-4 italic">
+                <h3 className="transform-card-title font-black text-3xl md:text-4xl uppercase tracking-tighter leading-none mb-4 italic">
                   Tailored Meal Plans
                 </h3>
-                <p className="force-text-white-muted text-[10px] font-bold uppercase leading-relaxed max-w-xs">
+                <p className="transform-card-desc text-[10px] font-bold uppercase leading-relaxed max-w-xs">
                   Scientific approach to nutrition with thousands of meal options to satisfy your taste buds without compromising on your fitness goals.
                 </p>
               </div>
@@ -412,8 +416,8 @@ const AccessGrid = ({ data }: { data: PageHeroData | null }) => {
               whileHover={{ scale: 1.02 }}
               className="relative aspect-[4/3] rounded-[40px] border border-white/10 flex flex-col items-center justify-center text-center p-8 bg-[#1c1c1c]/50 backdrop-blur-xl"
             >
-              <span className="force-text-white-muted text-xs font-bold uppercase tracking-widest mb-2">and</span>
-              <h3 className="force-text-white font-black text-3xl uppercase tracking-tighter italic">so much more!</h3>
+              <span className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2">and</span>
+              <h3 className="text-white font-black text-3xl uppercase tracking-tighter italic">so much more!</h3>
             </motion.div>
           </div>
         </div>
@@ -463,31 +467,30 @@ const TrainerLedClasses = ({ data }: { data: PageHeroData | null }) => {
           <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">{content.classes_title || 'Trainer-led group classes'}</h2>
         </div>
 
-        <div className="relative group">
-          <div className="flex gap-6 overflow-x-auto pb-12 scrollbar-hide snap-x px-4">
-            {classes.map((c, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="min-w-[300px] md:min-w-[400px] aspect-[4/5] relative rounded-[40px] overflow-hidden snap-center border border-white/10 group/card"
-              >
-                <img src={c.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" alt={c.name} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+          {classes.map((c, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.15, ease: "easeOut" }}
+              whileHover={{ y: -15, scale: 1.03 }}
+              className="aspect-[4/5] relative rounded-[32px] overflow-hidden border border-white/10 group/card shadow-xl cursor-pointer"
+            >
+              <img src={c.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" alt={c.name} />
+              {/* Stronger gradient overlay for crisp text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1C] via-[#0A0F1C]/50 to-transparent opacity-90 transition-opacity duration-500 group-hover/card:opacity-100" />
 
-                <div className="absolute inset-x-0 bottom-0 p-6 text-center flex flex-col items-center">
-                  <span className="text-4xl mb-4 bg-white/10 backdrop-blur-md w-16 h-16 rounded-2xl flex items-center justify-center border border-white/20">{c.icon}</span>
-                  <h3 className="force-text-white font-black text-4xl uppercase tracking-tighter mb-2 leading-none">{c.name}</h3>
-                  <p className="force-text-white-muted font-bold text-[10px] tracking-[0.2em] uppercase mb-8">{c.tags}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <button className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-black/50 backdrop-blur-md border border-white/10 rounded-full hidden md:flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all -translate-x-1/2">
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-black/50 backdrop-blur-md border border-white/10 rounded-full hidden md:flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all translate-x-1/2">
-            <ChevronRight className="w-6 h-6" />
-          </button>
+              <div className="absolute inset-x-0 bottom-0 p-6 text-center flex flex-col items-center">
+                <span className="mb-4 bg-[#0A0F1C]/80 w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg border border-[#F0B892]/30 transition-transform duration-500 group-hover/card:-translate-y-2">
+                  {c.icon}
+                </span>
+                <h3 className="text-white font-black text-3xl uppercase tracking-tighter mb-2 leading-none transition-transform duration-500 group-hover/card:-translate-y-1">{c.name}</h3>
+                <p className="text-white/70 font-bold text-[10px] tracking-[0.2em] uppercase mb-4 transition-transform duration-500">{c.tags}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -523,46 +526,34 @@ const AtHomeWorkouts = ({ data }: { data: PageHeroData | null }) => {
   ];
 
   return (
-    <section id="at-home" className="py-16 overflow-hidden relative border-t border-white/5 scroll-mt-32">
+    <section id="at-home" className="py-8 overflow-hidden relative border-t border-white/5 scroll-mt-32">
       <div className="max-w-screen-2xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <p className="text-white/40 font-black tracking-[0.4em] uppercase text-[10px] mb-3">{content.athome_subtitle || 'AT-HOME'}</p>
           <h2 className="text-2xl md:text-4xl font-bold text-white uppercase tracking-tighter leading-none">{content.athome_title || 'Unlimited home workouts with calorie tracking'}</h2>
         </div>
 
-        <div className="relative">
-          <div className="flex flex-wrap justify-center gap-8 px-4">
+        <div className="relative max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
             {workouts.map((w, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
-                className="min-w-[300px] md:min-w-[340px] max-w-[360px] rounded-[16px] overflow-hidden bg-[#2a3038] flex flex-col group/card border border-white/5 shadow-lg"
+                className="w-full rounded-[16px] overflow-hidden bg-[#7A5737]/95 flex flex-col group/card border border-[#7A5737] shadow-lg"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={w.img} className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" alt={w.title} />
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <img src={w.img} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover/card:scale-105" alt={w.title} />
                   {w.live && (
-                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-md text-[10px] font-black text-white z-10 tracking-wider">
+                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-md text-[10px] font-black text-[#D8B79A] z-10 tracking-wider">
                       {w.live}
                     </div>
                   )}
                 </div>
 
-                <div className="p-5 flex flex-col items-center text-center flex-1">
+                <div className="p-4 pb-5 flex flex-col items-center text-center flex-1">
                   <p className="force-text-white-muted opacity-80 font-medium text-xs mb-2">{w.trainer}</p>
                   <h3 className="force-text-white font-bold text-xl mb-2 tracking-tight">{w.title}</h3>
-                  <p className="force-text-white-muted opacity-90 font-bold text-[10px] tracking-wider uppercase mb-6">{w.type}</p>
-
-                  <div className="mt-auto">
-                    <button
-                      onClick={() => {
-                        if (!isLoggedIn) setIsLoginModalOpen(true);
-                      }}
-                      className="flex items-center gap-2 bg-[#373e48] text-white font-bold px-6 py-2 rounded-lg text-[11px] tracking-wider uppercase hover:bg-white hover:text-black transition-all"
-                    >
-                      <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.5)]" />
-                      JOIN
-                    </button>
-                  </div>
+                  <p className="force-text-white-muted opacity-90 font-bold text-[10px] tracking-wider uppercase mb-4">{w.type}</p>
                 </div>
               </motion.div>
             ))}
@@ -726,7 +717,7 @@ const MembershipComparison = ({ data }: { data: PageHeroData | null }) => {
               onClick={() => setSelectedPlan(p.duration)}
               className={`px-8 py-4 rounded-2xl border transition-all flex flex-col items-center min-w-[160px] ${selectedPlan === p.duration
                 ? 'bg-[#FF7200]/10 border-[#FF7200] shadow-[0_0_20px_rgba(255,114,0,0.1)]'
-                : 'bg-[#1c1c1c] border-white/5 hover:border-white/20'
+                : 'bg-[rgba(21,30,50,0.05)] border-[rgba(21,30,50,0.1)] hover:border-white/20'
                 }`}
             >
               <span className={`text-[10px] font-black tracking-[0.2em] uppercase mb-1 ${selectedPlan === p.duration ? 'text-[#FF7200]' : 'text-white/40'}`}>

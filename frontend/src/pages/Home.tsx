@@ -111,7 +111,7 @@ export default function Home() {
             <section className="py-10 bg-transparent relative overflow-hidden px-4 md:px-20">
                <div className="max-w-7xl mx-auto flex flex-col items-center">
                   <motion.h2 className="font-sans text-5xl sm:text-[60px] md:text-[120px] text-white font-black tracking-tight mb-4 leading-none">FitXPass</motion.h2>
-                  <Link to="/fitness" className="font-sans text-[#FF8B10] font-black text-sm tracking-widest uppercase mb-4">LEARN MORE</Link>
+                  <Link to="/fitness" className="font-sans text-[#FFA040] font-black text-sm tracking-widest uppercase mb-4">LEARN MORE</Link>
                   {(() => {
                      const activePlans = memberships.length > 0 ? memberships : [
                         {
@@ -147,7 +147,7 @@ export default function Home() {
                                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent" />
                                  <div className="absolute bottom-6 left-6">
                                     <p className="font-sans force-text-white-muted text-[10px] font-black tracking-widest uppercase mb-1">FitXPass</p>
-                                    <h3 className={`font-sans text-4xl font-black tracking-tight ${name === 'ELITE' ? 'text-[#FF7200]' : name === 'PRO' ? 'text-[#FF8B10]' : 'force-text-white'}`}>{name}</h3>
+                                    <h3 className={`font-sans text-4xl font-black tracking-tight ${name === 'ELITE' ? 'text-[#FFA040]' : name === 'PRO' ? 'text-[#FFA040]' : 'force-text-white'}`}>{name}</h3>
                                  </div>
                               </Link>
                               <div className="flex-1 px-2">
@@ -161,14 +161,13 @@ export default function Home() {
                               <div className="flex gap-3 px-2">
                                  <button
                                     onClick={() => setIsFreeTrialModalOpen(true)}
-                                    className="flex-1 bg-white/5 text-white py-3 rounded-xl font-black font-sans text-[10px] tracking-widest uppercase"
+                                    className="flex-1 bg-transparent border border-[#FFA040]/50 text-[#FFA040] hover:bg-[#FFA040] hover:text-white py-3 rounded-xl font-black font-sans text-[10px] tracking-widest uppercase transition-all"
                                  >
                                     TRY FOR FREE
                                  </button>
                                  <Link
                                     to={path}
-                                    className="flex-1 bg-[#00E5FF] text-[#0A0F24] py-3 rounded-xl font-black font-sans text-[10px] tracking-widest uppercase text-center flex items-center justify-center hover:bg-[#33EBFF] transition-all"
-                                    style={{ color: '#0A0F24' }}
+                                    className="flex-1 bg-[#FFA040] text-white py-3 rounded-xl font-black font-sans text-[10px] tracking-widest uppercase text-center flex items-center justify-center hover:bg-[#FFA040] shadow-[0_0_15px_rgba(255, 160, 64,0.3)] transition-all"
                                  >
                                     LEARN MORE
                                  </Link>
@@ -236,8 +235,8 @@ export default function Home() {
             <section className="py-10 bg-transparent px-4 md:px-20">
                <motion.div className="max-w-7xl mx-auto rounded-[40px] bg-gradient-to-br from-[#2d333d] to-[#1a1e24] p-6 md:p-12 flex flex-col lg:flex-row gap-12 overflow-hidden relative items-center">
                   {/* Ambient Background Glows */}
-                  <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF7200]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FF8B10]/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-[#FFA040]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FFA040]/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
                   <div className="lg:w-1/2 flex flex-col justify-center z-10">
                      <h2 className="font-sans text-white font-bold text-4xl md:text-6xl tracking-tight mb-4 leading-tight">Wellness Hub</h2>
                      <p className="font-sans text-white/70 text-lg mb-8">One place for all your well-being needs</p>
@@ -257,7 +256,7 @@ export default function Home() {
          {/* 9. App Download Section */}
          <ScrollReveal type="sticky">
             <section className="py-10 bg-transparent px-4 md:px-20">
-               <motion.div className="max-w-7xl mx-auto rounded-[40px] bg-gradient-to-br from-[#1a1c1d] via-[#FF7200]/10 to-[#0d1616] p-6 md:p-12 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative">
+               <motion.div className="max-w-7xl mx-auto rounded-[40px] bg-gradient-to-br from-[#1a1c1d] via-[#FFA040]/10 to-[#0d1616] p-6 md:p-12 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative">
                   <div className="lg:w-1/2 flex flex-col z-10">
                      <h2 className="font-sans text-white font-bold text-4xl md:text-6xl tracking-tight mb-4 leading-tight">Download the app</h2>
                      <p className="font-sans text-white/70 text-lg mb-8 max-w-md">Start your fitness journey with us. Join the FitX family!</p>
@@ -282,10 +281,10 @@ export default function Home() {
             <section className="py-16 bg-transparent px-4 md:px-20 max-w-7xl mx-auto w-full">
                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
                   <div>
-                     <p className="text-[#00E5FF] font-black text-xs tracking-[0.3em] uppercase mb-4">LATEST INTEL</p>
+                     <p className="text-[#FFA040] font-black text-xs tracking-[0.3em] uppercase mb-4">LATEST INTEL</p>
                      <h2 className="font-sans text-white font-black text-4xl md:text-6xl tracking-tight leading-none uppercase">FitX Journal</h2>
                   </div>
-                  <Link to="/blogs" className="text-[#00E5FF] font-black text-sm tracking-widest uppercase border-b border-[#00E5FF]/20 hover:border-[#00E5FF] transition-all pb-1 mt-4 md:mt-0 flex items-center gap-2">
+                  <Link to="/blogs" className="text-[#FFA040] font-black text-sm tracking-widest uppercase border-b border-[#FFA040]/20 hover:border-[#FFA040] transition-all pb-1 mt-4 md:mt-0 flex items-center gap-2">
                      VIEW ALL ARTICLES <ChevronRight className="w-4 h-4" />
                   </Link>
                </div>
@@ -320,18 +319,18 @@ export default function Home() {
                      <motion.div
                         key={blog.id}
                         whileHover={{ y: -8 }}
-                        className="group flex flex-col h-full bg-white/5 border border-white/5 rounded-[32px] overflow-hidden hover:bg-white/[0.08] transition-all duration-500 cursor-pointer shadow-xl"
+                        className="group flex flex-col h-full bg-white/5 border border-white/5 rounded-[32px] overflow-hidden hover:bg-white/[0.08] transition-all duration-500 cursor-pointer shadow-xl hover:shadow-[0_0_40px_rgba(255,160,64,0.3),0_0_20px_rgba(255,255,255,0.2)]"
                      >
                         <Link to="/blogs" className="block relative h-64 overflow-hidden">
                            <img src={blog.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={blog.title} />
                            <div className="absolute top-4 left-4">
-                              <span className="bg-black/85 text-white px-3 py-1.5 rounded-full font-sans text-[8px] font-black tracking-widest uppercase border border-[#00E5FF]/20 shadow-md">
+                              <span className="bg-gradient-to-r from-[#FFA040] to-white text-black px-3 py-1.5 rounded-full font-sans text-[8px] font-black tracking-widest uppercase shadow-[0_0_15px_rgba(255,160,64,0.4)]">
                                  {blog.category}
                               </span>
                            </div>
                         </Link>
                         <div className="p-6 flex flex-col flex-grow gap-4">
-                           <h3 className="font-sans text-white font-black text-xl leading-snug group-hover:text-[#00E5FF] transition-colors line-clamp-2">
+                           <h3 className="font-sans text-white font-black text-xl leading-snug group-hover:text-[#FFA040] transition-colors line-clamp-2">
                               {blog.title}
                            </h3>
                            <p className="font-sans text-white/50 text-xs font-bold leading-relaxed line-clamp-3">
@@ -339,7 +338,7 @@ export default function Home() {
                            </p>
                            <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
                               <span className="text-white/30 font-sans font-bold text-[9px] uppercase tracking-widest">{blog.readTime}</span>
-                              <Link to="/blogs" className="flex items-center gap-1.5 text-[#00E5FF] font-black text-[9px] tracking-widest uppercase">
+                              <Link to="/blogs" className="flex items-center gap-1.5 text-[#FFA040] font-black text-[9px] tracking-widest uppercase">
                                  READ <ChevronRight className="w-3.5 h-3.5" />
                               </Link>
                            </div>

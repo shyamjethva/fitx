@@ -102,10 +102,10 @@ export default function TrainerDashboard() {
         <div className="flex flex-col items-center mb-8 text-center">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-8 h-8 bg-[#0A0F24] rounded-full flex items-center justify-center">
-              <div className="w-4 h-4 bg-[#00E5FF] rounded-sm rotate-45" />
+              <div className="w-4 h-4 bg-[#FFA040] rounded-sm rotate-45" />
             </div>
             <span className="font-sans text-2xl tracking-tighter text-[#0A0F24] uppercase font-black">
-              fit<span className="text-[#00E5FF]">X</span>
+              fit<span className="text-[#FFA040]">X</span>
             </span>
           </div>
           <p className="text-[10px] font-black uppercase tracking-widest text-[#0A0F24]/60">MASTER COACH CONSOLE</p>
@@ -287,7 +287,7 @@ export default function TrainerDashboard() {
                   <button
                     type="button"
                     onClick={handleLogout}
-                    className="flex-grow-0 sm:px-8 bg-[#12626b]/5 hover:bg-red-500 hover:text-white border border-[#12626b]/10 text-red-600 py-4 rounded-2xl transition-all text-xs uppercase tracking-widest active:scale-95 flex items-center justify-center gap-2"
+                    className="flex-grow-0 sm:px-8 bg-[#12626b]/5 hover:bg-[#FFA040] hover:text-white border border-[#12626b]/10 text-[#FFA040] py-4 rounded-2xl transition-all text-xs uppercase tracking-widest active:scale-95 flex items-center justify-center gap-2"
                   >
                     <LogOut className="w-4 h-4" /> DISCONNECT
                   </button>
@@ -300,7 +300,7 @@ export default function TrainerDashboard() {
         {/* Security Footnote Banner */}
         <div className="mt-6 text-center">
           <p className="text-white/20 text-[8px] font-black uppercase tracking-widest leading-relaxed flex items-center justify-center gap-1.5">
-            <Shield className="w-3 h-3 text-[#00E5FF]" /> FitX Secure Authentication Console • Live MongoDB Sync
+            <Shield className="w-3 h-3 text-[#FFA040]" /> FitX Secure Authentication Console • Live MongoDB Sync
           </p>
         </div>
       </div>

@@ -54,7 +54,7 @@ const CanvasScrollBg = () => {
         if (p.y < 0 || p.y > dimensions.height) p.vy *= -1;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 229, 255, ${0.2 + scrollValue * 0.3})`;
+        ctx.fillStyle = `rgba(255, 160, 64, ${0.2 + scrollValue * 0.3})`;
         ctx.fill();
       });
 
@@ -67,7 +67,7 @@ const CanvasScrollBg = () => {
   }, [dimensions, scrollYProgress]);
 
   return (
-    <div className="fixed inset-0 -z-10 bg-black">
+    <div className="fixed inset-0 -z-10 premium-bg">
       <canvas ref={canvasRef} width={dimensions.width} height={dimensions.height} className="opacity-40" />
     </div>
   );
@@ -84,14 +84,14 @@ const FitnessCategoryPage = ({ title, subtitle, img }: { title: string, subtitle
         <section className="relative w-full aspect-[21/9] md:aspect-[25/9] overflow-hidden">
           <img src={img} className="w-full h-full object-cover grayscale opacity-60" alt={title} />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-          <div className="absolute inset-0 flex flex-col justify-end pb-20 px-6 md:px-20">
+          <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-20">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-6xl md:text-9xl font-black force-text-white mb-6 tracking-tighter uppercase italic leading-none">
-                {title.split(' ')[0]}<span className="text-[#FF7200]">{title.split(' ')[1] ? ` ${title.split(' ')[1]}` : ''}</span>
+                {title.split(' ')[0]}<span className="text-[#FFA040]">{title.split(' ')[1] ? ` ${title.split(' ')[1]}` : ''}</span>
               </h1>
               <p className="force-text-white-muted font-black text-xl md:text-3xl tracking-tight uppercase max-w-2xl">
                 {subtitle}
